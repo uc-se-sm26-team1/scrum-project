@@ -22,7 +22,7 @@ _Teams are 3–4 students (per syllabus). Solo teams are not permitted._
 
 1. Member 1 Corey Brunner — brunnecj@mail.uc.edu — Scrum Master
 2. Member 2 Pawan Poudyel — poudyepn@mail.uc.edu — Product Owner
-3. Member 3 Full Name — uc-email@mail.uc.edu — _Role_ _(if applicable)_
+3. Member 3 Zackary Bailey — baileyzc@mail.uc.edu — Developer
 4. Member 4 Full Name — uc-email@mail.uc.edu — _Role_ _(if applicable)_
 5. Member 5 Full Name — uc-email@mail.uc.edu — _Role_ _(if applicable)_
 
