@@ -32,7 +32,7 @@ _Teams are 3–4 students (per syllabus). Solo teams are not permitted._
 
 | Item | URL |
 |---|---|
-| Team homepage / landing page | https://uc-se-sm26-team-TODO.github.io |
+| Team homepage / landing page | [https://github.com/uc-se-sm26-team1/uc-se-sm26-team1.github.io](https://github.com/uc-se-sm26-team1/uc-se-sm26-team1.github.io) |
 | Live prototype (Azure App Services) | https://TODO.azurewebsites.net |
 | GitHub Projects board (private) | https://github.com/orgs/uc-se-sm26-team1/projects/2/views/1 |
 | Source code repository (private) | https://github.com/uc-se-sm26-team1/scrum-project |
