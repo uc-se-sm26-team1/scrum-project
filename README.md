@@ -14,7 +14,7 @@
 
 # Scrum Project — TODO: Your Project Name
 
-> Replace **"TODO: Your Project Name"** with the title of your team's secure web application.
+> Replace **"Messenger App Project"** with the title of your team's secure web application.
 
 ## Team Members
 
