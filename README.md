@@ -1,9 +1,5 @@
 # README.md — Scrum Project Report Template
 
-> _**Note:** This is a starter template for your team to begin Sprint 0._
-> _It is the **minimum** required structure for your final report and is expected to grow across sprints._
-> _Your team may add sections; please discuss any **removal** of a section with the instructor (open a pull request)._
-
 **University of Cincinnati**
 
 **EECE/CS-3093C — Software Engineering, Summer 2026**
