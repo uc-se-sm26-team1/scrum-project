@@ -63,7 +63,7 @@ List the high-level functional and non-functional requirements. These will be re
 - **FR-2:** TODO
 - **NFR-1 (Performance):** TODO
 - **NFR-2 (Usability):** TODO
-- **NFR-3 (Security — see §Security):** TODO
+- **NFR-3 (Security — see §Security):** The system shall prompt users for their log in credentials to ensure integrity of the system.
 
 ## User Stories & Product Backlog
 
