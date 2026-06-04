@@ -63,7 +63,7 @@ List the high-level functional and non-functional requirements. These will be re
 - **FR-2:** As a registered user, I want to create a new group chat by selecting multiple users and assigning a group name, so that I can coordinate and communicate with my team in a shared messaging space without needing separate individual messages.
 - **NFR-1 (Performance):** TODO
 - **NFR-2 (Usability):** TODO
-- **NFR-3 (Security — see §Security):** TODO
+- **NFR-3 (Security — see §Security):** The system shall verify users through multi-factor authentication from email or text messages.
 
 ## User Stories & Product Backlog
 
@@ -71,9 +71,22 @@ https://github.com/orgs/uc-se-sm26-team1/projects/2
 
 Include a representative screenshot of the **Todo / In Progress / Done** columns at the end of each sprint. _(Sprint 0 onward.)_
 
+Table view of Sprint 0:
+
+![Sprint 0: Table View ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_0_table_view.png)
+
+Public chat section board:
+
+![Sprint 0: Public chat section ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_0_public_chat_section.png)
+
+Status setting, Authentication, and No features section:
+
+![Sprint 0: Status setting, Authentication, and No features section ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_0_statussetting_authentication_nofeatures.png)
+
+
 ## Use Cases
 
-Include the **use-case diagram** and a **brief description** (1–3 sentences) for each use case. _(Main focus of Sprint 0.)_
+[![](https://img.plantuml.biz/plantuml/svg/LT3FJiCm3CVnUvx2wdq7zcT7j6bNk0ps02RzqKMaQMKxW8HuTzGgICdnAtyYnJwfiLWUeujuDxA990ntepu8l8KfEVOs2NMNAILuGqytXNJ4Ikl4BOxJ447TCrIH1WYTvxcZ7qUK5PuLr9qZnEWLFAvlRvU7Udg5H_W4NS4zhJ6R5hYjuGji2I4rjlnFTZMv2DX0WqnvfX6gFA2uVVEZR7Sa2vwNFOiurE8ff8_b9FWsIE98NtZJOD22Z-wtd6UpULnNgclRrAwfVLE7fexkXDJdCVu1)](https://editor.plantuml.com/uml/LT3FJiCm3CVnUvx2wdq7zcT7j6bNk0ps02RzqKMaQMKxW8HuTzGgICdnAtyYnJwfiLWUeujuDxA990ntepu8l8KfEVOs2NMNAILuGqytXNJ4Ikl4BOxJ447TCrIH1WYTvxcZ7qUK5PuLr9qZnEWLFAvlRvU7Udg5H_W4NS4zhJ6R5hYjuGji2I4rjlnFTZMv2DX0WqnvfX6gFA2uVVEZR7Sa2vwNFOiurE8ff8_b9FWsIE98NtZJOD22Z-wtd6UpULnNgclRrAwfVLE7fexkXDJdCVu1)
 
 | UC ID | Use Case            | Primary Actor | Brief Description |
 |-------|---------------------|---------------|-------------------|
