@@ -71,6 +71,19 @@ https://github.com/orgs/uc-se-sm26-team1/projects/2
 
 Include a representative screenshot of the **Todo / In Progress / Done** columns at the end of each sprint. _(Sprint 0 onward.)_
 
+Table view of Sprint 0:
+
+![Sprint 0: Table View ](paste link here)
+
+Public chat section board:
+
+![Sprint 0: Public chat section ](paste link here)
+
+Status setting, Authentication, and No features section:
+
+![Sprint 0: Status setting, Authentication, and No features section ](paste link here)
+
+
 ## Use Cases
 
 Include the **use-case diagram** and a **brief description** (1–3 sentences) for each use case. _(Main focus of Sprint 0.)_
