@@ -67,7 +67,9 @@ List the high-level functional and non-functional requirements. These will be re
 
 ## User Stories & Product Backlog
 
-Link to your **GitHub Projects board** (above) and include a representative screenshot of the **Todo / In Progress / Done** columns at the end of each sprint. _(Sprint 0 onward.)_
+https://github.com/orgs/uc-se-sm26-team1/projects/2
+
+Include a representative screenshot of the **Todo / In Progress / Done** columns at the end of each sprint. _(Sprint 0 onward.)_
 
 ## Use Cases
 
