@@ -77,8 +77,9 @@ Include the **use-case diagram** and a **brief description** (1–3 sentences) f
 
 | UC ID | Use Case            | Primary Actor | Brief Description |
 |-------|---------------------|---------------|-------------------|
-| UC-01 | TODO                | TODO          | TODO              |
-| UC-02 | TODO                | TODO          | TODO              |
+| UC-01 | Alert Team             S   | Connected User          | Connected User uses the '@(tagline/username)' to alert team members; Connected User clicks 'Send' and all team members are alerted. |
+| UC-02 | Recieve Read Receipts                | Connected User          | The receiving user reads group message. The user that sent the message sees through the chat UI that the receiving user has read the message. |
+|   UC-03     |                     |               |                   |
 
 ---
 
