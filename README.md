@@ -81,7 +81,8 @@ Include the **use-case diagram** and a **brief description** (1–3 sentences) f
 | UC-02 | Recieve Read Receipts                | Connected User          | The receiving user reads group message. The user that sent the message sees through the chat UI that the receiving user has read the message. |
 |   UC-03     |                     |               |                   |
 | UC-04   |   |                      |              |                   |
-| UC-05   |   Authentication |  Connected User |   The user would like to log into the messaging app. The user is prompted to enter his details. The system verifies the user's credential and decides to let the user proceed or not.
+| UC-05   |   Authentication |  Connected User |   The user would like to log into the messaging app. The user is prompted to enter his details. The system verifies the user's credential and decides to let the user proceed or not.|
+| UC-06 | Links to external websites| Connected User| Actor pastes link in chat and it is able to be clicked on and opens in web browser|
 
 ---
 
