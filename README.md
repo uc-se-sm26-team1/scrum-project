@@ -73,15 +73,15 @@ Include a representative screenshot of the **Todo / In Progress / Done** columns
 
 Table view of Sprint 0:
 
-![Sprint 0: Table View ](paste link here)
+![Sprint 0: Table View ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_0_table_view.png)
 
 Public chat section board:
 
-![Sprint 0: Public chat section ](paste link here)
+![Sprint 0: Public chat section ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_0_public_chat_section.png)
 
 Status setting, Authentication, and No features section:
 
-![Sprint 0: Status setting, Authentication, and No features section ](paste link here)
+![Sprint 0: Status setting, Authentication, and No features section ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_0_statussetting_authentication_nofeatures.png)
 
 
 ## Use Cases
