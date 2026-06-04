@@ -80,7 +80,7 @@ Include the **use-case diagram** and a **brief description** (1–3 sentences) f
 | UC-01 | Alert Team              | Connected User          | Connected User uses the '@(tagline/username)' to alert team members; Connected User clicks 'Send' and all team members are alerted. |
 | UC-02 | Receive Read Receipts                | Connected User          | The receiving user reads group message. The user that sent the message sees through the chat UI that the receiving user has read the message. |
 |   UC-03     |                     |               |                   |
-| UC-04   |   |                      |              |                   |
+| UC-04 | Create Group Message | Connected User | Actor selects “Create Group Chat,” enters group details (such as group name and participants), and submits the request; the system validates the input, creates a new group conversation. |
 | UC-05   |   Authentication |  Connected User |   The user would like to log into the messaging app. The user is prompted to enter his details. The system verifies the user's credential and decides to let the user proceed or not.
 
 ---
