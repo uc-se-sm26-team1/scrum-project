@@ -59,7 +59,7 @@ _Start in Sprint 0; keep updating._
 
 List the high-level functional and non-functional requirements. These will be refined into user stories and use cases. _(Main focus of Sprint 0.)_
 
-- **FR-1:** TODO — _As a [role], I want to [capability] so that [benefit]._
+- **FR-1:** As a user I would like the ability to set a user status to display my availability to the other users of the messenger application.
 - **FR-2:** As a registered user, I want to create a new group chat by selecting multiple users and assigning a group name, so that I can coordinate and communicate with my team in a shared messaging space without needing separate individual messages.
 - **NFR-1 (Performance):** TODO
 - **NFR-2 (Usability):** TODO
