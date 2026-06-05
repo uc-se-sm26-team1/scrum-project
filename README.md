@@ -62,7 +62,7 @@ List the high-level functional and non-functional requirements. These will be re
 - **FR-1:** As a user I would like the ability to set a user status to display my availability to the other users of the messenger application.
 - **FR-2:** As a registered user, I want to create a new group chat by selecting multiple users and assigning a group name, so that I can coordinate and communicate with my team in a shared messaging space without needing separate individual messages.
 - **NFR-1 (Performance):** The system shall detect hyperlinks within 1 second and load them under normal conditions.
-- **NFR-2 (Usability):** TODO
+- **NFR-2 (Usability):** There must be a clear confirmation prompt from the application before a user alerts a team of more than 25 members to prevent accidental pinging.
 - **NFR-3 (Security — see §Security):** The system shall verify users through multi-factor authentication from email or text messages.
 
 ## User Stories & Product Backlog
