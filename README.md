@@ -8,7 +8,7 @@
 
 ---
 
-# Scrum Project — TODO: Your Project Name
+# Scrum Project — Messenger
 
 > Replace **"Messenger App Project"** with the title of your team's secure web application.
 
