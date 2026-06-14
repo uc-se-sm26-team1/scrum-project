@@ -290,10 +290,10 @@ Working through the sprints is a continuous-improvement process. The retrospecti
 
 ### Sprint 1
 
-**Duration:** YYYY-MM-DD to YYYY-MM-DD
+**Duration:** 2026-05-11 to 2026-06-16
 
 #### Sprint Goal
-TODO — one sentence.
+Setup the team environment and establish the system requirements and design based upon user stories, user scenarios, and use case pbis.
 
 #### Completed PBIs / Tasks
 1. TODO
