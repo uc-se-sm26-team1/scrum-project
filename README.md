@@ -252,7 +252,7 @@ Include:
 
 > Copy the block below for each sprint (Sprint 0, 1, 2, 3).
 
-### Sprint X
+### Sprint 0
 
 **Duration:** YYYY-MM-DD to YYYY-MM-DD
 
@@ -288,6 +288,113 @@ Working through the sprints is a continuous-improvement process. The retrospecti
 - **What could have been better** — be specific (e.g., "we underestimated authentication" not "things were hard").
 - **How we will improve next sprint** — concrete, owned actions.
 
+### Sprint 1
+
+**Duration:** YYYY-MM-DD to YYYY-MM-DD
+
+#### Sprint Goal
+TODO — one sentence.
+
+#### Completed PBIs / Tasks
+1. TODO
+2. TODO
+3. TODO
+
+#### Contributions
+
+| Member | Hours | Contribution Summary |
+|--------|-------|----------------------|
+| Member 1 | X | TODO |
+| Member 2 | X | TODO |
+| Member 3 | X | TODO |
+| Member 4 | X | TODO |
+| Member 5 | X | TODO |
+
+#### Sprint Retrospective
+
+| Good | Could have been better | How to improve |
+|------|------------------------|----------------|
+|      |                        |                |
+|      |                        |                |
+
+
+Working through the sprints is a continuous-improvement process. The retrospective happens at the end of a sprint, before planning the next one. Cover three things briefly:
+
+- **What went well** — celebrate and reinforce.
+- **What could have been better** — be specific (e.g., "we underestimated authentication" not "things were hard").
+- **How we will improve next sprint** — concrete, owned actions.
+
+### Sprint 2
+
+**Duration:** YYYY-MM-DD to YYYY-MM-DD
+
+#### Sprint Goal
+TODO — one sentence.
+
+#### Completed PBIs / Tasks
+1. TODO
+2. TODO
+3. TODO
+
+#### Contributions
+
+| Member | Hours | Contribution Summary |
+|--------|-------|----------------------|
+| Member 1 | X | TODO |
+| Member 2 | X | TODO |
+| Member 3 | X | TODO |
+| Member 4 | X | TODO |
+| Member 5 | X | TODO |
+
+#### Sprint Retrospective
+
+| Good | Could have been better | How to improve |
+|------|------------------------|----------------|
+|      |                        |                |
+|      |                        |                |
+
+
+Working through the sprints is a continuous-improvement process. The retrospective happens at the end of a sprint, before planning the next one. Cover three things briefly:
+
+- **What went well** — celebrate and reinforce.
+- **What could have been better** — be specific (e.g., "we underestimated authentication" not "things were hard").
+- **How we will improve next sprint** — concrete, owned actions.
+
+### Sprint 3
+
+**Duration:** YYYY-MM-DD to YYYY-MM-DD
+
+#### Sprint Goal
+TODO — one sentence.
+
+#### Completed PBIs / Tasks
+1. TODO
+2. TODO
+3. TODO
+
+#### Contributions
+
+| Member | Hours | Contribution Summary |
+|--------|-------|----------------------|
+| Member 1 | X | TODO |
+| Member 2 | X | TODO |
+| Member 3 | X | TODO |
+| Member 4 | X | TODO |
+| Member 5 | X | TODO |
+
+#### Sprint Retrospective
+
+| Good | Could have been better | How to improve |
+|------|------------------------|----------------|
+|      |                        |                |
+|      |                        |                |
+
+
+Working through the sprints is a continuous-improvement process. The retrospective happens at the end of a sprint, before planning the next one. Cover three things briefly:
+
+- **What went well** — celebrate and reinforce.
+- **What could have been better** — be specific (e.g., "we underestimated authentication" not "things were hard").
+- **How we will improve next sprint** — concrete, owned actions.
 Keep it under an hour. The output is bullet points in the table above and any new PBIs created on the board.
 
 ---
