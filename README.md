@@ -135,9 +135,11 @@ Describe your **MongoDB Atlas** schema: collections, fields, indexes, and relati
 
 # Security (SSDLC)
 
-_Start in Sprint 0; **mandatory** updates at the Sprint 1–2 SSDLC checkpoint and again in Sprint 3._
+Our team will apply the Secure Software Development Lifcycle (SSDLC) thoughout the design, implementation, testing, and development of the Messenger application. Security will be considered in every layer of the system like the client UI, server side application logic, real time Socket.io communication, database access, and at the final deployed application. 
 
-This section documents how your team applies the **Secure Software Development Lifecycle** across every phase. Do **not** treat security as an afterthought — it is graded across all sprints.
+A concrete security threat for Messenger is Cross-Site Scripting (XSS) at the UI layer. Since users can type and send messages, a malicious user could attempt to send HTML or JavaScript code as a message. If the application displays that message without the proper protection the code could run in another user's browser. That user's browser has no way to know that the code should not be trusted. The user's sensitive and confidential information is at risk. 
+
+To reduce this risk, our team will sanitize message content before rendering it in the conversation view of the application. We will also consider using a Content Security Policy (CSP) to restrict which scripts are allowed to run in the browser. 
 
 ## Security Requirements
 
