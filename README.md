@@ -170,9 +170,9 @@ Identify assets, trust boundaries, and threats. STRIDE or attack-tree format is 
 |-------|--------|------------|
 | User Credentials | Credential stuffing | Rate limiting + bcrypt |
 | Chat Messages  | Code is sent as a message   | input validation |
-| User Identity | A user presends to be someone else | verify username on server |
+| User Identity | A user presents to be someone else | verify username on server |
 | Private Communication | Message could be intercepted | Use HTTPS |
-| External Links | Users end malicious links | only allow valid HTTPS links |
+| External Links | Users send malicious links | only allow valid HTTPS links |
 
 ## Security Review Notes
 
