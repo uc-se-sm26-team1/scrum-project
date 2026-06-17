@@ -170,9 +170,9 @@ Identify assets, trust boundaries, and threats. STRIDE or attack-tree format is 
 |-------|--------|------------|
 | User Credentials | Credential stuffing | Rate limiting + bcrypt |
 | Chat Messages  | Code is sent as a message   | input validation |
-| User Identity | A user presents to be someone else | verify username on server |
+| User Identity | A user presends to be someone else | verify username on server |
 | Private Communication | Message could be intercepted | Use HTTPS |
-| External Links | Users send malicious links | only allow valid HTTPS links |
+| External Links | Users end malicious links | only allow valid HTTPS links |
 
 ## Security Review Notes
 
@@ -282,18 +282,9 @@ Include:
 The goal of this sprint is to outline the basic requirements, scenarios, and use cases of our messenger application.
 
 #### Completed PBIs / Tasks
-1. Added user stories, scenarios and use cases. 
-2. Completed acceptance criteria for use cases.
-3. Add sequence diagrams for the use cases.
-4. Complete sprint retrospective.
-5. Create use case UI design for use case 4 and 6.
-6. Setup private repo properly.
-7. Setup public repo with proper naming.
-8. Added members to organization.
-9. Created Project board.
-10. Added basic messenger html
-11. Updated index.html with proper information.
-
+1. TODO
+2. TODO
+3. TODO
 
 #### Contributions
 
@@ -303,7 +294,7 @@ The goal of this sprint is to outline the basic requirements, scenarios, and use
 | Member 2 - Zack Bailey | 6 | added use case 4 derived from the scenario involving status setting. Added pbis that were relevant to the rubric and module 3. Completed acceptance criteria and sequence diagrams for my use case. Created the sprint retrospective based upon the group consensus of the sprint.|
 | Member 3 | X | TODO |
 | Member 4 | X | TODO |
-| Member 5 | Garrett Becker | 6 | added use case 4 from the scenario involving a project manager wanting to create a group message, added the AC and sequence diagram for use case 4. Added 5 different security requiremments to the README.md, updated all TODO sections of the Security section in the README.md, and updated some of the project board and status.|
+| Member 5 - Garrett Becker | 6 | added use case 4 from the scenario involving a project manager wanting to create a group message, added the AC and sequence diagram for use case 4. Added 5 different security requiremments to the README.md, updated all TODO sections of the Security section in the README.md, and updated some of the project board and status.|
 
 #### Sprint Retrospective
 
