@@ -261,7 +261,7 @@ Include:
 **Duration:** YYYY-MM-DD to YYYY-MM-DD
 
 #### Sprint Goal
-TODO — one sentence.
+The goal of this sprint is to outline the basic requirements, scenarios, and use cases of our messenger applicattion.
 
 #### Completed PBIs / Tasks
 1. TODO
