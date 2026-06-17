@@ -294,7 +294,7 @@ The goal of this sprint is to outline the basic requirements, scenarios, and use
 | Member 2 - Zack Bailey | 6 | added use case 4 derived from the scenario involving status setting. Added pbis that were relevant to the rubric and module 3. Completed acceptance criteria and sequence diagrams for my use case. Created the sprint retrospective based upon the group consensus of the sprint.|
 | Member 3 | X | TODO |
 | Member 4 | X | TODO |
-| Member 5 | X | TODO |
+| Member 5 | Garrett Becker | 6 | added use case 4 from the scenario involving a project manager wanting to create a group message, added the AC and sequence diagram for use case 4. Added 5 different security requiremments to the README.md, updated all TODO sections of the Security section in the README.md, and updated some of the project board and status.|
 
 #### Sprint Retrospective
 
