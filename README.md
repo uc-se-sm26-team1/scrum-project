@@ -302,7 +302,7 @@ The goal of this sprint is to outline the basic requirements, scenarios, and use
 | Member 1 - Corey Brunner | 7 | added Use-cases 1 and 2. Added AC and and sequence diagrams for Use case 1. Futhermore, added basic messenger UI, UI diagrams for use cases 4-6, Managed project board by added comments to team members use cases, created issues, and assigned tasks.  |
 | Member 2 - Pawan Poudyel | 6 | Added use case 6, added acceptence citeria and sequence diagram for use case 6, added threat model in readme, and created sub issues for all user stories |
 | Member 3 - Zack Bailey | 6 | added use case 3 derived from the scenario involving status setting. Added pbis that were relevant to the rubric and module 3. Completed acceptance criteria and sequence diagrams for my use case. Created the sprint retrospective based upon the group consensus of the sprint.|
-| Member 4 | Abdulah Dia | 6 | Created architecture diagram, updated the the beginning of the security section in README, added 1 more user story, acceptance criteria, and sequence diagram for use case 2 |
+| Member 4 - Abdulah Dia | 6 | Created architecture diagram, updated the the beginning of the security section in README, added 1 more user story, acceptance criteria, and sequence diagram for use case 2 |
 | Member 5 - Garrett Becker | 6 | added use case 4 from the scenario involving a project manager wanting to create a group message, added the AC and sequence diagram for use case 4. Added 5 different security requiremments to the README.md, updated all TODO sections of the Security section in the README.md, and updated some of the project board and status.|
 
 #### Sprint Retrospective
