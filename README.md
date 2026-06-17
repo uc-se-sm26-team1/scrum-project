@@ -150,9 +150,9 @@ To reduce this risk, our team will sanitize message content before rendering it 
 ## Security Requirements
 
 List security requirements alongside functional requirements. _(Sprint 0.)_
-- **SR-1:** TODO — _e.g., All authentication tokens must be transmitted over HTTPS only._
-- **SR-2:** TODO — _e.g., Passwords must be hashed with bcrypt (cost ≥ 12); plaintext passwords must never be logged or stored._
-
+- **SR-1:** All communication between the client and server must use HTTPS to prevent messages and credentials from being intercepted in transit. 
+- **SR-2:** User passwords must be hashed using bcrypt before being stored in the database; plaintext passwords must never be saved or logged.
+- **SR-3:** All user-submitted message content must be sanitized before being displayed in the chat to prevent Cross-Site Scripting (XSS) attacks.
 ## Threat Model
 
 Identify assets, trust boundaries, and threats. STRIDE or attack-tree format is acceptable. _(Sprint 0–1.)_
