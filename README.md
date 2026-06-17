@@ -117,6 +117,12 @@ For each use case in §Use Cases, describe how it is realized in code: which mod
 
 Embed UI mockups or screenshots and describe the interaction model. Wireframes are acceptable for Sprint 1; final screenshots for Sprint 3. _(Sprint 1 onward.)_
 
+![Use-Case-04 UI Design](images/Markup%20UI%20Drawings/Use-Case-04-UI-Design.png)
+**Interaction Model:** The user greg is shown a basic UI with some tools and chat history on the left side. One of the tools on the left side is "Create Group". When pressed a UI pop up is shown in the middle that includes `Group Name`, `Add Users` and `Send Message (optional)`. These interactions are needed to create a group. Finally, there are buttons to create group and cancel the creation. If the group is created, the users added and the creator will see a group name pop up on the left hand side. The pop up UI will disappear and if a message was entered in that UI, then it will be sent to the group members.
+
+![Use-Case-06 UI Design](images/Markup%20UI%20Drawings/Use-Case-06-UI-Design.png)
+**Interaction Model:** The user again is greg. The chat message includes two sections, type message and a tool bar. When a user pastes a link and wants to edit it, the user will click the `link icon`. After clicking, the user can see a UI pop up asking what the URL is and what text do they want to display the URL. After clicking `add link`, the link will be added/edited in the message box. The user can also just send raw url's to the group and it will be displayed as a link.
+
 ## Database
 
 Describe your **MongoDB Atlas** schema: collections, fields, indexes, and relationships. Include a sample document for each collection. _(Sprint 2 onward; refine in Sprint 3.)_
