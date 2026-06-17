@@ -272,9 +272,18 @@ Include:
 The goal of this sprint is to outline the basic requirements, scenarios, and use cases of our messenger application.
 
 #### Completed PBIs / Tasks
-1. TODO
-2. TODO
-3. TODO
+1. Added user stories, scenarios and use cases. 
+2. Completed acceptance criteria for use cases.
+3. Add sequence diagrams for the use cases.
+4. Complete sprint retrospective.
+5. Create use case UI design for use case 4 and 6.
+6. Setup private repo properly.
+7. Setup public repo with proper naming.
+8. Added members to organization.
+9. Created Project board.
+10. Added basic messenger html
+11. Updated index.html with proper information.
+
 
 #### Contributions
 
