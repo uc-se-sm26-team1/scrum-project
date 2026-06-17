@@ -117,6 +117,12 @@ For each use case in §Use Cases, describe how it is realized in code: which mod
 
 Embed UI mockups or screenshots and describe the interaction model. Wireframes are acceptable for Sprint 1; final screenshots for Sprint 3. _(Sprint 1 onward.)_
 
+![Use-Case-04 UI Design](images/Markup%20UI%20Drawings/Use-Case-04-UI-Design.png)
+**Interaction Model:** The user greg is shown a basic UI with some tools and chat history on the left side. One of the tools on the left side is "Create Group". When pressed a UI pop up is shown in the middle that includes `Group Name`, `Add Users` and `Send Message (optional)`. These interactions are needed to create a group. Finally, there are buttons to create group and cancel the creation. If the group is created, the users added and the creator will see a group name pop up on the left hand side. The pop up UI will disappear and if a message was entered in that UI, then it will be sent to the group members.
+
+![Use-Case-06 UI Design](images/Markup%20UI%20Drawings/Use-Case-06-UI-Design.png)
+**Interaction Model:** The user again is greg. The chat message includes two sections, type message and a tool bar. When a user pastes a link and wants to edit it, the user will click the `link icon`. After clicking, the user can see a UI pop up asking what the URL is and what text do they want to display the URL. After clicking `add link`, the link will be added/edited in the message box. The user can also just send raw url's to the group and it will be displayed as a link.
+
 ## Database
 
 Describe your **MongoDB Atlas** schema: collections, fields, indexes, and relationships. Include a sample document for each collection. _(Sprint 2 onward; refine in Sprint 3.)_
@@ -144,9 +150,11 @@ To reduce this risk, our team will sanitize message content before rendering it 
 ## Security Requirements
 
 List security requirements alongside functional requirements. _(Sprint 0.)_
-- **SR-1:** TODO — _e.g., All authentication tokens must be transmitted over HTTPS only._
-- **SR-2:** TODO — _e.g., Passwords must be hashed with bcrypt (cost ≥ 12); plaintext passwords must never be logged or stored._
-
+- **SR-1:** All communication between the client and server must use HTTPS to prevent messages and credentials from being intercepted in transit. 
+- **SR-2:** User passwords must be hashed using bcrypt before being stored in the database; plaintext passwords must never be saved or logged.
+- **SR-3:** All user-submitted message content must be sanitized before being displayed in the chat to prevent Cross-Site Scripting (XSS) attacks.
+- **SR-4:** Users must be automatically logged out after 30 minutes of inactivity to prevent unauthorized access from unattended sessions.
+- **SR-5:** Group chat creation and membership changes must be validated on the server side; clients must not be trusted to enforce access control on their own.
 ## Threat Model
 
 Identify assets, trust boundaries, and threats. STRIDE or attack-tree format is acceptable. _(Sprint 0–1.)_
@@ -268,10 +276,10 @@ Include:
 
 ### Sprint 0
 
-**Duration:** YYYY-MM-DD to YYYY-MM-DD
+**Duration:** 2026-05-27 to 2026-06-16
 
 #### Sprint Goal
-TODO — one sentence.
+The goal of this sprint is to outline the basic requirements, scenarios, and use cases of our messenger application.
 
 #### Completed PBIs / Tasks
 1. TODO
@@ -282,8 +290,8 @@ TODO — one sentence.
 
 | Member | Hours | Contribution Summary |
 |--------|-------|----------------------|
-| Member 1 | X | TODO |
-| Member 2 | X | TODO |
+| Member 1 - Corey Brunner | 7 | added Use-cases 1 and 2. Added AC and and sequence diagrams for Use case 1. Futhermore, added basic messenger UI, UI diagrams for use cases 4-6, Managed project board by added comments to team members use cases, created issues, and assigned tasks.  |
+| Member 2 - Zack Bailey | 6 | added use case 4 derived from the scenario involving status setting. Added pbis that were relevant to the rubric and module 3. Completed acceptance criteria and sequence diagrams for my use case. Created the sprint retrospective based upon the group consensus of the sprint.|
 | Member 3 | X | TODO |
 | Member 4 | X | TODO |
 | Member 5 | X | TODO |
@@ -292,22 +300,22 @@ TODO — one sentence.
 
 | Good | Could have been better | How to improve |
 |------|------------------------|----------------|
-|      |                        |                |
-|      |                        |                |
+|   Teamwork   |      Organization                  |      Communicate with team to ensure proper organization.          |
+|   Coordination   |     Redundancies                   |        Establish what the needed things are in order to prevent redundancies.        |
 
 
-Working through the sprints is a continuous-improvement process. The retrospective happens at the end of a sprint, before planning the next one. Cover three things briefly:
 
-- **What went well** — celebrate and reinforce.
-- **What could have been better** — be specific (e.g., "we underestimated authentication" not "things were hard").
-- **How we will improve next sprint** — concrete, owned actions.
+
+- **What went well** — Good teamwork and team coordination. We were mostly able to figure out how to delegate tasks to each member. Our use cases were descriptive and defined the problem well. Acceptance criteria and sequence diagrams were done well and made the use cases easy to quantify.
+- **What could have been better** — Our biggest struggle was organization, specifically when utilizing the project board with pbis. Making sure all pbis were properly labeled and in the correct fields was also difficult. We also had some overlapping pbis and use cases that added extra clutter but were not needed.
+- **How we will improve next sprint** — Using the fact that we had good team coordination, we will work to improve the project board organization and remove any redundancies that make it unclear what we need to do. We will also make sure to communicate what pbis we are creating so we do not have duplicates.
 
 ### Sprint 1
 
-**Duration:** 2026-05-11 to 2026-06-16
+**Duration:** YYYY-MM-DD to YYYY-MM-DD
 
 #### Sprint Goal
-Setup the team environment and establish the system requirements and design based upon user stories, user scenarios, and use case pbis.
+TODO — one sentence.
 
 #### Completed PBIs / Tasks
 1. TODO
