@@ -168,11 +168,12 @@ Identify assets, trust boundaries, and threats. STRIDE or attack-tree format is 
 
 | Asset | Threat | Mitigation |
 |-------|--------|------------|
-| User Credentials | Credential stuffing | Rate limiting + bcrypt |
-| Chat Messages  | Code is sent as a message   | input validation |
-| User Identity | A user presents to be someone else | verify username on server |
-| Private Communication | Message could be intercepted | Use HTTPS |
-| External Links | Users send malicious links | only allow valid HTTPS links |
+| User Credentials | (spoofing) Credential stuffing | Rate limiting + bcrypt |
+| Chat Messages  | (tampering) Code is sent as a message   | input validation |
+| Message History | (repudiation) User denys sending message | Record sent messages with timestamps |
+| Client-Server Communication | (information disclosure) Message could be intercepted | Use HTTPS |
+| Chat Server | (denial of service) User floods server with requests | Add rate limits |
+| User permissions | (elevation of privilege) normal user gets elevated priveleges | check privileges before allowing any elevated actions |
 
 ## Security Review Notes
 
@@ -291,10 +292,10 @@ The goal of this sprint is to outline the basic requirements, scenarios, and use
 | Member | Hours | Contribution Summary |
 |--------|-------|----------------------|
 | Member 1 - Corey Brunner | 7 | added Use-cases 1 and 2. Added AC and and sequence diagrams for Use case 1. Futhermore, added basic messenger UI, UI diagrams for use cases 4-6, Managed project board by added comments to team members use cases, created issues, and assigned tasks.  |
-| Member 2 - Zack Bailey | 6 | added use case 4 derived from the scenario involving status setting. Added pbis that were relevant to the rubric and module 3. Completed acceptance criteria and sequence diagrams for my use case. Created the sprint retrospective based upon the group consensus of the sprint.|
+| Member 2 - Pawan Poudyel | 7 | |
 | Member 3 | X | TODO |
 | Member 4 | X | TODO |
-| Member 5 | X | TODO |
+| Member 5 - Zack Bailey | 6 | added use case 4 derived from the scenario involving status setting. Added pbis that were relevant to the rubric and module 3. Completed acceptance criteria and sequence diagrams for my use case. Created the sprint retrospective based upon the group consensus of the sprint.|
 
 #### Sprint Retrospective
 
