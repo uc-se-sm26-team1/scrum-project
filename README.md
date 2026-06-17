@@ -258,7 +258,7 @@ Include:
 
 ### Sprint 0
 
-**Duration:** YYYY-MM-DD to YYYY-MM-DD
+**Duration:** 2026-05-27 to 2026-06-27
 
 #### Sprint Goal
 The goal of this sprint is to outline the basic requirements, scenarios, and use cases of our messenger applicattion.
@@ -272,7 +272,7 @@ The goal of this sprint is to outline the basic requirements, scenarios, and use
 
 | Member | Hours | Contribution Summary |
 |--------|-------|----------------------|
-| Member 1 | X | TODO |
+| Member 1 - Corey Brunner | 7 | added Use-cases 1 and 2. Added AC and and sequence diagrams for Use case 1. Futhermore, added basic messenger UI, UI diagrams for use cases 4-6, Managed project board by added comments to team members use cases, created issues, and assigned tasks.  |
 | Member 2 | X | TODO |
 | Member 3 | X | TODO |
 | Member 4 | X | TODO |
