@@ -264,10 +264,10 @@ Include:
 
 ### Sprint 0
 
-**Duration:** 2026-05-27 to 2026-06-27
+**Duration:** 2026-05-27 to 2026-06-16
 
 #### Sprint Goal
-The goal of this sprint is to outline the basic requirements, scenarios, and use cases of our messenger applicattion.
+The goal of this sprint is to outline the basic requirements, scenarios, and use cases of our messenger application.
 
 #### Completed PBIs / Tasks
 1. TODO
@@ -300,10 +300,10 @@ Working through the sprints is a continuous-improvement process. The retrospecti
 
 ### Sprint 1
 
-**Duration:** 2026-05-11 to 2026-06-16
+**Duration:** YYYY-MM-DD to YYYY-MM-DD
 
 #### Sprint Goal
-Setup the team environment and establish the system requirements and design based upon user stories, user scenarios, and use case pbis.
+TODO — one sentence.
 
 #### Completed PBIs / Tasks
 1. TODO
