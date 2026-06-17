@@ -159,10 +159,20 @@ List security requirements alongside functional requirements. _(Sprint 0.)_
 
 Identify assets, trust boundaries, and threats. STRIDE or attack-tree format is acceptable. _(Sprint 0–1.)_
 
+### Trust boundaries
+
+- user connecting to browser client
+- Browser client connecting to server
+- Server connecting to connected clients
+- Links to external websites
+
 | Asset | Threat | Mitigation |
 |-------|--------|------------|
-| User credentials | Credential stuffing | Rate limiting + bcrypt |
-| TODO  | TODO   | TODO       |
+| User Credentials | Credential stuffing | Rate limiting + bcrypt |
+| Chat Messages  | Code is sent as a message   | input validation |
+| User Identity | A user presends to be someone else | verify username on server |
+| Private Communication | Message could be intercepted | Use HTTPS |
+| External Links | Users end malicious links | only allow valid HTTPS links |
 
 ## Security Review Notes
 
