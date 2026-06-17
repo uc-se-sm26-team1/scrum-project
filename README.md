@@ -279,7 +279,7 @@ The goal of this sprint is to outline the basic requirements, scenarios, and use
 | Member | Hours | Contribution Summary |
 |--------|-------|----------------------|
 | Member 1 - Corey Brunner | 7 | added Use-cases 1 and 2. Added AC and and sequence diagrams for Use case 1. Futhermore, added basic messenger UI, UI diagrams for use cases 4-6, Managed project board by added comments to team members use cases, created issues, and assigned tasks.  |
-| Member 2 | X | TODO |
+| Member 2 - Zack Bailey | 6 | added use case 4 derived from the scenario involving status setting. Added pbis that were relevant to the rubric and module 3. Completed acceptance criteria and sequence diagrams for my use case. Created the sprint retrospective based upon the group consensus of the sprint.|
 | Member 3 | X | TODO |
 | Member 4 | X | TODO |
 | Member 5 | X | TODO |
@@ -288,15 +288,15 @@ The goal of this sprint is to outline the basic requirements, scenarios, and use
 
 | Good | Could have been better | How to improve |
 |------|------------------------|----------------|
-|      |                        |                |
-|      |                        |                |
+|   Teamwork   |      Organization                  |      Communicate with team to ensure proper organization.          |
+|   Coordination   |     Redundancies                   |        Establish what the needed things are in order to prevent redundancies.        |
 
 
 Working through the sprints is a continuous-improvement process. The retrospective happens at the end of a sprint, before planning the next one. Cover three things briefly:
 
-- **What went well** — celebrate and reinforce.
-- **What could have been better** — be specific (e.g., "we underestimated authentication" not "things were hard").
-- **How we will improve next sprint** — concrete, owned actions.
+- **What went well** — Good teamwork and team coordination. We were mostly able to figure out how to delegate tasks to each member. Our use cases were descriptive and defined the problem well. Acceptance criteria and sequence diagrams were done well and made the use cases easy to quantify.
+- **What could have been better** — Our biggest struggle was organization, specifically when utilizing the project board with pbis. Making sure all pbis were properly labeled and in the correct fields was also difficult. We also had some overlapping pbis and use cases that added extra clutter but were not needed.
+- **How we will improve next sprint** — Using the fact that we had good team coordination, we will work to improve the project board organization and remove any redundancies that make it unclear what we need to do. We will also make sure to communicate what pbis we are creating so we do not have duplicates.
 
 ### Sprint 1
 
