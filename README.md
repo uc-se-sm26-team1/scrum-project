@@ -292,7 +292,7 @@ The goal of this sprint is to outline the basic requirements, scenarios, and use
 |   Coordination   |     Redundancies                   |        Establish what the needed things are in order to prevent redundancies.        |
 
 
-Working through the sprints is a continuous-improvement process. The retrospective happens at the end of a sprint, before planning the next one. Cover three things briefly:
+
 
 - **What went well** — Good teamwork and team coordination. We were mostly able to figure out how to delegate tasks to each member. Our use cases were descriptive and defined the problem well. Acceptance criteria and sequence diagrams were done well and made the use cases easy to quantify.
 - **What could have been better** — Our biggest struggle was organization, specifically when utilizing the project board with pbis. Making sure all pbis were properly labeled and in the correct fields was also difficult. We also had some overlapping pbis and use cases that added extra clutter but were not needed.
