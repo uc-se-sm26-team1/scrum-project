@@ -53,7 +53,6 @@ Our project is a real time messenging app that helps users communicate quickly i
 
 Our simple messenging app is a web based applcation that uses a Node.js server and Socket.IO for real time communication. Users can join with any username which the server tracke. The client provides a UI for public/private chats, system messages, users, and external links. Our web based solution fixes our main concern, which is device compatability since it can be accessed from any device with a web browser.
 
-The proposed solution is a web-based chat application built with a browser client, a Node.js/Express server, and Socket.IO for real-time communication. Users enter a username to join the chat, and the server tracks connected users in memory. The client provides the chat interface, including public chat, private chat, system status messages, user list updates, and clickable external links. Messages are sent from the browser to the server through Socket.IO events, and the server broadcasts or routes those messages to the correct users.
 
 ---
 
