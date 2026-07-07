@@ -49,11 +49,23 @@ _Start in Sprint 0; refine across all sprints._
 
 Describe the project in 2–4 paragraphs: the problem it addresses, the target users, and a high-level summary of the proposed solution. Include a **high-level architecture diagram** 
 
+Our project is a real time messenging app that helps users communicate quickly in either public or private chats. It addresses the problem of needing a shared communication space for users to chat publicly/privately and share links. Users are able to see who is online, send/recieve public or private messages. Our target user base is other students/faculity members who need a messenging platform to collaborate.
+
+Our simple messenging app is a web based applcation that uses a Node.js server and Socket.IO for real time communication. Users can join with any username which the server tracke. The client provides a UI for public/private chats, system messages, users, and external links. Our web based solution fixes our main concern, which is device compatability since it can be accessed from any device with a web browser.
+
+The proposed solution is a web-based chat application built with a browser client, a Node.js/Express server, and Socket.IO for real-time communication. Users enter a username to join the chat, and the server tracks connected users in memory. The client provides the chat interface, including public chat, private chat, system status messages, user list updates, and clickable external links. Messages are sent from the browser to the server through Socket.IO events, and the server broadcasts or routes those messages to the correct users.
+
 ---
 
 # System Analysis
 
 _Start in Sprint 0; keep updating._
+
+Sprint 1:  
+
+In sprint 1, users are able to enter in their username and join the chat. We have a public/private chat, a users section, and system messages. Currently we have not implemented a login system so anyone can enter any username and join the chat. We have a minimal but functional UI for private/public chat and the insert button. We also switched from using textarea to a `<div>` with `contenteditable="true` to support clickable links but because of this we have security vulnerabilities since we do not check for malicous code. Overall our 0.1 version of the messenger app is in a good functional state for sprint 1. 
+
+
 
 ## User Requirements
 
@@ -129,6 +141,14 @@ Describe the architectural style (e.g., layered, client-server, microservices) a
 ## Use-Case Realization
 
 For each use case in §Use Cases, describe how it is realized in code: which modules, endpoints, and database collections participate. **Sequence diagrams** are encouraged for non-trivial flows (e.g., authentication, message send/receive). _(Sprint 1 onward.)_
+
+***
+Use case 06:
+
+![Use-Case-06 External links sequence diagram](images/sprint_1_usecase06_sequence_diagram.png)  
+
+User types or pastes URL and `client.js` converts the url into a `<a href="...">` element and the normal sending/reciving message protocol is followed
+***
 
 ## User Interface
 
@@ -338,22 +358,23 @@ The goal of this sprint is to outline the basic requirements, scenarios, and use
 
 ### Sprint 1
 
-**Duration:** YYYY-MM-DD to YYYY-MM-DD
+**Duration:** 2026-06-17 to 2026-07-09
 
 #### Sprint Goal
-TODO — one sentence.
+
+Create and implment a basic messenging web app that lets users pick a username, send/recieve messages, and send external links.
 
 #### Completed PBIs / Tasks
-1. TODO
-2. TODO
-3. TODO
+1. [PBI #38 Change message text box from input to div contentaeditable to allow links in chat](https://github.com/uc-se-sm26-team1/scrum-project/issues/38)
+2. [PBI #30 As a user, I would like pasted/typed out URLs to automatically be links](https://github.com/uc-se-sm26-team1/scrum-project/issues/30)
+3. [PBI #31 As a user, I would like a clickable clipboard button in the message box so I can send links](https://github.com/uc-se-sm26-team1/scrum-project/issues/31)
 
 #### Contributions
 
 | Member | Hours | Contribution Summary |
 |--------|-------|----------------------|
 | Member 1 | X | TODO |
-| Member 2 | X | TODO |
+| Pawan Poudyel | 6 | Did the 3 userstories for `use-case-06` for adding external links support(similar to microsoft teams) and updated overview, system analysis, user stories & product backlog, and user-case realization in README.md |
 | Member 3 | X | TODO |
 | Member 4 | X | TODO |
 | Member 5 | X | TODO |
