@@ -71,6 +71,8 @@ https://github.com/orgs/uc-se-sm26-team1/projects/2
 
 Include a representative screenshot of the **Todo / In Progress / Done** columns at the end of each sprint. _(Sprint 0 onward.)_
 
+***
+
 Table view of Sprint 0:
 
 ![Sprint 0: Table View ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_0_table_view.png)
@@ -81,8 +83,23 @@ Public chat section board:
 
 Status setting, Authentication, and No features section:
 
-![Sprint 0: Status setting, Authentication, and No features section ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_0_statussetting_authentication_nofeatures.png)
+![Sprint 0: Status setting, Authentication, and No features section ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_0_statussetting_authentication_nofeatures.png)  
 
+***
+
+Table view of Sprint 1:
+
+![Sprint 1: Table View(sorted by sprint 1) ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_1_table_view.png)
+
+Public chat section board:
+
+![Sprint 1: Public chat section ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_1_public_chat_section.png)
+
+Status setting, Authentication, and No features section:
+
+![Sprint 1: Status setting, Authentication, and No features section ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_1_statussetting_authentication_nofeatures.png)
+
+***
 
 ## Use Cases
 
