@@ -374,7 +374,7 @@ Create and implment a basic messenging web app that lets users pick a username, 
 |--------|-------|----------------------|
 | Member 1 | X | TODO |
 | Pawan Poudyel | 6 | Did the 3 userstories for `use-case-06` for adding external links support(similar to microsoft teams) and updated overview, system analysis, user stories & product backlog, and user-case realization in README.md |
-| Member 3 | X | TODO |
+| Zackary Bailey | 6 | Implemented the real-time updating user display list, added the css stylesheet, added pbis to github, completed sprint retrospective. |
 | Member 4 | X | TODO |
 | Member 5 | X | TODO |
 
@@ -382,15 +382,16 @@ Create and implment a basic messenging web app that lets users pick a username, 
 
 | Good | Could have been better | How to improve |
 |------|------------------------|----------------|
-|      |                        |                |
-|      |                        |                |
+|   Code organization and quality   |      Scheduling                  |    Predetermined meeting times            |
+|   distribution of work  |            Communication            |       More consistent messaging         |
+|    documentation                 |                |            |
 
 
 Working through the sprints is a continuous-improvement process. The retrospective happens at the end of a sprint, before planning the next one. Cover three things briefly:
 
-- **What went well** — celebrate and reinforce.
-- **What could have been better** — be specific (e.g., "we underestimated authentication" not "things were hard").
-- **How we will improve next sprint** — concrete, owned actions.
+- **What went well** — The things that went the best during this sprint was our distribution of work, quality code implementation, and documentation.
+- **What could have been better** — The things that we struggled with this most during this sprint was scheduling. We found ourselves waiting longer than needed to schedule making it difficult for schedules to align.
+- **How we will improve next sprint** — During the next sprint we will preemptively schedule meetings throughout based upon the times that we are sure we will be available. Having predetermined meetings throughout the sprint will make it more consistent and less likely for scheduling conflicts.
 
 ### Sprint 2
 
