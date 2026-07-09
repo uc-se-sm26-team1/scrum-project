@@ -372,7 +372,7 @@ Create and implment a basic messenging web app that lets users pick a username, 
 
 | Member | Hours | Contribution Summary |
 |--------|-------|----------------------|
-| Member 1 | X | TODO |
+| Corey Brunner | 6 | Created a web app service to host the web app. Also had to debug and alter the yml file since the package.json file sat inside a directory. I also performed functional requirements 1.1 - 1.3. These requirements handled SPA and user sign on. The code I implemented allowed the user to pick their username and display it in the user list. |
 | Pawan Poudyel | 6 | Did the 3 userstories for `use-case-06` for adding external links support(similar to microsoft teams) and updated overview, system analysis, user stories & product backlog, and user-case realization in README.md |
 | Zackary Bailey | 6 | Implemented the real-time updating user display list, added the css stylesheet, added pbis to github, completed sprint retrospective. |
 | Member 4 | X | TODO |
