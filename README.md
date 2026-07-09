@@ -376,7 +376,7 @@ Create and implment a basic messenging web app that lets users pick a username, 
 | Pawan Poudyel | 6 | Did the 3 userstories for `use-case-06` for adding external links support(similar to microsoft teams) and updated overview, system analysis, user stories & product backlog, and user-case realization in README.md |
 | Zackary Bailey | 6 | Implemented the real-time updating user display list, added the css stylesheet, added pbis to github, completed sprint retrospective. |
 | Member 4 | X | TODO |
-| Member 5 | X | TODO |
+| Garrett Becker | 6 |  Did the autoscroll feature for public chat (F1.4) and built out all of private messaging (F1.5) with Socket.io, so users can send direct messages to a specific online user. Also filled out the System Design section of the README and updated our pbis on the project board. |
 
 #### Sprint Retrospective
 
