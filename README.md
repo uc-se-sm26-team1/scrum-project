@@ -26,20 +26,20 @@ _Teams are 3–4 students (per syllabus). Solo teams are not permitted._
 
 # Project Management Information
 
-| Item | URL |
-|---|---|
-| Team homepage / landing page | [https://github.com/uc-se-sm26-team1/uc-se-sm26-team1.github.io](https://github.com/uc-se-sm26-team1/uc-se-sm26-team1.github.io) |
-| Live prototype (Azure App Services) | https://TODO.azurewebsites.net |
-| GitHub Projects board (private) | https://github.com/orgs/uc-se-sm26-team1/projects/2/views/1 |
-| Source code repository (private) | https://github.com/uc-se-sm26-team1/scrum-project |
-| MongoDB Atlas cluster (configuration only — no credentials) | _e.g., cluster name, region_ |
+| Item                                                        | URL                                                                                                                              |
+| ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Team homepage / landing page                                | [https://github.com/uc-se-sm26-team1/uc-se-sm26-team1.github.io](https://github.com/uc-se-sm26-team1/uc-se-sm26-team1.github.io) |
+| Live prototype (Azure App Services)                         | https://TODO.azurewebsites.net                                                                                                   |
+| GitHub Projects board (private)                             | https://github.com/orgs/uc-se-sm26-team1/projects/2/views/1                                                                      |
+| Source code repository (private)                            | https://github.com/uc-se-sm26-team1/scrum-project                                                                                |
+| MongoDB Atlas cluster (configuration only — no credentials) | _e.g., cluster name, region_                                                                                                     |
 
 ## Revision History
 
-| Date       | Version | Description                          | Author |
-|------------|---------|--------------------------------------|--------|
-| 05/28/2028 | 0.1     | Initial draft (Sprint 0) and README.md implementation             | TODO   |
-| MM/DD/YYYY | 0.2     | Added use cases and architecture     | TODO   |
+| Date       | Version | Description                                           | Author |
+| ---------- | ------- | ----------------------------------------------------- | ------ |
+| 05/28/2028 | 0.1     | Initial draft (Sprint 0) and README.md implementation | TODO   |
+| MM/DD/YYYY | 0.2     | Added use cases and architecture                      | TODO   |
 
 ---
 
@@ -47,12 +47,11 @@ _Teams are 3–4 students (per syllabus). Solo teams are not permitted._
 
 _Start in Sprint 0; refine across all sprints._
 
-Describe the project in 2–4 paragraphs: the problem it addresses, the target users, and a high-level summary of the proposed solution. Include a **high-level architecture diagram** 
+Describe the project in 2–4 paragraphs: the problem it addresses, the target users, and a high-level summary of the proposed solution. Include a **high-level architecture diagram**
 
 Our project is a real time messenging app that helps users communicate quickly in either public or private chats. It addresses the problem of needing a shared communication space for users to chat publicly/privately and share links. Users are able to see who is online, send/recieve public or private messages. Our target user base is other students/faculity members who need a messenging platform to collaborate.
 
 Our simple messenging app is a web based applcation that uses a Node.js server and Socket.IO for real time communication. Users can join with any username which the server tracke. The client provides a UI for public/private chats, system messages, users, and external links. Our web based solution fixes our main concern, which is device compatability since it can be accessed from any device with a web browser.
-
 
 ---
 
@@ -60,11 +59,9 @@ Our simple messenging app is a web based applcation that uses a Node.js server a
 
 _Start in Sprint 0; keep updating._
 
-Sprint 1:  
+Sprint 1:
 
-In sprint 1, users are able to enter in their username and join the chat. We have a public/private chat, a users section, and system messages. Currently we have not implemented a login system so anyone can enter any username and join the chat. We have a minimal but functional UI for private/public chat and the insert button. We also switched from using textarea to a `<div>` with `contenteditable="true` to support clickable links but because of this we have security vulnerabilities since we do not check for malicous code. Overall our 0.1 version of the messenger app is in a good functional state for sprint 1. 
-
-
+In sprint 1, users are able to enter in their username and join the chat. We have a public/private chat, a users section, and system messages. Currently we have not implemented a login system so anyone can enter any username and join the chat. We have a minimal but functional UI for private/public chat and the insert button. We also switched from using textarea to a `<div>` with `contenteditable="true` to support clickable links but because of this we have security vulnerabilities since we do not check for malicous code. Overall our 0.1 version of the messenger app is in a good functional state for sprint 1.
 
 ## User Requirements
 
@@ -82,7 +79,7 @@ https://github.com/orgs/uc-se-sm26-team1/projects/2
 
 Include a representative screenshot of the **Todo / In Progress / Done** columns at the end of each sprint. _(Sprint 0 onward.)_
 
-***
+---
 
 Table view of Sprint 0:
 
@@ -94,9 +91,9 @@ Public chat section board:
 
 Status setting, Authentication, and No features section:
 
-![Sprint 0: Status setting, Authentication, and No features section ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_0_statussetting_authentication_nofeatures.png)  
+![Sprint 0: Status setting, Authentication, and No features section ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_0_statussetting_authentication_nofeatures.png)
 
-***
+---
 
 Table view of Sprint 1:
 
@@ -110,20 +107,20 @@ Status setting, Authentication, and No features section:
 
 ![Sprint 1: Status setting, Authentication, and No features section ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_1_statussetting_authentication_nofeatures.png)
 
-***
+---
 
 ## Use Cases
 
 [![](https://img.plantuml.biz/plantuml/svg/LT3FJiCm3CVnUvx2wdq7zcT7j6bNk0ps02RzqKMaQMKxW8HuTzGgICdnAtyYnJwfiLWUeujuDxA990ntepu8l8KfEVOs2NMNAILuGqytXNJ4Ikl4BOxJ447TCrIH1WYTvxcZ7qUK5PuLr9qZnEWLFAvlRvU7Udg5H_W4NS4zhJ6R5hYjuGji2I4rjlnFTZMv2DX0WqnvfX6gFA2uVVEZR7Sa2vwNFOiurE8ff8_b9FWsIE98NtZJOD22Z-wtd6UpULnNgclRrAwfVLE7fexkXDJdCVu1)](https://editor.plantuml.com/uml/LT3FJiCm3CVnUvx2wdq7zcT7j6bNk0ps02RzqKMaQMKxW8HuTzGgICdnAtyYnJwfiLWUeujuDxA990ntepu8l8KfEVOs2NMNAILuGqytXNJ4Ikl4BOxJ447TCrIH1WYTvxcZ7qUK5PuLr9qZnEWLFAvlRvU7Udg5H_W4NS4zhJ6R5hYjuGji2I4rjlnFTZMv2DX0WqnvfX6gFA2uVVEZR7Sa2vwNFOiurE8ff8_b9FWsIE98NtZJOD22Z-wtd6UpULnNgclRrAwfVLE7fexkXDJdCVu1)
 
-| UC ID | Use Case            | Primary Actor | Brief Description |
-|-------|---------------------|---------------|-------------------|
-| UC-01 | Alert Team              | Connected User          | Connected User uses the '@(tagline/username)' to alert team members; Connected User clicks 'Send' and all team members are alerted. |
-| UC-02 | Receive Read Receipts                | Connected User          | The receiving user reads group message. The user that sent the message sees through the chat UI that the receiving user has read the message. |
-| UC-03 | Set user status| Connected User | System allows the user to select a custom user status to display availability |
-| UC-04 | Create Group Message | Connected User | Actor selects “Create Group Chat,” enters group details (such as group name and participants), and submits the request; the system validates the input, creates a new group conversation. |
-| UC-05   |   Authentication |  Connected User |   The user would like to log into the messaging app. The user is prompted to enter his details. The system verifies the user's credential and decides to let the user proceed or not.|
-| UC-06 | Links to external websites| Connected User| Actor pastes link in chat and it is able to be clicked on and opens in web browser|
+| UC ID | Use Case                   | Primary Actor  | Brief Description                                                                                                                                                                         |
+| ----- | -------------------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| UC-01 | Alert Team                 | Connected User | Connected User uses the '@(tagline/username)' to alert team members; Connected User clicks 'Send' and all team members are alerted.                                                       |
+| UC-02 | Receive Read Receipts      | Connected User | The receiving user reads group message. The user that sent the message sees through the chat UI that the receiving user has read the message.                                             |
+| UC-03 | Set user status            | Connected User | System allows the user to select a custom user status to display availability                                                                                                             |
+| UC-04 | Create Group Message       | Connected User | Actor selects “Create Group Chat,” enters group details (such as group name and participants), and submits the request; the system validates the input, creates a new group conversation. |
+| UC-05 | Authentication             | Connected User | The user would like to log into the messaging app. The user is prompted to enter his details. The system verifies the user's credential and decides to let the user proceed or not.       |
+| UC-06 | Links to external websites | Connected User | Actor pastes link in chat and it is able to be clicked on and opens in web browser                                                                                                        |
 
 ---
 
@@ -141,13 +138,15 @@ Describe the architectural style (e.g., layered, client-server, microservices) a
 
 For each use case in §Use Cases, describe how it is realized in code: which modules, endpoints, and database collections participate. **Sequence diagrams** are encouraged for non-trivial flows (e.g., authentication, message send/receive). _(Sprint 1 onward.)_
 
-***
+---
+
 Use case 06:
 
-![Use-Case-06 External links sequence diagram](images/sprint_1_usecase06_sequence_diagram.png)  
+![Use-Case-06 External links sequence diagram](images/sprint_1_usecase06_sequence_diagram.png)
 
 User types or pastes URL and `client.js` converts the url into a `<a href="...">` element and the normal sending/reciving message protocol is followed
-***
+
+---
 
 ## User Interface
 
@@ -177,20 +176,22 @@ Describe your **MongoDB Atlas** schema: collections, fields, indexes, and relati
 
 # Security (SSDLC)
 
-Our team will apply the Secure Software Development Lifcycle (SSDLC) thoughout the design, implementation, testing, and development of the Messenger application. Security will be considered in every layer of the system like the client UI, server side application logic, real time Socket.io communication, database access, and at the final deployed application. 
+Our team will apply the Secure Software Development Lifcycle (SSDLC) thoughout the design, implementation, testing, and development of the Messenger application. Security will be considered in every layer of the system like the client UI, server side application logic, real time Socket.io communication, database access, and at the final deployed application.
 
-A concrete security threat for Messenger is Cross-Site Scripting (XSS) at the UI layer. Since users can type and send messages, a malicious user could attempt to send HTML or JavaScript code as a message. If the application displays that message without the proper protection the code could run in another user's browser. That user's browser has no way to know that the code should not be trusted. The user's sensitive and confidential information is at risk. 
+A concrete security threat for Messenger is Cross-Site Scripting (XSS) at the UI layer. Since users can type and send messages, a malicious user could attempt to send HTML or JavaScript code as a message. If the application displays that message without the proper protection the code could run in another user's browser. That user's browser has no way to know that the code should not be trusted. The user's sensitive and confidential information is at risk.
 
-To reduce this risk, our team will sanitize message content before rendering it in the conversation view of the application. We will also consider using a Content Security Policy (CSP) to restrict which scripts are allowed to run in the browser. 
+To reduce this risk, our team will sanitize message content before rendering it in the conversation view of the application. We will also consider using a Content Security Policy (CSP) to restrict which scripts are allowed to run in the browser.
 
 ## Security Requirements
 
 List security requirements alongside functional requirements. _(Sprint 0.)_
-- **SR-1:** All communication between the client and server must use HTTPS to prevent messages and credentials from being intercepted in transit. 
+
+- **SR-1:** All communication between the client and server must use HTTPS to prevent messages and credentials from being intercepted in transit.
 - **SR-2:** User passwords must be hashed using bcrypt before being stored in the database; plaintext passwords must never be saved or logged.
 - **SR-3:** All user-submitted message content must be sanitized before being displayed in the chat to prevent Cross-Site Scripting (XSS) attacks.
 - **SR-4:** Users must be automatically logged out after 30 minutes of inactivity to prevent unauthorized access from unattended sessions.
 - **SR-5:** Group chat creation and membership changes must be validated on the server side; clients must not be trusted to enforce access control on their own.
+
 ## Threat Model
 
 Identify assets, trust boundaries, and threats. STRIDE or attack-tree format is acceptable. _(Sprint 0–1.)_
@@ -202,14 +203,14 @@ Identify assets, trust boundaries, and threats. STRIDE or attack-tree format is 
 - Server connecting to connected clients
 - Links to external websites
 
-| Asset | Threat | Mitigation |
-|-------|--------|------------|
-| User Credentials | (spoofing) Credential stuffing | Rate limiting + bcrypt |
-| Chat Messages  | (tampering) Code is sent as a message   | input validation |
-| Message History | (repudiation) User denys sending message | Record sent messages with timestamps |
-| Client-Server Communication | (information disclosure) Message could be intercepted | Use HTTPS |
-| Chat Server | (denial of service) User floods server with requests | Add rate limits |
-| User permissions | (elevation of privilege) normal user gets elevated priveleges | check privileges before allowing any elevated actions |
+| Asset                       | Threat                                                        | Mitigation                                            |
+| --------------------------- | ------------------------------------------------------------- | ----------------------------------------------------- |
+| User Credentials            | (spoofing) Credential stuffing                                | Rate limiting + bcrypt                                |
+| Chat Messages               | (tampering) Code is sent as a message                         | input validation                                      |
+| Message History             | (repudiation) User denys sending message                      | Record sent messages with timestamps                  |
+| Client-Server Communication | (information disclosure) Message could be intercepted         | Use HTTPS                                             |
+| Chat Server                 | (denial of service) User floods server with requests          | Add rate limits                                       |
+| User permissions            | (elevation of privilege) normal user gets elevated priveleges | check privileges before allowing any elevated actions |
 
 ## Security Review Notes
 
@@ -223,17 +224,17 @@ _Start in Sprint 1; keep updating._
 
 Specify your development approach, languages, frameworks, and runtime. Default stack for this course:
 
-| Layer            | Technology                                      |
-|------------------|-------------------------------------------------|
-| Runtime          | Node.js (Azure Cloud Shell for development)     |
-| Server framework | TODO _(e.g., Express)_                          |
-| Database         | MongoDB Atlas                                   |
-| Client           | HTML / CSS / JavaScript _(framework optional)_  |
+| Layer            | Technology                                            |
+| ---------------- | ----------------------------------------------------- |
+| Runtime          | Node.js (Azure Cloud Shell for development)           |
+| Server framework | TODO _(e.g., Express)_                                |
+| Database         | MongoDB Atlas                                         |
+| Client           | HTML / CSS / JavaScript _(framework optional)_        |
 | Version control  | git + GitHub (branches + pull requests + code review) |
-| Project mgmt     | GitHub Projects                                 |
-| Hosting          | Azure App Services                              |
-| CI/CD            | GitHub Actions                                  |
-| ...              | ...          |
+| Project mgmt     | GitHub Projects                                       |
+| Hosting          | Azure App Services                                    |
+| CI/CD            | GitHub Actions                                        |
+| ...              | ...                                                   |
 
 For each sprint, add a subsection that summarizes new implementation work. Include code snippets only when they illustrate a non-trivial design decision (not as a substitute for the source code itself).
 
@@ -304,6 +305,7 @@ _Start in Sprint 0; keep updating._
 Describe how your team applies **Scrum**: roles, ceremonies (sprint planning, daily stand-ups, review, retrospective), and tools (GitHub Projects board, GitHub Issues, pull requests).
 
 Include:
+
 - A screenshot of the **GitHub Projects board** (Todo / In Progress / Done) at the end of each sprint.
 - A **Roadmap view** screenshot from GitHub Projects, or a timeline produced from issue milestones. _(Note: GitHub Projects has a Roadmap view rather than a true Gantt chart; a Roadmap screenshot satisfies this requirement.)_
 
@@ -316,10 +318,12 @@ Include:
 **Duration:** 2026-05-27 to 2026-06-16
 
 #### Sprint Goal
+
 The goal of this sprint is to outline the basic requirements, scenarios, and use cases of our messenger application.
 
 #### Completed PBIs / Tasks
-1. Added user stories, scenarios and use cases. 
+
+1. Added user stories, scenarios and use cases.
 2. Completed acceptance criteria for use cases.
 3. Add sequence diagrams for the use cases.
 4. Complete sprint retrospective.
@@ -333,23 +337,20 @@ The goal of this sprint is to outline the basic requirements, scenarios, and use
 
 #### Contributions
 
-| Member | Hours | Contribution Summary |
-|--------|-------|----------------------|
-| Member 1 - Corey Brunner | 7 | added Use-cases 1 and 2. Added AC and and sequence diagrams for Use case 1. Futhermore, added basic messenger UI, UI diagrams for use cases 4-6, Managed project board by added comments to team members use cases, created issues, and assigned tasks.  |
-| Member 2 - Pawan Poudyel | 6 | Added use case 6, added acceptence citeria and sequence diagram for use case 6, added threat model in readme, and created sub issues for all user stories |
-| Member 3 - Zack Bailey | 6 | added use case 3 derived from the scenario involving status setting. Added pbis that were relevant to the rubric and module 3. Completed acceptance criteria and sequence diagrams for my use case. Created the sprint retrospective based upon the group consensus of the sprint.|
-| Member 4 - Abdulah Dia | 6 | Created architecture diagram, updated the the beginning of the security section in README, added 1 more user story, acceptance criteria, and sequence diagram for use case 2 |
-| Member 5 - Garrett Becker | 6 | added use case 4 from the scenario involving a project manager wanting to create a group message, added the AC and sequence diagram for use case 4. Added 5 different security requiremments to the README.md, updated all TODO sections of the Security section in the README.md, and updated some of the project board and status.|
+| Member                    | Hours | Contribution Summary                                                                                                                                                                                                                                                                                                                 |
+| ------------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Member 1 - Corey Brunner  | 7     | added Use-cases 1 and 2. Added AC and and sequence diagrams for Use case 1. Futhermore, added basic messenger UI, UI diagrams for use cases 4-6, Managed project board by added comments to team members use cases, created issues, and assigned tasks.                                                                              |
+| Member 2 - Pawan Poudyel  | 6     | Added use case 6, added acceptence citeria and sequence diagram for use case 6, added threat model in readme, and created sub issues for all user stories                                                                                                                                                                            |
+| Member 3 - Zack Bailey    | 6     | added use case 3 derived from the scenario involving status setting. Added pbis that were relevant to the rubric and module 3. Completed acceptance criteria and sequence diagrams for my use case. Created the sprint retrospective based upon the group consensus of the sprint.                                                   |
+| Member 4 - Abdulah Dia    | 6     | Created architecture diagram, updated the the beginning of the security section in README, added 1 more user story, acceptance criteria, and sequence diagram for use case 2                                                                                                                                                         |
+| Member 5 - Garrett Becker | 6     | added use case 4 from the scenario involving a project manager wanting to create a group message, added the AC and sequence diagram for use case 4. Added 5 different security requiremments to the README.md, updated all TODO sections of the Security section in the README.md, and updated some of the project board and status. |
 
 #### Sprint Retrospective
 
-| Good | Could have been better | How to improve |
-|------|------------------------|----------------|
-|   Teamwork   |      Organization                  |      Communicate with team to ensure proper organization.          |
-|   Coordination   |     Redundancies                   |        Establish what the needed things are in order to prevent redundancies.        |
-
-
-
+| Good         | Could have been better | How to improve                                                         |
+| ------------ | ---------------------- | ---------------------------------------------------------------------- |
+| Teamwork     | Organization           | Communicate with team to ensure proper organization.                   |
+| Coordination | Redundancies           | Establish what the needed things are in order to prevent redundancies. |
 
 - **What went well** — Good teamwork and team coordination. We were mostly able to figure out how to delegate tasks to each member. Our use cases were descriptive and defined the problem well. Acceptance criteria and sequence diagrams were done well and made the use cases easy to quantify.
 - **What could have been better** — Our biggest struggle was organization, specifically when utilizing the project board with pbis. Making sure all pbis were properly labeled and in the correct fields was also difficult. We also had some overlapping pbis and use cases that added extra clutter but were not needed.
@@ -364,63 +365,67 @@ The goal of this sprint is to outline the basic requirements, scenarios, and use
 Create and implment a basic messenging web app that lets users pick a username, send/recieve messages, and send external links.
 
 #### Completed PBIs / Tasks
+
 1. [PBI #38 Change message text box from input to div contentaeditable to allow links in chat](https://github.com/uc-se-sm26-team1/scrum-project/issues/38)
 2. [PBI #30 As a user, I would like pasted/typed out URLs to automatically be links](https://github.com/uc-se-sm26-team1/scrum-project/issues/30)
 3. [PBI #31 As a user, I would like a clickable clipboard button in the message box so I can send links](https://github.com/uc-se-sm26-team1/scrum-project/issues/31)
+4. [Public chat and private chat are visually distinct (separate views or panels) (F1.7)](https://github.com/uc-se-sm26-team1/scrum-project/issues/43)
+5. [Real-time typing status indicator for public and private chat (F1.8)](https://github.com/uc-se-sm26-team1/scrum-project/issues/44)
 
 #### Contributions
 
-| Member | Hours | Contribution Summary |
-|--------|-------|----------------------|
-| Member 1 | X | TODO |
-| Pawan Poudyel | 6 | Did the 3 userstories for `use-case-06` for adding external links support(similar to microsoft teams) and updated overview, system analysis, user stories & product backlog, and user-case realization in README.md |
-| Member 3 | X | TODO |
-| Member 4 | X | TODO |
-| Member 5 | X | TODO |
+| Member         | Hours | Contribution Summary                                                                                                                                                                                                                                                                                                                             |
+| -------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Corey Brunner  | 6     | Created a web app service to host the web app. Also had to debug and alter the yml file since the package.json file sat inside a directory. I also performed functional requirements 1.1 - 1.3. These requirements handled SPA and user sign on. The code I implemented allowed the user to pick their username and display it in the user list. |
+| Pawan Poudyel  | 6     | Did the 3 userstories for `use-case-06` for adding external links support(similar to microsoft teams) and updated overview, system analysis, user stories & product backlog, and user-case realization in README.md                                                                                                                              |
+| Zackary Bailey | 6     | Implemented the real-time updating user display list, added the css stylesheet, added pbis to github, completed sprint retrospective.                                                                                                                                                                                                            |
+| Abdulah Dia    | 6     | Implemented Functional Requirement F1.7 and F1.8. Created PBIs for each functional requirement.                                                                                                                                                                                                                                                  |
+| Garrett Becker | 6     | Did the autoscroll feature for public chat (F1.4) and built out all of private messaging (F1.5) with Socket.io, so users can send direct messages to a specific online user. Also filled out the System Design section of the README and updated our pbis on the project board.                                                                  |
 
 #### Sprint Retrospective
 
-| Good | Could have been better | How to improve |
-|------|------------------------|----------------|
-|      |                        |                |
-|      |                        |                |
-
+| Good                          | Could have been better | How to improve              |
+| ----------------------------- | ---------------------- | --------------------------- |
+| Code organization and quality | Scheduling             | Predetermined meeting times |
+| distribution of work          | Communication          | More consistent messaging   |
+| documentation                 |                        |                             |
 
 Working through the sprints is a continuous-improvement process. The retrospective happens at the end of a sprint, before planning the next one. Cover three things briefly:
 
-- **What went well** — celebrate and reinforce.
-- **What could have been better** — be specific (e.g., "we underestimated authentication" not "things were hard").
-- **How we will improve next sprint** — concrete, owned actions.
+- **What went well** — The things that went the best during this sprint was our distribution of work, quality code implementation, and documentation.
+- **What could have been better** — The things that we struggled with this most during this sprint was scheduling. We found ourselves waiting longer than needed to schedule making it difficult for schedules to align.
+- **How we will improve next sprint** — During the next sprint we will preemptively schedule meetings throughout based upon the times that we are sure we will be available. Having predetermined meetings throughout the sprint will make it more consistent and less likely for scheduling conflicts.
 
 ### Sprint 2
 
 **Duration:** YYYY-MM-DD to YYYY-MM-DD
 
 #### Sprint Goal
+
 TODO — one sentence.
 
 #### Completed PBIs / Tasks
+
 1. TODO
 2. TODO
 3. TODO
 
 #### Contributions
 
-| Member | Hours | Contribution Summary |
-|--------|-------|----------------------|
-| Member 1 | X | TODO |
-| Member 2 | X | TODO |
-| Member 3 | X | TODO |
-| Member 4 | X | TODO |
-| Member 5 | X | TODO |
+| Member   | Hours | Contribution Summary |
+| -------- | ----- | -------------------- |
+| Member 1 | X     | TODO                 |
+| Member 2 | X     | TODO                 |
+| Member 3 | X     | TODO                 |
+| Member 4 | X     | TODO                 |
+| Member 5 | X     | TODO                 |
 
 #### Sprint Retrospective
 
 | Good | Could have been better | How to improve |
-|------|------------------------|----------------|
+| ---- | ---------------------- | -------------- |
 |      |                        |                |
 |      |                        |                |
-
 
 Working through the sprints is a continuous-improvement process. The retrospective happens at the end of a sprint, before planning the next one. Cover three things briefly:
 
@@ -433,37 +438,38 @@ Working through the sprints is a continuous-improvement process. The retrospecti
 **Duration:** YYYY-MM-DD to YYYY-MM-DD
 
 #### Sprint Goal
+
 TODO — one sentence.
 
 #### Completed PBIs / Tasks
+
 1. TODO
 2. TODO
 3. TODO
 
 #### Contributions
 
-| Member | Hours | Contribution Summary |
-|--------|-------|----------------------|
-| Member 1 | X | TODO |
-| Member 2 | X | TODO |
-| Member 3 | X | TODO |
-| Member 4 | X | TODO |
-| Member 5 | X | TODO |
+| Member   | Hours | Contribution Summary |
+| -------- | ----- | -------------------- |
+| Member 1 | X     | TODO                 |
+| Member 2 | X     | TODO                 |
+| Member 3 | X     | TODO                 |
+| Member 4 | X     | TODO                 |
+| Member 5 | X     | TODO                 |
 
 #### Sprint Retrospective
 
 | Good | Could have been better | How to improve |
-|------|------------------------|----------------|
+| ---- | ---------------------- | -------------- |
 |      |                        |                |
 |      |                        |                |
-
 
 Working through the sprints is a continuous-improvement process. The retrospective happens at the end of a sprint, before planning the next one. Cover three things briefly:
 
 - **What went well** — celebrate and reinforce.
 - **What could have been better** — be specific (e.g., "we underestimated authentication" not "things were hard").
 - **How we will improve next sprint** — concrete, owned actions.
-Keep it under an hour. The output is bullet points in the table above and any new PBIs created on the board.
+  Keep it under an hour. The output is bullet points in the table above and any new PBIs created on the board.
 
 ---
 
