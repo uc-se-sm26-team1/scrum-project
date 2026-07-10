@@ -473,6 +473,8 @@ _Start in Sprint 1; finalize in Sprint 3._
 
 Write this section as both a **demo** (with screenshots of the running application) and a **how-to** for a first-time user. Cover sign-up, login, and the main user flows.
 
+[Link to demo](https://youtu.be/43h718RuYJ0?si=XLGs0Wch_xDvC42u&t=399)
+
 ---
 
 # License & Code of Conduct
