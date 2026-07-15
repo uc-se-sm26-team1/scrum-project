@@ -10,10 +10,28 @@ const path = require("path");
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
+const UsersDB = require('./Database Files/UsersDB');
+const ChatHistoryDB = require('./Database Files/ChatHistoryDB');
+
 app.use(express.static(path.join(__dirname, "ui")));
 
 const PORT = process.env.PORT || 8080;
-server.listen(PORT, () => console.log("Server running on port " + PORT));
+(async () => {
+  try{
+    await UsersDB.ConnectToUserDB();
+    await UsersDB.findUser();
+    await ChatHistoryDB.ConnectToMessageHistoryDB();
+    await ChatHistoryDB.findMessage();
+    server.listen(PORT, () =>
+    console.log('Server running on port ' + PORT));
+  }catch (err){
+    console.log('Error> Server.js: failed to strart - database connection error', err);
+    process.exit(1);
+  }
+})();
+
+
+//server.listen(PORT, () => console.log("Server running on port " + PORT));
 
 // In-memory store: socketId → username
 const userlist = new Map();
