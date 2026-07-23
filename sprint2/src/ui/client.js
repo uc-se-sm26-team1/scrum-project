@@ -97,18 +97,116 @@ socket.on("status", function (data) {
   statusElm.scrollTop = statusElm.scrollHeight;
 });
 
-function JoinChat() {
-  const username = document.getElementById("username").value;
+var joinedChat = false;
+var loginUI = document.getElementById("loginUI");
+var registerUI = document.getElementById("registerUI");
+var chatUI = document.getElementById("chatUI");
+var usernameInput = document.getElementById("username");
+var passwordInput = document.getElementById("password");
+var joinBtnElm = document.getElementById("join-button");
+var loginErrorElm = document.getElementById("login-error");
+var registerErrorElm = document.getElementById("register-error");
+
+document.getElementById("showRegisterBtn").addEventListener("click", function () {
+  loginUI.style.display = "none";
+  registerUI.style.display = "";
+  loginErrorElm.textContent = "";
+});
+
+document.getElementById("showLoginBtn").addEventListener("click", function () {
+  registerUI.style.display = "none";
+  loginUI.style.display = "";
+  registerErrorElm.textContent = "";
+});
+
+document.getElementById("registerBtn").addEventListener("click", registerAccount);
+
+function registerAccount() {
+  const username = document.getElementById("reg-username").value;
   const pattern = /^\w{3,20}$/;
+
   if (!username || !pattern.test(username)) {
-    alert("Username cannot be empty and must be between 3-20 characters long");
+    registerErrorElm.textContent =
+      "Username cannot be empty and must be between 3-20 characters!";
     return;
   }
-  document.getElementById("loginUI").style.display = "none";
-  document.getElementById("chatUI").style.display = "";
-  socket.emit("joinedUser", username);
+
+  const password = document.getElementById("reg-password").value;
+  const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
+
+  if (!password || !passwordPattern.test(password)) {
+    registerErrorElm.textContent =
+      "Password must be at least 6 characters long and contain both letters and numbers.";
+    return;
+  }
+
+  registerErrorElm.textContent = "";
+  socket.emit("register", { username: username, password: password });
 }
-document.getElementById("joinBtn").addEventListener("click", JoinChat);
+
+socket.on("register-success", function (username) {
+  registerUI.style.display = "none";
+  loginUI.style.display = "";
+  registerErrorElm.textContent = "";
+  loginErrorElm.textContent =
+    "Account '" + username + "' created! You can now log in.";
+});
+
+socket.on("register-error", function (message) {
+  registerErrorElm.textContent = message;
+});
+
+if (!joinBtnElm) {
+  console.log("Error in getting 'join-button' button");
+}
+joinBtnElm.addEventListener("click", joinChat);
+
+passwordInput.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") joinChat();
+});
+
+function joinChat() {
+  var username = usernameInput.value.trim();
+  var password = passwordInput.value;
+  var pattern = /^\w{3,20}$/;
+
+  if (!username || !pattern.test(username)) {
+    showJoinError("Username cannot be empty and must be between 3-20 characters long");
+    return;
+  }
+
+  if (!password) {
+    showJoinError("Password is required");
+    return;
+  }
+
+  socket.emit("join-chat", { username: username, password: password });
+}
+
+function showJoinError(message) {
+  loginErrorElm.textContent = message;
+}
+
+socket.on("join-success", function (username) {
+  joinedChat = true;
+  loginErrorElm.textContent = "";
+  loginUI.style.display = "none";
+  registerUI.style.display = "none";
+  chatUI.style.display = "";
+  console.log("Debug> Joined chat as " + username);
+  chatMessageInput.focus();
+});
+
+socket.on("join-error", function (message) {
+  showJoinError(message);
+});
+
+socket.on("not-authorized", function () {
+  joinedChat = false;
+  chatUI.style.display = "none";
+  loginUI.style.display = "";
+  showJoinError("Please join the chat before sending messages");
+});
 
 //when user joins/leave update list
 socket.on("user-list", function (data) {
