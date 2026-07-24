@@ -284,6 +284,12 @@ io.on('connection', (socket) => {
     console.log('New client connected - socket ID: ' + socket.id);
     socket.emit('join-success', username);
     sendToAuthenticatedClients('status', username + ' joined the chat. Number of connected clients: ' + userlist.size);
+
+    var chat_history = await messengerdb.loadChatHistory();
+    if (chat_history && chat_history.length > 0) {
+      chat_history = chat_history.reverse();
+      socket.emit("chat_history", chat_history);
+    }
   });
 
   // ---------------------------------------------------------------------------
@@ -310,7 +316,9 @@ io.on('connection', (socket) => {
     const sender = userlist.get(socket.id);
     console.log(`Debug> "${sender}" sent: ${data}`);
     //io.emit('message', sender + ' says: ' + data.trim()); //old code in Lab 1 sent to all connected clients
-    sendToAuthenticatedClients('message', sender + ' says: ' + data.trim()); // new code for Lab 2
+    const message = sender + ' says: ' + data.trim();
+    messengerdb.storePublicChat(sender, message);
+    sendToAuthenticatedClients('message', message); // new code for Lab 2
   });
   socket.on('typing', () => {
     const username = userlist.get(socket.id);
