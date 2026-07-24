@@ -97,6 +97,21 @@ socket.on("status", function (data) {
   statusElm.scrollTop = statusElm.scrollHeight;
 });
 
+socket.on("chat_history", function (chat_history) {
+  if (chat_history && chat_history.length > 0) {
+    var responsesElm = document.getElementById("responses");
+
+    chat_history.forEach(function (chat) {
+      var d = document.createElement("div");
+      var timeStamp = new Date(chat.timestamp).toLocaleTimeString();
+      d.innerHTML = "[" + timeStamp + "] " + chat.message;
+      responsesElm.appendChild(d);
+    });
+
+    responsesElm.scrollTop = responsesElm.scrollHeight;
+  }
+});
+
 var joinedChat = false;
 var loginUI = document.getElementById("loginUI");
 var registerUI = document.getElementById("registerUI");

@@ -15,6 +15,7 @@ async function connect (){
 }
 
 let users = client.db('Messenger').collection('users');
+let chatHistory = client.db('Messenger').collection('MessageHistory');
 
 // Use-Case-03: Join Chat - credential check against MongoDB
 const find = async ( username, password )=>{
@@ -55,5 +56,32 @@ const register = async (username, password) => {
   return { success: true }; // AC-05.7
 };
 
-module.exports = { connect, find, register };
+const loadChatHistory = async (limits=100) => {
+  var chat_history = await chatHistory.find({})
+    .sort({ timestamp: -1 })
+    .limit(limits)
+    .toArray();
 
+  if (chat_history && chat_history.length > 0) return chat_history;
+}
+
+const storePublicChat = (sender, message) => {
+  console.log("DEBUG> Storing Public message to MongoDB");
+
+  let timestamp = Date.now();
+  let chat = {
+    sender: sender,
+    message: message,
+    timestamp: timestamp
+  };
+
+  chatHistory.insertOne(chat).catch(() => {
+    console.log(
+      "Debug>messengerdb.storePublicChat: Error for adding '" +
+      JSON.stringify(chat) +
+      "'\n"
+    );
+  });
+};
+
+module.exports = { connect, find, register, loadChatHistory, storePublicChat };
