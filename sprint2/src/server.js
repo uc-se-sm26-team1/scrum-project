@@ -281,6 +281,7 @@ io.on('connection', (socket) => {
 
     socket.authenticated = true;
     userlist.set(socket.id, username);
+    io.emit("user-list", Array.from(userlist.values()));
     console.log('New client connected - socket ID: ' + socket.id);
     socket.emit('join-success', username);
     sendToAuthenticatedClients('status', username + ' joined the chat. Number of connected clients: ' + userlist.size);
@@ -333,6 +334,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     const username = userlist.get(socket.id);
     userlist.delete(socket.id);
+    io.emit("user-list", Array.from(userlist.values()));
     console.log('Client disconnected - socket ID: ' + socket.id);
     //todo: code to broadcast the status
     if(username) sendToAuthenticatedClients('status', username + ' left the chat. Number of connected clients: ' + userlist.size);
