@@ -89,5 +89,12 @@ const storePublicChat = async (sender, message) => {
 const getChatId = async (id) =>{
   return await chatHistory.findOne({_id: new ObjectId(id)})
 }
-
-module.exports = { connect, find, register, loadChatHistory, storePublicChat, getChatId};
+const deleteMsg = async (id,username) => {
+  const chat = await chatHistory.findOne({_id:new ObjectId(id)})
+  // chat exists and sender is the person deleting
+  if(chat && chat.sender === username){
+    await chatHistory.updateOne({_id: new ObjectId(id)}, {$set:{message:"This message was deleted", deleted:true}})
+  }
+  return await chat
+}
+module.exports = { connect, find, register, loadChatHistory, storePublicChat, getChatId, deleteMsg};

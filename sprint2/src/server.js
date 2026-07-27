@@ -322,6 +322,11 @@ io.on('connection', (socket) => {
     const chat = await messengerdb.storePublicChat(sender, formatted_data);
     sendToAuthenticatedClients('message', chat); // new code for Lab 2
   });
+  socket.on("delete-message", async (id) =>{
+    const sender = userlist.get(socket.id)
+    const message = await messengerdb.deleteMsg(id, sender)
+    sendToAuthenticatedClients("message-delete", message)
+  })
   socket.on('typing', () => {
     const username = userlist.get(socket.id);
     console.log(username + ' is typing ...');

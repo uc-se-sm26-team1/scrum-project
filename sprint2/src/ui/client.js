@@ -45,7 +45,7 @@ var linkTextInput = document.getElementById("link-text-input");
 var linkAddressInput = document.getElementById("link-address-input");
 var cancelLinkButton = document.getElementById("cancel-link-button");
 var insertLinkButton = document.getElementById("insert-link-button");
-
+var loggedInUser = "";
 setupLinkTools();
 
 // =============================================================================
@@ -78,14 +78,31 @@ function sendMessage() {
 socket.on("message", displayMessage);
 function displayMessage(data) {
   var d = document.createElement("div");
+  d.className = 'message'
+  d.id = data._id.toString();
   //AC-02.2: shows timestamp for each message
   var timeStamp = new Date().toLocaleTimeString();
+  
   d.innerHTML = "[" + timeStamp + "] "+ data.sender + ' says: ' + data.message;
+  if(data.sender === loggedInUser && !data.deleted){
+    const button = document.createElement("button");
+    button.innerText = "x";
+    button.onclick = function(){
+      socket.emit("delete-message", data._id.toString());
+    }
+    d.appendChild(button)
+  }
   document.getElementById("responses").appendChild(d);
   //AC-02.3 UI: auto scroll to the latest message
   document.getElementById("responses").scrollTop =
     document.getElementById("responses").scrollHeight;
 }
+socket.on("message-delete", function(data){
+  id_as_str = data._id.toString();
+  const msg = document.getElementById(id_as_str)
+  var timeStamp = new Date().toLocaleTimeString();
+  msg.innerHTML = "[" + timeStamp + "] "+ data.sender + ' says: ' + "This message was deleted";
+})
 
 //AC-02.1: display system status events join/leave in the status area
 socket.on("status", function (data) {
@@ -101,10 +118,22 @@ socket.on("chat_history", function (chat_history) {
   if (chat_history && chat_history.length > 0) {
     var responsesElm = document.getElementById("responses");
 
-    chat_history.forEach(function (chat) {
+    chat_history.forEach(function (data) {
       var d = document.createElement("div");
-      var timeStamp = new Date(chat.timestamp).toLocaleTimeString();
-      d.innerHTML = "[" + timeStamp + "] " + chat.message;
+      d.id = data._id.toString()
+      d.className = 'message'
+      var timeStamp = new Date(data.timestamp).toLocaleTimeString();
+      
+      d.innerHTML = "[" + timeStamp + "] "+ data.sender + ' says: ' + data.message;
+      if(data.sender === loggedInUser && !data.deleted){
+        const button = document.createElement("button");
+        button.innerText = "x";
+        button.onclick = function(){
+          socket.emit("delete-message", data._id.toString());
+        }
+        d.appendChild(button)
+      }
+      
       responsesElm.appendChild(d);
     });
 
@@ -203,6 +232,7 @@ function showJoinError(message) {
 }
 
 socket.on("join-success", function (username) {
+  loggedInUser = username;
   joinedChat = true;
   loginErrorElm.textContent = "";
   loginUI.style.display = "none";
