@@ -90,4 +90,4 @@ const getChatId = async (id) =>{
   return await chatHistory.findOne({_id: new ObjectId(id)})
 }
 
-module.exports = { connect, find, register, loadChatHistory, storePublicChat, getChatId, setMsgDeleted };
+module.exports = { connect, find, register, loadChatHistory, storePublicChat, getChatId};
