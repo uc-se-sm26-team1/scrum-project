@@ -304,7 +304,7 @@ io.on('connection', (socket) => {
   // AC-01.5: input is cleared after sending (enforced client-side)
   // ---------------------------------------------------------------------------
   //Todo: code to implement the above use case and AC items
-  socket.on('message', (data) => {
+  socket.on('message', async (data) => {
     console.log(`Debug> received a chat message: ${data}`); //new debug for Lab 2 security check
     // <<include>> UC-04: Authorize User //new for Lab 2
     if (!authorizeUser(socket)) {
@@ -317,9 +317,10 @@ io.on('connection', (socket) => {
     const sender = userlist.get(socket.id);
     console.log(`Debug> "${sender}" sent: ${data}`);
     //io.emit('message', sender + ' says: ' + data.trim()); //old code in Lab 1 sent to all connected clients
-    const message = sender + ' says: ' + data.trim();
-    messengerdb.storePublicChat(sender, message);
-    sendToAuthenticatedClients('message', message); // new code for Lab 2
+    formatted_data = data.trim()
+    
+    const chat = await messengerdb.storePublicChat(sender, formatted_data);
+    sendToAuthenticatedClients('message', chat); // new code for Lab 2
   });
   socket.on('typing', () => {
     const username = userlist.get(socket.id);
@@ -377,4 +378,5 @@ io.on('connection', (socket) => {
     }
     socket.emit('register-success', username); // AC-05.7: send the 'register-success' event to the client
   });
+ 
 });

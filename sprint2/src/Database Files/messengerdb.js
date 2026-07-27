@@ -3,7 +3,7 @@
 // messengerdb.js — code skeleton provided by Phu Phung
 // complete implementation by [Pawan Poudyel]
 // =============================================================================
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
 
 const uri = "mongodb+srv://admin:Team10BasicAdmin1829@team10messenger.ebcy0so.mongodb.net/?appName=Team10Messenger"; //replace this with your connection string
@@ -65,23 +65,29 @@ const loadChatHistory = async (limits=100) => {
   if (chat_history && chat_history.length > 0) return chat_history;
 }
 
-const storePublicChat = (sender, message) => {
+const storePublicChat = async (sender, message) => {
   console.log("DEBUG> Storing Public message to MongoDB");
 
   let timestamp = Date.now();
   let chat = {
     sender: sender,
     message: message,
-    timestamp: timestamp
+    timestamp: timestamp,
+    deleted: false
   };
 
-  chatHistory.insertOne(chat).catch(() => {
+  const chat_data = await chatHistory.insertOne(chat).catch(() => {
     console.log(
       "Debug>messengerdb.storePublicChat: Error for adding '" +
       JSON.stringify(chat) +
       "'\n"
     );
   });
+  chat._id = chat_data.insertedId
+  return chat
 };
+const getChatId = async (id) =>{
+  return await chatHistory.findOne({_id: new ObjectId(id)})
+}
 
-module.exports = { connect, find, register, loadChatHistory, storePublicChat };
+module.exports = { connect, find, register, loadChatHistory, storePublicChat, getChatId, setMsgDeleted };

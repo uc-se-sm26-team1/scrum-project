@@ -80,7 +80,7 @@ function displayMessage(data) {
   var d = document.createElement("div");
   //AC-02.2: shows timestamp for each message
   var timeStamp = new Date().toLocaleTimeString();
-  d.innerHTML = "[" + timeStamp + "] " + data;
+  d.innerHTML = "[" + timeStamp + "] "+ data.sender + ' says: ' + data.message;
   document.getElementById("responses").appendChild(d);
   //AC-02.3 UI: auto scroll to the latest message
   document.getElementById("responses").scrollTop =
