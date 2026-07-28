@@ -348,18 +348,23 @@ io.on('connection', (socket) => {
   });
 
   // Use-Case-05: Register Account
-  socket.on('register', async function({ username, password }) {
+  socket.on('register', async function({ username, password, email, fullName }) {
     if (!username || typeof username !== 'string' ||
         !password || typeof password !== 'string' ||
-        username.trim().length === 0 || password.length === 0) { // AC-05.3
+        !email || typeof email !== 'string' ||
+        !fullName || typeof fullName !== 'string' ||
+        username.trim().length === 0 || password.length === 0 || email.trim().length === 0 || fullName.trim().length === 0) { // AC-05.3
       socket.emit('register-error', 'Invalid request.'); // AC-05.8
       return;
     }
     username = username.trim();
+    email = email.trim();
+    fullName = fullName.trim();
 
     // AC-05.3: server independently re-validates format - client can be bypassed
     const usernamePattern = /^\w{3,20}$/;
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!usernamePattern.test(username)) {
       socket.emit('register-error', 'Username must be 3-20 characters (letters, numbers, underscore).');
       return; // AC-05.8
@@ -368,11 +373,15 @@ io.on('connection', (socket) => {
       socket.emit('register-error', 'Password must be at least 6 characters with letters and numbers.');
       return; // AC-05.8
     }
+    if (!emailPattern.test(email)) {
+      socket.emit('register-error', 'Please enter a valid email address.');
+      return;
+    }
 
     // Part II code
     let result;
     try {
-      result = await messengerdb.register(username, password);
+      result = await messengerdb.register(username, password, email, fullName);
     } catch (err) {
       socket.emit('register-error', 'Server error. Please try again.'); // AC-05.8
       return;
@@ -384,7 +393,7 @@ io.on('connection', (socket) => {
     }
     socket.emit('register-success', username); // AC-05.7: send the 'register-success' event to the client
   });
-  socket.on('edit-profile', async function({ oldPassword, newPassword }) {
+  socket.on('edit-profile', async function({ oldPassword, newPassword, newEmail, newFullName }) {
     if (!authorizeUser(socket)) {
       socket.emit('edit-profile-error', 'Please log in first.');
       return;
@@ -392,15 +401,15 @@ io.on('connection', (socket) => {
 
     const username = userlist.get(socket.id);
 
-    if (!oldPassword || typeof oldPassword !== 'string' ||
-        !newPassword || typeof newPassword !== 'string') {
-      socket.emit('edit-profile-error', 'Invalid request.');
+    if (!oldPassword || typeof oldPassword !== 'string') {
+      socket.emit('edit-profile-error', 'Current password is required.');
       return;
     }
 
+    // newPassword, newEmail, newFullName are all optional - user can update any combination
     let result;
     try {
-      result = await messengerdb.editProfile(username, oldPassword, newPassword);
+      result = await messengerdb.editProfile(username, oldPassword, newPassword || null, newEmail || null, newFullName || null);
     } catch (err) {
       socket.emit('edit-profile-error', 'Server error. Please try again.');
       return;

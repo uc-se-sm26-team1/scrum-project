@@ -36,14 +36,19 @@ const find = async ( username, password )=>{
 
 // Use-Case-05: Register Account - insert a new user if username is not taken
 // returns { success: true } or { success: false, message }
-const register = async (username, password) => {
+const register = async (username, password, email, fullName) => {
   console.log(`Debug>messengerdb.js: register username '${username}'`);
 
   // AC-05.4: data layer independently re-validates format - do not trust the server
   const usernamePattern = /^\w{3,20}$/;
   const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!usernamePattern.test(username) || !passwordPattern.test(password))
     return { success: false, message: 'Invalid username or password format.' }; // AC-05.8
+  if (!email || !emailPattern.test(email))
+    return { success: false, message: 'Invalid email format.' };
+  if (!fullName || fullName.trim().length === 0)
+    return { success: false, message: 'Full name is required.' };
 
   // AC-05.5: check if the username already exists before inserting
   const existing = await users.findOne({ username: username });
@@ -52,7 +57,7 @@ const register = async (username, password) => {
 
   // AC-05.6: hash the password before storing - never store plaintext
   const hashedPassword = await bcrypt.hash(password, 10);
-  await users.insertOne({ username: username, password: hashedPassword });
+  await users.insertOne({ username: username, password: hashedPassword, email: email, fullName: fullName.trim() });
 
   return { success: true }; // AC-05.7
 };
@@ -99,7 +104,7 @@ const deleteMsg = async (id,username) => {
   return await chat
 }
 
-const editProfile = async (username, oldPassword, newPassword) => {
+const editProfile = async (username, oldPassword, newPassword, newEmail, newFullName) => {
   console.log(`Debug>messengerdb.js: edit profile request for '${username}'`);
 
   const user = await users.findOne({ username: username });
@@ -108,12 +113,33 @@ const editProfile = async (username, oldPassword, newPassword) => {
   const oldPasswordMatches = await bcrypt.compare(oldPassword, user.password);
   if (!oldPasswordMatches) return { success: false, message: 'Current password is incorrect.' };
 
-  const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
-  if (!passwordPattern.test(newPassword))
-    return { success: false, message: 'New password must be at least 6 characters with letters and numbers.' };
+  const updates = {};
 
-  const hashedPassword = await bcrypt.hash(newPassword, 10);
-  await users.updateOne({ username: username }, { $set: { password: hashedPassword } });
+  // Only update password if a new one was provided
+  if (newPassword) {
+    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
+    if (!passwordPattern.test(newPassword))
+      return { success: false, message: 'New password must be at least 6 characters with letters and numbers.' };
+    updates.password = await bcrypt.hash(newPassword, 10);
+  }
+
+  // Only update email if a new one was provided
+  if (newEmail) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(newEmail))
+      return { success: false, message: 'Invalid email format.' };
+    updates.email = newEmail;
+  }
+
+  // Only update full name if a new one was provided
+  if (newFullName) {
+    updates.fullName = newFullName.trim();
+  }
+
+  if (Object.keys(updates).length === 0)
+    return { success: false, message: 'Nothing to update.' };
+
+  await users.updateOne({ username: username }, { $set: updates });
   return { success: true };
 };
 module.exports = { connect, find, register, loadChatHistory, storePublicChat, getChatId, deleteMsg, editProfile};

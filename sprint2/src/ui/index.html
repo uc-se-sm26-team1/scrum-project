@@ -120,6 +120,24 @@
                       onchange="this.setCustomValidity(this.validity.patternMismatch?this.title:'');"
                     />
                   </div>
+                  <div class="form-group d-flex">
+                    <input
+                      type="email"
+                      class="form-control rounded-left"
+                      id="reg-email"
+                      placeholder="Enter Email"
+                      required
+                    />
+                  </div>
+                  <div class="form-group d-flex">
+                    <input
+                      type="text"
+                      class="form-control rounded-left"
+                      id="reg-fullname"
+                      placeholder="Enter Full Name"
+                      required
+                    />
+                  </div>
                   <div class="form-group d-md-flex">
                     <div class="w-50">
                       <a href="#" id="showLoginBtn" style="padding-bottom: 0;">Login Here</a>
@@ -270,10 +288,16 @@
                   <input type="password" id="current-password" class="form-control rounded-left" placeholder="Current Password" required>
                 </div>
                 <div class="form-group d-flex">
-                  <input type="password" id="edit-new-password" class="form-control rounded-left" placeholder="New Password" required>
+                  <input type="password" id="edit-new-password" class="form-control rounded-left" placeholder="New Password (leave blank to keep current)">
+                </div>
+                <div class="form-group d-flex">
+                  <input type="email" id="edit-new-email" class="form-control rounded-left" placeholder="New Email (leave blank to keep current)">
+                </div>
+                <div class="form-group d-flex">
+                  <input type="text" id="edit-new-fullname" class="form-control rounded-left" placeholder="New Full Name (leave blank to keep current)">
                 </div>
                 <div class="form-group">
-                  <button id="edit-profile-button" type="button" class="btn btn-primary rounded p-3 px-5">Change Password</button>
+                  <button id="edit-profile-button" type="button" class="btn btn-primary rounded p-3 px-5">Save Changes</button>
                 </div>
                 <div class="form-group">
                   <button id="goto-chat" type="button" class="btn btn-secondary rounded submit p-3 px-5">Go Back</button>

@@ -184,8 +184,23 @@ function registerAccount() {
     return;
   }
 
+  const email = document.getElementById("reg-email").value;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!email || !emailPattern.test(email)) {
+    registerErrorElm.textContent = "Please enter a valid email address.";
+    return;
+  }
+
+  const fullName = document.getElementById("reg-fullname").value;
+
+  if (!fullName || fullName.trim().length === 0) {
+    registerErrorElm.textContent = "Full name is required.";
+    return;
+  }
+
   registerErrorElm.textContent = "";
-  socket.emit("register", { username: username, password: password });
+  socket.emit("register", { username: username, password: password, email: email, fullName: fullName });
 }
 
 socket.on("register-success", function (username) {
@@ -579,6 +594,8 @@ document.getElementById('goto-chat').addEventListener('click', function(){
 
 var currentPasswordInput = document.getElementById("current-password");
 var editNewPasswordInput = document.getElementById("edit-new-password");
+var editNewEmailInput = document.getElementById("edit-new-email");
+var editNewFullNameInput = document.getElementById("edit-new-fullname");
 var editProfileButton = document.getElementById("edit-profile-button");
 var editProfileMessage = document.getElementById("edit-profile-message");
 
@@ -587,21 +604,31 @@ editProfileButton.addEventListener("click", function (e) {
 
   var oldPassword = currentPasswordInput.value;
   var newPassword = editNewPasswordInput.value;
+  var newEmail = editNewEmailInput.value;
+  var newFullName = editNewFullNameInput.value;
 
-  if (!oldPassword || !newPassword) {
+  if (!oldPassword) {
     editProfileMessage.style.color = "red";
-    editProfileMessage.textContent = "Please fill in both fields.";
+    editProfileMessage.textContent = "Current password is required.";
     return;
   }
 
-  socket.emit("edit-profile", { oldPassword: oldPassword, newPassword: newPassword });
+  if (!newPassword && !newEmail && !newFullName) {
+    editProfileMessage.style.color = "red";
+    editProfileMessage.textContent = "Enter a new password, email, or full name to update.";
+    return;
+  }
+
+  socket.emit("edit-profile", { oldPassword: oldPassword, newPassword: newPassword, newEmail: newEmail, newFullName: newFullName });
 });
 
 socket.on("edit-profile-success", function () {
   editProfileMessage.style.color = "green";
-  editProfileMessage.textContent = "Password changed successfully.";
+  editProfileMessage.textContent = "Profile updated successfully.";
   currentPasswordInput.value = "";
   editNewPasswordInput.value = "";
+  editNewEmailInput.value = "";
+  editNewFullNameInput.value = "";
 });
 
 socket.on("edit-profile-error", function (message) {
