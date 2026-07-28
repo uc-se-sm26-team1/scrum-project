@@ -375,34 +375,4 @@ io.on('connection', (socket) => {
     }
     socket.emit('register-success', username); // AC-05.7: send the 'register-success' event to the client
   });
-  // Use-Case: Change Password - only logged in users can change their password
-  socket.on('change-password', async function({ oldPassword, newPassword }) {
-    if (!authorizeUser(socket)) {
-      socket.emit('change-password-error', 'Please log in first.');
-      return;
-    }
-
-    const username = userlist.get(socket.id);
-
-    if (!oldPassword || typeof oldPassword !== 'string' ||
-        !newPassword || typeof newPassword !== 'string') {
-      socket.emit('change-password-error', 'Invalid request.');
-      return;
-    }
-
-    let result;
-    try {
-      result = await messengerdb.changePassword(username, oldPassword, newPassword);
-    } catch (err) {
-      socket.emit('change-password-error', 'Server error. Please try again.');
-      return;
-    }
-
-    if (!result.success) {
-      socket.emit('change-password-error', result.message);
-      return;
-    }
-
-    socket.emit('change-password-success');
-  });
 });

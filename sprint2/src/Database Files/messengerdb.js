@@ -84,23 +84,4 @@ const storePublicChat = (sender, message) => {
   });
 };
 
-// Use-Case: Change Password - only for logged in users, verifies old password before updating
-const changePassword = async (username, oldPassword, newPassword) => {
-  console.log(`Debug>messengerdb.js: change password request for '${username}'`);
-
-  const user = await users.findOne({ username: username });
-  if (!user) return { success: false, message: 'User not found.' };
-
-  const oldPasswordMatches = await bcrypt.compare(oldPassword, user.password);
-  if (!oldPasswordMatches) return { success: false, message: 'Current password is incorrect.' };
-
-  const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
-  if (!passwordPattern.test(newPassword))
-    return { success: false, message: 'New password must be at least 6 characters with letters and numbers.' };
-
-  const hashedPassword = await bcrypt.hash(newPassword, 10);
-  await users.updateOne({ username: username }, { $set: { password: hashedPassword } });
-  return { success: true };
-};
-
-module.exports = { connect, find, register, loadChatHistory, storePublicChat, changePassword };
+module.exports = { connect, find, register, loadChatHistory, storePublicChat };
