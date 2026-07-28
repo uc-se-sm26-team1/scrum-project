@@ -194,7 +194,7 @@ app.use((req, res, next) => {
   res.setHeader(
     'Content-Security-Policy',
     "default-src 'self'; " +
-    "script-src 'self' https://cdnjs.cloudflare.com; " +
+    "script-src 'self' https://cdnjs.cloudflare.com https://code.jquery.com; " +
     "style-src 'self' 'unsafe-inline'; " +
     "connect-src 'self' https://cdnjs.cloudflare.com"
   );

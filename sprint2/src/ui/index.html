@@ -6,12 +6,13 @@
     <title>Simple Messenger</title>
     <script src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
   </head>
   <body>
     <h1>Simple Messenger — EECE/CS 3093C Lab 1</h1>
     <h3>Team 1 Demo 0.1.0</h3>
     <br />
-    <div id="loginUI">
+    <div class="container" id="loginUI">
       Username:
       <input
         id="username"
@@ -37,7 +38,7 @@
     <!-- end of existing loginUI code -->
 
     <!-- AC-05.1: registration form reachable from login screen, no page reload -->
-    <div id="registerUI" style="display: none">
+    <div class="container" id="registerUI" style="display: none">
       <h2>Messenger — Sign up for a new account</h2>
       <label for="reg-username">Username: </label>
       <input
@@ -64,8 +65,10 @@
     <div id="chatUI" style="display: none">
       <div class="chat-layout">
         <!-- Public Chat Panel -->
+        <button id="ChangeAccountInfo">Account Management</button>
         <section class="chat-panel public-chat-panel">
           <h2>Public Chat</h2>
+         
           <p class="chat-description">
             Messages sent here are visible to all connected users.
           </p>
@@ -155,8 +158,10 @@
         <button id="cancel-link-button">Cancel</button>
         <button id="insert-link-button" disabled>Insert</button>
       </dialog>
-
-      <script src="client.js"></script>
     </div>
+    <div id="AccountManagement" style="display: none;">
+      <button id="goto-chat">Go Back</button>
+    </div>
+    <script src="client.js"></script>
   </body>
 </html>

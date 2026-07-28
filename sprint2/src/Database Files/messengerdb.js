@@ -97,4 +97,8 @@ const deleteMsg = async (id,username) => {
   }
   return await chat
 }
+
+const editProfile = async (oldPassword, password) => {
+
+}
 module.exports = { connect, find, register, loadChatHistory, storePublicChat, getChatId, deleteMsg};

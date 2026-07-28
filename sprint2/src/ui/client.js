@@ -563,3 +563,16 @@ privateMsgInput.addEventListener("input", function () {
     }
   });
 });
+
+//Show Account Management Page
+document.getElementById("ChangeAccountInfo").addEventListener("click", function(){
+  $('#chatUI').hide();
+  $('#AccountManagement').show();
+});
+
+//Go back to chatUI
+
+document.getElementById('goto-chat').addEventListener('click', function(){
+  $('#chatUI').show();
+  $('#AccountManagement').hide();
+});
