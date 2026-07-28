@@ -384,5 +384,33 @@ io.on('connection', (socket) => {
     }
     socket.emit('register-success', username); // AC-05.7: send the 'register-success' event to the client
   });
- 
+  socket.on('edit-profile', async function({ oldPassword, newPassword }) {
+    if (!authorizeUser(socket)) {
+      socket.emit('edit-profile-error', 'Please log in first.');
+      return;
+    }
+
+    const username = userlist.get(socket.id);
+
+    if (!oldPassword || typeof oldPassword !== 'string' ||
+        !newPassword || typeof newPassword !== 'string') {
+      socket.emit('edit-profile-error', 'Invalid request.');
+      return;
+    }
+
+    let result;
+    try {
+      result = await messengerdb.editProfile(username, oldPassword, newPassword);
+    } catch (err) {
+      socket.emit('edit-profile-error', 'Server error. Please try again.');
+      return;
+    }
+
+    if (!result.success) {
+      socket.emit('edit-profile-error', result.message);
+      return;
+    }
+
+    socket.emit('edit-profile-success');
+  });
 });

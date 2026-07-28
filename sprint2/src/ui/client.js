@@ -576,3 +576,35 @@ document.getElementById('goto-chat').addEventListener('click', function(){
   $('#chatUI').show();
   $('#AccountManagement').hide();
 });
+
+var currentPasswordInput = document.getElementById("current-password");
+var editNewPasswordInput = document.getElementById("edit-new-password");
+var editProfileButton = document.getElementById("edit-profile-button");
+var editProfileMessage = document.getElementById("edit-profile-message");
+
+editProfileButton.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  var oldPassword = currentPasswordInput.value;
+  var newPassword = editNewPasswordInput.value;
+
+  if (!oldPassword || !newPassword) {
+    editProfileMessage.style.color = "red";
+    editProfileMessage.textContent = "Please fill in both fields.";
+    return;
+  }
+
+  socket.emit("edit-profile", { oldPassword: oldPassword, newPassword: newPassword });
+});
+
+socket.on("edit-profile-success", function () {
+  editProfileMessage.style.color = "green";
+  editProfileMessage.textContent = "Password changed successfully.";
+  currentPasswordInput.value = "";
+  editNewPasswordInput.value = "";
+});
+
+socket.on("edit-profile-error", function (message) {
+  editProfileMessage.style.color = "red";
+  editProfileMessage.textContent = message;
+});
