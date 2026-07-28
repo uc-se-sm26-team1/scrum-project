@@ -1,6 +1,5 @@
 const { MongoClient } = require('mongodb');
-require('dotenv').config();
-const uri = process.env.MONGO_URI;
+const uri = "mongodb+srv://admin:Team10BasicAdmin1829@team10messenger.ebcy0so.mongodb.net/?appName=Team10Messenger"; //replace this with your connection string
 const client = new MongoClient(uri);
 isConnected = false;
 
