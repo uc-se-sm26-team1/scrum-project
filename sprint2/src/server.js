@@ -194,9 +194,10 @@ app.use((req, res, next) => {
   res.setHeader(
     'Content-Security-Policy',
     "default-src 'self'; " +
-    "script-src 'self' https://cdnjs.cloudflare.com https://code.jquery.com; " +
-    "style-src 'self' 'unsafe-inline'; " +
-    "connect-src 'self' https://cdnjs.cloudflare.com"
+    "script-src 'self' https://cdnjs.cloudflare.com https://code.jquery.com https://cdn.jsdelivr.net https://stackpath.bootstrapcdn.com; " +
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://stackpath.bootstrapcdn.com;" +
+    "connect-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net;" +
+    "font-src 'self' https://fonts.gstatic.com https://stackpath.bootstrapcdn.com"
   );
   next();
 });
