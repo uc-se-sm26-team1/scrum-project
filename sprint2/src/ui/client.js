@@ -66,7 +66,36 @@ function sendMessage() {
   chatMessageInput.innerHTML = ""; // AC-01.5: clear input after sending
   chatMessageInput.focus();
 }
+// Change Password
+var oldPasswordInput = document.getElementById("old-password");
+var newPasswordInput = document.getElementById("new-password");
+var changePasswordButton = document.getElementById("change-password-button");
+var changePasswordMessage = document.getElementById("change-password-message");
 
+changePasswordButton.addEventListener("click", function () {
+  var oldPassword = oldPasswordInput.value;
+  var newPassword = newPasswordInput.value;
+
+  if (!oldPassword || !newPassword) {
+    changePasswordMessage.style.color = "red";
+    changePasswordMessage.textContent = "Please fill in both fields.";
+    return;
+  }
+
+  socket.emit("change-password", { oldPassword: oldPassword, newPassword: newPassword });
+});
+
+socket.on("change-password-success", function () {
+  changePasswordMessage.style.color = "green";
+  changePasswordMessage.textContent = "Password changed successfully.";
+  oldPasswordInput.value = "";
+  newPasswordInput.value = "";
+});
+
+socket.on("change-password-error", function (message) {
+  changePasswordMessage.style.color = "red";
+  changePasswordMessage.textContent = message;
+});
 // =============================================================================
 // Use-Case-02: Receive message
 // =============================================================================
