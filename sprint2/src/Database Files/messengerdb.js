@@ -6,7 +6,8 @@
 const { MongoClient, ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
 
-const uri = "mongodb+srv://admin:Team10BasicAdmin1829@team10messenger.ebcy0so.mongodb.net/?appName=Team10Messenger"; //replace this with your connection string
+require('dotenv').config();
+const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri);
 
 async function connect (){
