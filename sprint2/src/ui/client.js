@@ -635,3 +635,19 @@ socket.on("edit-profile-error", function (message) {
   editProfileMessage.style.color = "red";
   editProfileMessage.textContent = message;
 });
+// Logout
+document.getElementById("logout-button").addEventListener("click", function () {
+  socket.emit("logout");
+});
+
+socket.on("logout-success", function () {
+  joinedChat = false;
+  loggedInUser = "";
+  chatUI.style.display = "none";
+  document.getElementById("AccountManagement").style.display = "none";
+  loginUI.style.display = "";
+  document.getElementById("responses").innerHTML = "";
+  document.getElementById("status").innerHTML = "";
+  usernameInput.value = "";
+  passwordInput.value = "";
+});

@@ -422,4 +422,15 @@ io.on('connection', (socket) => {
 
     socket.emit('edit-profile-success');
   });
+  // Use-Case: Logout - only logged in users can log out
+  socket.on('logout', () => {
+    if (!authorizeUser(socket)) return;
+
+    const username = userlist.get(socket.id);
+    socket.authenticated = false;
+    userlist.delete(socket.id);
+    io.emit("user-list", Array.from(userlist.values()));
+    if (username) sendToAuthenticatedClients('status', username + ' left the chat. Number of connected clients: ' + userlist.size);
+    socket.emit('logout-success');
+  });
 });
