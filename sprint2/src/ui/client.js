@@ -78,31 +78,37 @@ function sendMessage() {
 socket.on("message", displayMessage);
 function displayMessage(data) {
   var d = document.createElement("div");
-  d.className = 'message'
+  d.className = "message";
   d.id = data._id.toString();
   //AC-02.2: shows timestamp for each message
   var timeStamp = new Date().toLocaleTimeString();
-  
-  d.innerHTML = "[" + timeStamp + "] "+ data.sender + ' says: ' + data.message;
-  if(data.sender === loggedInUser && !data.deleted){
+
+  d.innerHTML = "[" + timeStamp + "] " + data.sender + " says: " + data.message;
+  if (data.sender === loggedInUser && !data.deleted) {
     const button = document.createElement("button");
     button.innerText = "x";
-    button.onclick = function(){
+    button.onclick = function () {
       socket.emit("delete-message", data._id.toString());
-    }
-    d.appendChild(button)
+    };
+    d.appendChild(button);
   }
   document.getElementById("responses").appendChild(d);
   //AC-02.3 UI: auto scroll to the latest message
   document.getElementById("responses").scrollTop =
     document.getElementById("responses").scrollHeight;
 }
-socket.on("message-delete", function(data){
+socket.on("message-delete", function (data) {
   id_as_str = data._id.toString();
-  const msg = document.getElementById(id_as_str)
+  const msg = document.getElementById(id_as_str);
   var timeStamp = new Date().toLocaleTimeString();
-  msg.innerHTML = "[" + timeStamp + "] "+ data.sender + ' says: ' + "This message was deleted";
-})
+  msg.innerHTML =
+    "[" +
+    timeStamp +
+    "] " +
+    data.sender +
+    " says: " +
+    "This message was deleted";
+});
 
 //AC-02.1: display system status events join/leave in the status area
 socket.on("status", function (data) {
@@ -120,20 +126,21 @@ socket.on("chat_history", function (chat_history) {
 
     chat_history.forEach(function (data) {
       var d = document.createElement("div");
-      d.id = data._id.toString()
-      d.className = 'message'
+      d.id = data._id.toString();
+      d.className = "message";
       var timeStamp = new Date(data.timestamp).toLocaleTimeString();
-      
-      d.innerHTML = "[" + timeStamp + "] "+ data.sender + ' says: ' + data.message;
-      if(data.sender === loggedInUser && !data.deleted){
+
+      d.innerHTML =
+        "[" + timeStamp + "] " + data.sender + " says: " + data.message;
+      if (data.sender === loggedInUser && !data.deleted) {
         const button = document.createElement("button");
         button.innerText = "x";
-        button.onclick = function(){
+        button.onclick = function () {
           socket.emit("delete-message", data._id.toString());
-        }
-        d.appendChild(button)
+        };
+        d.appendChild(button);
       }
-      
+
       responsesElm.appendChild(d);
     });
 
@@ -151,11 +158,13 @@ var joinBtnElm = document.getElementById("join-button");
 var loginErrorElm = document.getElementById("login-error");
 var registerErrorElm = document.getElementById("register-error");
 
-document.getElementById("showRegisterBtn").addEventListener("click", function () {
-  loginUI.style.display = "none";
-  registerUI.style.display = "";
-  loginErrorElm.textContent = "";
-});
+document
+  .getElementById("showRegisterBtn")
+  .addEventListener("click", function () {
+    loginUI.style.display = "none";
+    registerUI.style.display = "";
+    loginErrorElm.textContent = "";
+  });
 
 document.getElementById("showLoginBtn").addEventListener("click", function () {
   registerUI.style.display = "none";
@@ -163,7 +172,9 @@ document.getElementById("showLoginBtn").addEventListener("click", function () {
   registerErrorElm.textContent = "";
 });
 
-document.getElementById("registerBtn").addEventListener("click", registerAccount);
+document
+  .getElementById("registerBtn")
+  .addEventListener("click", registerAccount);
 
 function registerAccount() {
   const username = document.getElementById("reg-username").value;
@@ -200,7 +211,12 @@ function registerAccount() {
   }
 
   registerErrorElm.textContent = "";
-  socket.emit("register", { username: username, password: password, email: email, fullName: fullName });
+  socket.emit("register", {
+    username: username,
+    password: password,
+    email: email,
+    fullName: fullName,
+  });
 }
 
 socket.on("register-success", function (username) {
@@ -230,7 +246,9 @@ function joinChat() {
   var pattern = /^\w{3,20}$/;
 
   if (!username || !pattern.test(username)) {
-    showJoinError("Username cannot be empty and must be between 3-20 characters long");
+    showJoinError(
+      "Username cannot be empty and must be between 3-20 characters long",
+    );
     return;
   }
 
@@ -463,7 +481,10 @@ function setupLinkTools() {
   });
 }
 
-//Use Case F1.5
+// =============================================================================
+// Private Messaging
+// =============================================================================
+
 var privateToInput = document.getElementById("private-to");
 var privateMsgInput = document.getElementById("private-message");
 var privateSendBtn = document.getElementById("private-send-button");
@@ -480,7 +501,7 @@ if (
 
 privateSendBtn.addEventListener("click", sendPrivateMessage);
 
-privateMsgInput.addEventListener("keypress", function (e) {
+privateMsgInput.addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
     e.preventDefault();
     sendPrivateMessage();
@@ -490,10 +511,13 @@ privateMsgInput.addEventListener("keypress", function (e) {
 function sendPrivateMessage() {
   var to = privateToInput.value.trim();
   var text = privateMsgInput.innerText.trim();
+
   if (!to || !text) return;
 
   console.log(`Debug>Private message to ${to}: ${text}`);
+
   socket.emit("private-message", { to: to, text: text });
+  socket.emit("private-stop-typing", { to: to });
 
   privateMsgInput.innerHTML = "";
   privateMsgInput.focus();
@@ -502,11 +526,12 @@ function sendPrivateMessage() {
 socket.on("private-message", function (data) {
   var d = document.createElement("div");
   var timeStamp = new Date(data.timestamp).toLocaleTimeString();
+
   var direction =
-    data.from === document.getElementById("username").value
-      ? "to " + data.to
-      : "from " + data.from;
-  d.innerHTML = "[" + timeStamp + "] (" + direction + "): " + data.text;
+    data.from === loggedInUser ? "to " + data.to : "from " + data.from;
+
+  d.textContent = "[" + timeStamp + "] (" + direction + "): " + data.text;
+
   privateResponses.appendChild(d);
   privateResponses.scrollTop = privateResponses.scrollHeight;
 });
@@ -514,12 +539,17 @@ socket.on("private-message", function (data) {
 socket.on("private-message-error", function (errMsg) {
   var d = document.createElement("div");
   var timeStamp = new Date().toLocaleTimeString();
-  d.innerHTML = "[" + timeStamp + "] Error: " + errMsg;
+
+  d.textContent = "[" + timeStamp + "] Error: " + errMsg;
+
   privateResponses.appendChild(d);
   privateResponses.scrollTop = privateResponses.scrollHeight;
 });
 
-// (F1.8) Typing Status Indicator - Public and Private Chat
+// =============================================================================
+// (F1.8): Typing Status Indicator - Public and Private Chat
+// =============================================================================
+
 var publicTypingStatus = document.getElementById("public-typing-status");
 var privateTypingStatus = document.getElementById("private-typing-status");
 
@@ -531,20 +561,22 @@ chatMessageInput.addEventListener("input", function () {
   socket.emit("public-typing");
 
   clearTimeout(publicTypingTimer);
+
   publicTypingTimer = setTimeout(function () {
     socket.emit("public-stop-typing");
   }, 1000);
 });
 
 socket.on("public-typing", function (username) {
+  if (!publicTypingStatus) return;
+
   publicTypingStatus.innerText = username + " is typing...";
 });
 
 socket.on("public-stop-typing", function (username) {
-  if (
-    publicTypingStatus.innerText ===
-    username + " is typing..."
-  ) {
+  if (!publicTypingStatus) return;
+
+  if (publicTypingStatus.innerText === username + " is typing...") {
     publicTypingStatus.innerText = "";
   }
 });
@@ -553,43 +585,44 @@ socket.on("public-stop-typing", function (username) {
 privateMsgInput.addEventListener("input", function () {
   var to = privateToInput.value.trim();
 
-  if (!to) {
-    return;
-  }
+  if (!to) return;
 
   socket.emit("private-typing", { to: to });
 
   clearTimeout(privateTypingTimer);
+
   privateTypingTimer = setTimeout(function () {
     socket.emit("private-stop-typing", { to: to });
   }, 1000);
+});
 
-  socket.on("private-typing", function (username) {
-    privateTypingStatus.innerText =
-      username + " is typing...";
-  });
+socket.on("private-typing", function (username) {
+  if (!privateTypingStatus) return;
 
-  socket.on("private-stop-typing", function (username) {
-    if (
-      privateTypingStatus.innerText ===
-      username + " is typing..."
-    ) {
-      privateTypingStatus.innerText = "";
-    }
-  });
+  privateTypingStatus.innerText = username + " is typing...";
+});
+
+socket.on("private-stop-typing", function (username) {
+  if (!privateTypingStatus) return;
+
+  if (privateTypingStatus.innerText === username + " is typing...") {
+    privateTypingStatus.innerText = "";
+  }
 });
 
 //Show Account Management Page
-document.getElementById("ChangeAccountInfo").addEventListener("click", function(){
-  $('#chatUI').hide();
-  $('#AccountManagement').show();
-});
+document
+  .getElementById("ChangeAccountInfo")
+  .addEventListener("click", function () {
+    $("#chatUI").hide();
+    $("#AccountManagement").show();
+  });
 
 //Go back to chatUI
 
-document.getElementById('goto-chat').addEventListener('click', function(){
-  $('#chatUI').show();
-  $('#AccountManagement').hide();
+document.getElementById("goto-chat").addEventListener("click", function () {
+  $("#chatUI").show();
+  $("#AccountManagement").hide();
 });
 
 var currentPasswordInput = document.getElementById("current-password");
@@ -615,11 +648,17 @@ editProfileButton.addEventListener("click", function (e) {
 
   if (!newPassword && !newEmail && !newFullName) {
     editProfileMessage.style.color = "red";
-    editProfileMessage.textContent = "Enter a new password, email, or full name to update.";
+    editProfileMessage.textContent =
+      "Enter a new password, email, or full name to update.";
     return;
   }
 
-  socket.emit("edit-profile", { oldPassword: oldPassword, newPassword: newPassword, newEmail: newEmail, newFullName: newFullName });
+  socket.emit("edit-profile", {
+    oldPassword: oldPassword,
+    newPassword: newPassword,
+    newEmail: newEmail,
+    newFullName: newFullName,
+  });
 });
 
 socket.on("edit-profile-success", function () {

@@ -30,7 +30,6 @@
 //   }
 // })();
 
-
 // //server.listen(PORT, () => console.log("Server running on port " + PORT));
 
 // // In-memory store: socketId → username
@@ -180,29 +179,29 @@
 // server.js — code skeleton provided by Phu Phung
 // complete implementation by Pawan Poudyel
 // =============================================================================
-const express    = require('express');
-const http       = require('http');
-const { Server } = require('socket.io');
-const path       = require('path');
-const app    = express();
+const express = require("express");
+const http = require("http");
+const { Server } = require("socket.io");
+const path = require("path");
+const app = express();
 const server = http.createServer(app);
-const io     = new Server(server);
-const messengerdb = require('./Database Files/messengerdb');
+const io = new Server(server);
+const messengerdb = require("./Database Files/messengerdb");
 
 // AC-02.6 (Security): CSP header - browser-level defense-in-depth
 app.use((req, res, next) => {
   res.setHeader(
-    'Content-Security-Policy',
+    "Content-Security-Policy",
     "default-src 'self'; " +
-    "script-src 'self' https://cdnjs.cloudflare.com https://code.jquery.com https://cdn.jsdelivr.net https://stackpath.bootstrapcdn.com; " +
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://stackpath.bootstrapcdn.com;" +
-    "connect-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net;" +
-    "font-src 'self' https://fonts.gstatic.com https://stackpath.bootstrapcdn.com"
+      "script-src 'self' https://cdnjs.cloudflare.com https://code.jquery.com https://cdn.jsdelivr.net https://stackpath.bootstrapcdn.com; " +
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://stackpath.bootstrapcdn.com;" +
+      "connect-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net;" +
+      "font-src 'self' https://fonts.gstatic.com https://stackpath.bootstrapcdn.com",
   );
   next();
 });
 
-app.use(express.static(path.join(__dirname, 'ui')));
+app.use(express.static(path.join(__dirname, "ui")));
 
 const PORT = process.env.PORT || 8080;
 // server.listen(PORT, () => console.log('Server running on port ' + PORT)); before mongodb integration
@@ -211,13 +210,11 @@ const PORT = process.env.PORT || 8080;
   try {
     await messengerdb.connect();
 
-    server.listen(PORT, () =>
-      console.log('Server running on port ' + PORT)
-    );
+    server.listen(PORT, () => console.log("Server running on port " + PORT));
   } catch (err) {
     console.log(
-      'Error>server.js: failed to start - database connection error',
-      err
+      "Error>server.js: failed to start - database connection error",
+      err,
     );
     process.exit(1); // Fail fast — don't run a server that can't authenticate anyone.
   }
@@ -232,9 +229,9 @@ const userlist = new Map();
 // TODO (Sprint 2): replace with MongoDB Atlas + bcrypt hashing
 // =============================================================
 const users = [
-  { username: 'abc', password: 'Pass1234' },
-  { username: 'xyz', password: 'Pass5678' },
-  { username: 'test', password: 'Pass9012' }
+  { username: "abc", password: "Pass1234" },
+  { username: "xyz", password: "Pass5678" },
+  { username: "test", password: "Pass9012" },
 ];
 
 // =============================================================
@@ -243,7 +240,7 @@ const users = [
 // =============================================================
 function authorizeUser(socket) {
   if (!socket || !socket.authenticated)
-    console.log('Connection has not been authenticated');
+    console.log("Connection has not been authenticated");
   return socket.authenticated === true;
 }
 
@@ -258,16 +255,40 @@ function sendToAuthenticatedClients(event, data) {
   });
 }
 
-io.on('connection', (socket) => {
+function sendToAuthenticatedClientsExcept(excludedSocketId, event, data) {
+  userlist.forEach((_, sid) => {
+    if (sid === excludedSocketId) return;
 
+    const s = io.sockets.sockets.get(sid);
+    if (s && authorizeUser(s)) {
+      s.emit(event, data);
+    }
+  });
+}
+
+function findSocketIdByUsername(username) {
+  for (const [socketId, storedUsername] of userlist.entries()) {
+    if (storedUsername === username) {
+      return socketId;
+    }
+  }
+
+  return null;
+}
+
+io.on("connection", (socket) => {
   socket.authenticated = false;
 
   // ---------------------------------------------------------------------------
   // Use-Case-03: Join Chat
   // ---------------------------------------------------------------------------
-  socket.on('join-chat', async (data) => {
-    if(!data || typeof data.username !== 'string' || typeof data.password !== 'string') {
-      socket.emit('join-error', 'Invalid username or password');
+  socket.on("join-chat", async (data) => {
+    if (
+      !data ||
+      typeof data.username !== "string" ||
+      typeof data.password !== "string"
+    ) {
+      socket.emit("join-error", "Invalid username or password");
       return;
     }
 
@@ -275,17 +296,22 @@ io.on('connection', (socket) => {
     const password = data.password;
     const user = await messengerdb.find(username, password);
 
-    if(!user) {
-      socket.emit('join-error', 'Invalid username or password');
+    if (!user) {
+      socket.emit("join-error", "Invalid username or password");
       return;
     }
 
     socket.authenticated = true;
     userlist.set(socket.id, username);
     io.emit("user-list", Array.from(userlist.values()));
-    console.log('New client connected - socket ID: ' + socket.id);
-    socket.emit('join-success', username);
-    sendToAuthenticatedClients('status', username + ' joined the chat. Number of connected clients: ' + userlist.size);
+    console.log("New client connected - socket ID: " + socket.id);
+    socket.emit("join-success", username);
+    sendToAuthenticatedClients(
+      "status",
+      username +
+        " joined the chat. Number of connected clients: " +
+        userlist.size,
+    );
 
     var chat_history = await messengerdb.loadChatHistory();
     if (chat_history && chat_history.length > 0) {
@@ -305,132 +331,276 @@ io.on('connection', (socket) => {
   // AC-01.5: input is cleared after sending (enforced client-side)
   // ---------------------------------------------------------------------------
   //Todo: code to implement the above use case and AC items
-  socket.on('message', async (data) => {
+  socket.on("message", async (data) => {
     console.log(`Debug> received a chat message: ${data}`); //new debug for Lab 2 security check
     // <<include>> UC-04: Authorize User //new for Lab 2
     if (!authorizeUser(socket)) {
-       socket.emit('not-authorized');
+      socket.emit("not-authorized");
       return;
     }
     // AC-01.2: ignore empty messages
-    if (!data || data.trim() === '') return;
+    if (!data || data.trim() === "") return;
     // AC-01.3 + AC-01.4: revised: broadcast to all authenticated clients with sender username
     const sender = userlist.get(socket.id);
     console.log(`Debug> "${sender}" sent: ${data}`);
     //io.emit('message', sender + ' says: ' + data.trim()); //old code in Lab 1 sent to all connected clients
-    formatted_data = data.trim()
-    
+    formatted_data = data.trim();
+
     const chat = await messengerdb.storePublicChat(sender, formatted_data);
-    sendToAuthenticatedClients('message', chat); // new code for Lab 2
+    sendToAuthenticatedClients("message", chat); // new code for Lab 2
   });
-  socket.on("delete-message", async (id) =>{
-    const sender = userlist.get(socket.id)
-    const message = await messengerdb.deleteMsg(id, sender)
-    sendToAuthenticatedClients("message-delete", message)
-  })
-  socket.on('typing', () => {
+
+  // ---------------------------------------------------------------------------
+  // (F1.5): Private Messaging
+  // ---------------------------------------------------------------------------
+  socket.on("private-message", (data) => {
+    if (!authorizeUser(socket)) {
+      socket.emit("not-authorized");
+      return;
+    }
+
+    if (
+      !data ||
+      typeof data.to !== "string" ||
+      typeof data.text !== "string" ||
+      data.to.trim() === "" ||
+      data.text.trim() === ""
+    ) {
+      socket.emit(
+        "private-message-error",
+        "Recipient and message are required.",
+      );
+      return;
+    }
+
+    const sender = userlist.get(socket.id);
+    const recipient = data.to.trim();
+    const text = data.text.trim();
+
+    const targetSocketId = findSocketIdByUsername(recipient);
+
+    if (!targetSocketId) {
+      socket.emit("private-message-error", "User is not online.");
+      return;
+    }
+
+    const privateMessage = {
+      from: sender,
+      to: recipient,
+      text: text,
+      timestamp: new Date().toISOString(),
+    };
+
+    // Send to recipient
+    io.to(targetSocketId).emit("private-message", privateMessage);
+
+    // Also show sender their own private message
+    socket.emit("private-message", privateMessage);
+  });
+
+  socket.on("delete-message", async (id) => {
+    const sender = userlist.get(socket.id);
+    const message = await messengerdb.deleteMsg(id, sender);
+    sendToAuthenticatedClients("message-delete", message);
+  });
+  // ---------------------------------------------------------------------------
+  // Typing Status Indicator - Public Chat
+  // ---------------------------------------------------------------------------
+  socket.on("public-typing", () => {
+    if (!authorizeUser(socket)) {
+      socket.emit("not-authorized");
+      return;
+    }
+
     const username = userlist.get(socket.id);
-    console.log(username + ' is typing ...');
-    socket.broadcast.emit('typing', username + ' is typing ...');
+    if (!username) return;
+
+    sendToAuthenticatedClientsExcept(socket.id, "public-typing", username);
+  });
+
+  socket.on("public-stop-typing", () => {
+    if (!authorizeUser(socket)) return;
+
+    const username = userlist.get(socket.id);
+    if (!username) return;
+
+    sendToAuthenticatedClientsExcept(socket.id, "public-stop-typing", username);
+  });
+
+  // ---------------------------------------------------------------------------
+  // Typing Status Indicator - Private Chat
+  // ---------------------------------------------------------------------------
+  socket.on("private-typing", (data) => {
+    if (!authorizeUser(socket)) {
+      socket.emit("not-authorized");
+      return;
+    }
+
+    if (!data || typeof data.to !== "string") return;
+
+    const sender = userlist.get(socket.id);
+    const targetSocketId = findSocketIdByUsername(data.to.trim());
+
+    if (sender && targetSocketId) {
+      io.to(targetSocketId).emit("private-typing", sender);
+    }
+  });
+
+  socket.on("private-stop-typing", (data) => {
+    if (!authorizeUser(socket)) return;
+
+    if (!data || typeof data.to !== "string") return;
+
+    const sender = userlist.get(socket.id);
+    const targetSocketId = findSocketIdByUsername(data.to.trim());
+
+    if (sender && targetSocketId) {
+      io.to(targetSocketId).emit("private-stop-typing", sender);
+    }
   });
   // ---------------------------------------------------------------------------
   // Use-Case-02: Receive message — disconnect notification
   //
   // AC-02.2: all connected clients are notified when a user leaves
   // ---------------------------------------------------------------------------
-  socket.on('disconnect', () => {
+  socket.on("disconnect", () => {
     const username = userlist.get(socket.id);
     userlist.delete(socket.id);
     io.emit("user-list", Array.from(userlist.values()));
-    console.log('Client disconnected - socket ID: ' + socket.id);
+    console.log("Client disconnected - socket ID: " + socket.id);
     //todo: code to broadcast the status
-    if(username) sendToAuthenticatedClients('status', username + ' left the chat. Number of connected clients: ' + userlist.size);
+    if (username)
+      sendToAuthenticatedClients(
+        "status",
+        username +
+          " left the chat. Number of connected clients: " +
+          userlist.size,
+      );
   });
 
   // Use-Case-05: Register Account
-  socket.on('register', async function({ username, password, email, fullName }) {
-    if (!username || typeof username !== 'string' ||
-        !password || typeof password !== 'string' ||
-        !email || typeof email !== 'string' ||
-        !fullName || typeof fullName !== 'string' ||
-        username.trim().length === 0 || password.length === 0 || email.trim().length === 0 || fullName.trim().length === 0) { // AC-05.3
-      socket.emit('register-error', 'Invalid request.'); // AC-05.8
-      return;
-    }
-    username = username.trim();
-    email = email.trim();
-    fullName = fullName.trim();
+  socket.on(
+    "register",
+    async function ({ username, password, email, fullName }) {
+      if (
+        !username ||
+        typeof username !== "string" ||
+        !password ||
+        typeof password !== "string" ||
+        !email ||
+        typeof email !== "string" ||
+        !fullName ||
+        typeof fullName !== "string" ||
+        username.trim().length === 0 ||
+        password.length === 0 ||
+        email.trim().length === 0 ||
+        fullName.trim().length === 0
+      ) {
+        // AC-05.3
+        socket.emit("register-error", "Invalid request."); // AC-05.8
+        return;
+      }
+      username = username.trim();
+      email = email.trim();
+      fullName = fullName.trim();
 
-    // AC-05.3: server independently re-validates format - client can be bypassed
-    const usernamePattern = /^\w{3,20}$/;
-    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!usernamePattern.test(username)) {
-      socket.emit('register-error', 'Username must be 3-20 characters (letters, numbers, underscore).');
-      return; // AC-05.8
-    }
-    if (!passwordPattern.test(password)) {
-      socket.emit('register-error', 'Password must be at least 6 characters with letters and numbers.');
-      return; // AC-05.8
-    }
-    if (!emailPattern.test(email)) {
-      socket.emit('register-error', 'Please enter a valid email address.');
-      return;
-    }
+      // AC-05.3: server independently re-validates format - client can be bypassed
+      const usernamePattern = /^\w{3,20}$/;
+      const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!usernamePattern.test(username)) {
+        socket.emit(
+          "register-error",
+          "Username must be 3-20 characters (letters, numbers, underscore).",
+        );
+        return; // AC-05.8
+      }
+      if (!passwordPattern.test(password)) {
+        socket.emit(
+          "register-error",
+          "Password must be at least 6 characters with letters and numbers.",
+        );
+        return; // AC-05.8
+      }
+      if (!emailPattern.test(email)) {
+        socket.emit("register-error", "Please enter a valid email address.");
+        return;
+      }
 
-    // Part II code
-    let result;
-    try {
-      result = await messengerdb.register(username, password, email, fullName);
-    } catch (err) {
-      socket.emit('register-error', 'Server error. Please try again.'); // AC-05.8
-      return;
-    }
+      // Part II code
+      let result;
+      try {
+        result = await messengerdb.register(
+          username,
+          password,
+          email,
+          fullName,
+        );
+      } catch (err) {
+        socket.emit("register-error", "Server error. Please try again."); // AC-05.8
+        return;
+      }
 
-    if (!result.success) {
-      socket.emit('register-error', result.message); // AC-05.8
-      return;
-    }
-    socket.emit('register-success', username); // AC-05.7: send the 'register-success' event to the client
-  });
-  socket.on('edit-profile', async function({ oldPassword, newPassword, newEmail, newFullName }) {
-    if (!authorizeUser(socket)) {
-      socket.emit('edit-profile-error', 'Please log in first.');
-      return;
-    }
+      if (!result.success) {
+        socket.emit("register-error", result.message); // AC-05.8
+        return;
+      }
+      socket.emit("register-success", username); // AC-05.7: send the 'register-success' event to the client
+    },
+  );
+  socket.on(
+    "edit-profile",
+    async function ({ oldPassword, newPassword, newEmail, newFullName }) {
+      if (!authorizeUser(socket)) {
+        socket.emit("edit-profile-error", "Please log in first.");
+        return;
+      }
 
-    const username = userlist.get(socket.id);
+      const username = userlist.get(socket.id);
 
-    if (!oldPassword || typeof oldPassword !== 'string') {
-      socket.emit('edit-profile-error', 'Current password is required.');
-      return;
-    }
+      if (!oldPassword || typeof oldPassword !== "string") {
+        socket.emit("edit-profile-error", "Current password is required.");
+        return;
+      }
 
-    // newPassword, newEmail, newFullName are all optional - user can update any combination
-    let result;
-    try {
-      result = await messengerdb.editProfile(username, oldPassword, newPassword || null, newEmail || null, newFullName || null);
-    } catch (err) {
-      socket.emit('edit-profile-error', 'Server error. Please try again.');
-      return;
-    }
+      // newPassword, newEmail, newFullName are all optional - user can update any combination
+      let result;
+      try {
+        result = await messengerdb.editProfile(
+          username,
+          oldPassword,
+          newPassword || null,
+          newEmail || null,
+          newFullName || null,
+        );
+      } catch (err) {
+        socket.emit("edit-profile-error", "Server error. Please try again.");
+        return;
+      }
 
-    if (!result.success) {
-      socket.emit('edit-profile-error', result.message);
-      return;
-    }
+      if (!result.success) {
+        socket.emit("edit-profile-error", result.message);
+        return;
+      }
 
-    socket.emit('edit-profile-success');
-  });
+      socket.emit("edit-profile-success");
+    },
+  );
   // Use-Case: Logout - only logged in users can log out
-  socket.on('logout', () => {
+  socket.on("logout", () => {
     if (!authorizeUser(socket)) return;
 
     const username = userlist.get(socket.id);
     socket.authenticated = false;
     userlist.delete(socket.id);
     io.emit("user-list", Array.from(userlist.values()));
-    if (username) sendToAuthenticatedClients('status', username + ' left the chat. Number of connected clients: ' + userlist.size);
-    socket.emit('logout-success');
+    if (username)
+      sendToAuthenticatedClients(
+        "status",
+        username +
+          " left the chat. Number of connected clients: " +
+          userlist.size,
+      );
+    socket.emit("logout-success");
   });
 });
