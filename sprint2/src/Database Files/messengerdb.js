@@ -34,6 +34,23 @@ const find = async ( username, password )=>{
   return user;
 }
 
+const getPublicProfile = async (username) => {
+  if (typeof username !== 'string' || username.trim().length === 0) return null;
+
+  const user = await users.findOne(
+    { username: username.trim() },
+    { projection: { _id: 0, username: 1, email: 1, fullName: 1 } }
+  );
+
+  if (!user) return null;
+
+  return {
+    username: user.username,
+    fullName: user.fullName || user.username,
+    email: user.email || 'No email on file'
+  };
+};
+
 // Use-Case-05: Register Account - insert a new user if username is not taken
 // returns { success: true } or { success: false, message }
 const register = async (username, password, email, fullName) => {
@@ -142,4 +159,4 @@ const editProfile = async (username, oldPassword, newPassword, newEmail, newFull
   await users.updateOne({ username: username }, { $set: updates });
   return { success: true };
 };
-module.exports = { connect, find, register, loadChatHistory, storePublicChat, getChatId, deleteMsg, editProfile};
+module.exports = { connect, find, getPublicProfile, register, loadChatHistory, storePublicChat, getChatId, deleteMsg, editProfile};

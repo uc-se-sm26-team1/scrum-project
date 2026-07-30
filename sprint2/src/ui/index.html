@@ -279,6 +279,28 @@
         <button id="cancel-link-button">Cancel</button>
         <button id="insert-link-button" disabled>Insert</button>
       </dialog>
+
+      <dialog id="user-profile-popup" class="profile-popup">
+        <div class="profile-popup-header">
+          <h3 id="user-profile-username">User Profile</h3>
+          <button
+            type="button"
+            id="close-user-profile"
+            aria-label="Close user profile"
+          >
+            &times;
+          </button>
+        </div>
+        <div class="profile-row">
+          <span>Name</span>
+          <strong id="user-profile-name"></strong>
+        </div>
+        <div class="profile-row">
+          <span>Email</span>
+          <strong id="user-profile-email"></strong>
+        </div>
+        <p id="user-profile-error" class="profile-error"></p>
+      </dialog>
     </div>
         <div id="AccountManagement" style="display: none;">
       <section class="ftco-section">

@@ -157,6 +157,12 @@ var passwordInput = document.getElementById("password");
 var joinBtnElm = document.getElementById("join-button");
 var loginErrorElm = document.getElementById("login-error");
 var registerErrorElm = document.getElementById("register-error");
+var userProfilePopup = document.getElementById("user-profile-popup");
+var userProfileUsername = document.getElementById("user-profile-username");
+var userProfileName = document.getElementById("user-profile-name");
+var userProfileEmail = document.getElementById("user-profile-email");
+var userProfileError = document.getElementById("user-profile-error");
+var closeUserProfileButton = document.getElementById("close-user-profile");
 
 document
   .getElementById("showRegisterBtn")
@@ -293,10 +299,45 @@ socket.on("user-list", function (data) {
   userlist.innerHTML = "";
   //iterate through array of users and append
   data.forEach((user) => {
-    var list = document.createElement("div");
-    list.innerHTML = user;
+    var username = typeof user === "string" ? user : user.username;
+
+    if (!username) return;
+
+    var list = document.createElement("button");
+    list.type = "button";
+    list.className = "user-list-item";
+    list.textContent = username;
+    list.addEventListener("click", function () {
+      openUserProfilePopup(username);
+      socket.emit("get-user-profile", username);
+    });
     userlist.appendChild(list);
   });
+});
+
+function openUserProfilePopup(username) {
+  userProfileUsername.textContent = username;
+  userProfileName.textContent = "Loading...";
+  userProfileEmail.textContent = "Loading...";
+  userProfileError.textContent = "";
+  userProfilePopup.showModal();
+}
+
+socket.on("user-profile", function (profile) {
+  userProfileUsername.textContent = profile.username || "User Profile";
+  userProfileName.textContent = profile.fullName || profile.username || "";
+  userProfileEmail.textContent = profile.email || "No email on file";
+  userProfileError.textContent = "";
+});
+
+socket.on("user-profile-error", function (message) {
+  userProfileName.textContent = "";
+  userProfileEmail.textContent = "";
+  userProfileError.textContent = message;
+});
+
+closeUserProfileButton.addEventListener("click", function () {
+  userProfilePopup.close();
 });
 
 //helper functions for links

@@ -398,6 +398,38 @@ io.on("connection", (socket) => {
     socket.emit("private-message", privateMessage);
   });
 
+  socket.on("get-user-profile", async (username) => {
+    if (!authorizeUser(socket)) {
+      socket.emit("not-authorized");
+      return;
+    }
+
+    if (typeof username !== "string" || username.trim() === "") {
+      socket.emit("user-profile-error", "User profile is unavailable.");
+      return;
+    }
+
+    const requestedUsername = username.trim();
+
+    if (!Array.from(userlist.values()).includes(requestedUsername)) {
+      socket.emit("user-profile-error", "User is not online.");
+      return;
+    }
+
+    try {
+      const profile = await messengerdb.getPublicProfile(requestedUsername);
+
+      if (!profile) {
+        socket.emit("user-profile-error", "User profile is unavailable.");
+        return;
+      }
+
+      socket.emit("user-profile", profile);
+    } catch (err) {
+      socket.emit("user-profile-error", "User profile is unavailable.");
+    }
+  });
+
   socket.on("delete-message", async (id) => {
     const sender = userlist.get(socket.id);
     const message = await messengerdb.deleteMsg(id, sender);
