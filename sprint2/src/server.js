@@ -222,6 +222,7 @@ const PORT = process.env.PORT || 8080;
 
 // In-memory store: socketId → username
 const userlist = new Map();
+const groups = new Map(); // groupName: Set of usernames
 
 // =============================================================
 // Use-Case-03: Join Chat - credential store (internal to Use-Case-03, not part of Use-Case-04)
@@ -253,6 +254,49 @@ function sendToAuthenticatedClients(event, data) {
     const s = io.sockets.sockets.get(sid);
     if (s && authorizeUser(s)) s.emit(event, data);
   });
+}
+
+function getGroupMembers(groupName) {
+  if (!groups.has(groupName)) {
+    groups.set(groupName, new Set());
+  }
+
+  return groups.get(groupName);
+}
+
+function broadcastGroupList(groupName) {
+  const members = getGroupMembers(groupName);
+
+  io.to(groupName).emit("group-user-list", {
+    groupName: groupName,
+    users: Array.from(members),
+  });
+}
+
+function removeUserFromCurrentGroup(socket) {
+  if (!socket.currentGroup) return;
+
+  const groupName = socket.currentGroup;
+  const username = userlist.get(socket.id);
+
+  socket.leave(groupName);
+
+  if (groups.has(groupName) && username) {
+    groups.get(groupName).delete(username);
+
+    if (groups.get(groupName).size === 0) {
+      groups.delete(groupName);
+    } else {
+      io.to(groupName).emit(
+        "group-status",
+        username + " left group " + groupName,
+      );
+
+      broadcastGroupList(groupName);
+    }
+  }
+
+  socket.currentGroup = null;
 }
 
 function sendToAuthenticatedClientsExcept(excludedSocketId, event, data) {
@@ -430,6 +474,108 @@ io.on("connection", (socket) => {
     }
   });
 
+  // ---------------------------------------------------------------------------
+  // Group Messaging
+  // ---------------------------------------------------------------------------
+
+  socket.on("join-group", function (data) {
+    if (!authorizeUser(socket)) {
+      socket.emit("not-authorized");
+      return;
+    }
+
+    if (!data || typeof data.groupName !== "string") {
+      socket.emit("group-error", "Group name is required.");
+      return;
+    }
+
+    const groupName = data.groupName.trim();
+
+    if (!groupName) {
+      socket.emit("group-error", "Group name cannot be empty.");
+      return;
+    }
+
+    const username = userlist.get(socket.id);
+
+    // Bare-bones version: one active group at a time, will change later in future sprints
+    removeUserFromCurrentGroup(socket);
+
+    socket.join(groupName);
+    socket.currentGroup = groupName;
+
+    const members = getGroupMembers(groupName);
+    members.add(username);
+
+    socket.emit("group-joined", {
+      groupName: groupName,
+      users: Array.from(members),
+    });
+
+    io.to(groupName).emit(
+      "group-status",
+      username + " joined group " + groupName,
+    );
+
+    broadcastGroupList(groupName);
+  });
+
+  socket.on("leave-group", function () {
+    if (!authorizeUser(socket)) {
+      socket.emit("not-authorized");
+      return;
+    }
+
+    const oldGroup = socket.currentGroup;
+
+    removeUserFromCurrentGroup(socket);
+
+    socket.emit("group-left", oldGroup);
+  });
+
+  socket.on("group-message", function (data) {
+    if (!authorizeUser(socket)) {
+      socket.emit("not-authorized");
+      return;
+    }
+
+    if (
+      !data ||
+      typeof data.groupName !== "string" ||
+      typeof data.text !== "string"
+    ) {
+      socket.emit("group-error", "Group name and message are required.");
+      return;
+    }
+
+    const groupName = data.groupName.trim();
+    const text = data.text.trim();
+
+    if (!groupName || !text) {
+      socket.emit("group-error", "Group name and message are required.");
+      return;
+    }
+
+    if (socket.currentGroup !== groupName) {
+      socket.emit(
+        "group-error",
+        "You must join this group before sending messages.",
+      );
+      return;
+    }
+
+    const sender = userlist.get(socket.id);
+
+    const groupMessage = {
+      groupName: groupName,
+      sender: sender,
+      text: text,
+      timestamp: new Date().toISOString(),
+    };
+
+    io.to(groupName).emit("group-message", groupMessage);
+  });
+
   socket.on("delete-message", async (id) => {
     const sender = userlist.get(socket.id);
     const message = await messengerdb.deleteMsg(id, sender);
@@ -496,6 +642,8 @@ io.on("connection", (socket) => {
   // AC-02.2: all connected clients are notified when a user leaves
   // ---------------------------------------------------------------------------
   socket.on("disconnect", () => {
+    removeUserFromCurrentGroup(socket);
+
     const username = userlist.get(socket.id);
     userlist.delete(socket.id);
     io.emit("user-list", Array.from(userlist.values()));
@@ -621,6 +769,8 @@ io.on("connection", (socket) => {
   // Use-Case: Logout - only logged in users can log out
   socket.on("logout", () => {
     if (!authorizeUser(socket)) return;
+
+    removeUserFromCurrentGroup(socket);
 
     const username = userlist.get(socket.id);
     socket.authenticated = false;
