@@ -28,13 +28,12 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present
-        working-directory: ./sprint2/src
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: ./sprint2/src
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -52,9 +51,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_08A74875FAE047F4AA27D706849F7F37 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_8CD985DFE20E4F0FA4386BD4BC91030E }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4F7632FD149C4B84B753D3C6A2D911AE }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_94823D0524974F1D970A9496A50E91FB }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_6FB33208A9D64D1096808AA398D861B8 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_83891352A3FC4479BC1621FDD4E2846A }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
