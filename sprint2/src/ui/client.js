@@ -23,7 +23,6 @@ if (!sendBtnElm) {
 
 sendBtnElm.addEventListener("click", sendMessage);
 var linkBtnElm = document.getElementById("link-button");
-linkBtnElm.addEventListener("click", openLinkPopup);
 
 var chatMessageInput = document.getElementById("chat-message");
 if (!chatMessageInput) {
@@ -37,14 +36,15 @@ chatMessageInput.addEventListener("keydown", function (e) {
   }
 });
 
-var linkifyTimer;
-var savedLinkRange = null;
+var linkifyTimers = new WeakMap();
+var savedLinkRanges = new WeakMap();
 
 var linkPopup = document.getElementById("link-popup");
 var linkTextInput = document.getElementById("link-text-input");
 var linkAddressInput = document.getElementById("link-address-input");
 var cancelLinkButton = document.getElementById("cancel-link-button");
 var insertLinkButton = document.getElementById("insert-link-button");
+var activeLinkComposer = chatMessageInput;
 var loggedInUser = "";
 setupLinkTools();
 
@@ -56,8 +56,8 @@ function sendMessage() {
   var messageText = chatMessageInput.innerText.trim();
   if (!messageText) return; // AC-02.2: empty messages are ignored
 
-  clearTimeout(linkifyTimer);
-  linkifyComposer(false);
+  clearTimeout(linkifyTimers.get(chatMessageInput));
+  linkifyComposer(chatMessageInput, false, true);
 
   var message = chatMessageInput.innerHTML.trim();
   console.log(`Debug>Chat message: ${message}`); //for UI testing only
@@ -343,30 +343,33 @@ closeUserProfileButton.addEventListener("click", function () {
 //helper functions for links
 
 function refreshComposerLinks(e) {
+  var composer = e.currentTarget;
   //converts pasted links instantly but waits for typed out links
   var isDelete = e && e.inputType && e.inputType.indexOf("delete") === 0;
   var isPaste = e && e.inputType === "insertFromPaste";
   var delay = isPaste || isDelete ? 0 : 500;
 
-  clearTimeout(linkifyTimer);
+  clearTimeout(linkifyTimers.get(composer));
 
-  linkifyTimer = setTimeout(function () {
-    linkifyComposer(isDelete, isPaste);
+  var timer = setTimeout(function () {
+    linkifyComposer(composer, isDelete, isPaste);
   }, delay);
+
+  linkifyTimers.set(composer, timer);
 }
 
-function linkifyComposer(isDelete, allowEndOfText) {
+function linkifyComposer(composer, isDelete, allowEndOfText) {
   //convert to link (but deleting characters doesnt change link/href)
   if (!isDelete) {
-    updateExistingLinkHrefs(chatMessageInput);
+    updateExistingLinkHrefs(composer);
   }
 
-  var oldHtml = chatMessageInput.innerHTML;
+  var oldHtml = composer.innerHTML;
   var newHtml = linkifyHtml(oldHtml, allowEndOfText);
 
   if (oldHtml !== newHtml) {
-    chatMessageInput.innerHTML = newHtml;
-    placeCursorAtEnd(chatMessageInput);
+    composer.innerHTML = newHtml;
+    placeCursorAtEnd(composer);
   }
 }
 
@@ -391,10 +394,11 @@ function linkifyHtml(html, allowEndOfText) {
 }
 
 function openComposerLink(e) {
+  var composer = e.currentTarget;
   //open in new tab
   var link = e.target.closest("a");
 
-  if (link && chatMessageInput.contains(link)) {
+  if (link && composer.contains(link)) {
     e.preventDefault();
     window.open(link.href, "_blank");
   }
@@ -412,10 +416,12 @@ function updateExistingLinkHrefs(root) {
   });
 }
 
-function openLinkPopup(e) {
+function openLinkPopup(e, composer) {
   e.preventDefault();
-  saveComposerSelection();
+  activeLinkComposer = composer || chatMessageInput;
+  saveComposerSelection(activeLinkComposer);
 
+  var savedLinkRange = savedLinkRanges.get(activeLinkComposer);
   var selectedText = savedLinkRange ? savedLinkRange.toString() : "";
   linkTextInput.value = selectedText;
   linkAddressInput.value = "";
@@ -447,7 +453,7 @@ function insertLinkFromPopup(e) {
   link.target = "_blank";
   link.innerText = text;
 
-  var range = getLinkInsertRange();
+  var range = getLinkInsertRange(activeLinkComposer);
   range.deleteContents();
   range.insertNode(link);
   range.setStartAfter(link);
@@ -456,34 +462,36 @@ function insertLinkFromPopup(e) {
   var selection = window.getSelection();
   selection.removeAllRanges();
   selection.addRange(range);
-  savedLinkRange = range.cloneRange();
+  savedLinkRanges.set(activeLinkComposer, range.cloneRange());
 
   linkPopup.close();
 }
 
-function getLinkInsertRange() {
+function getLinkInsertRange(composer) {
+  var savedLinkRange = savedLinkRanges.get(composer);
+
   if (
     savedLinkRange &&
-    chatMessageInput.contains(savedLinkRange.commonAncestorContainer)
+    composer.contains(savedLinkRange.commonAncestorContainer)
   ) {
     return savedLinkRange;
   }
 
   var range = document.createRange();
-  range.selectNodeContents(chatMessageInput);
+  range.selectNodeContents(composer);
   range.collapse(false);
   return range;
 }
 
-function saveComposerSelection() {
+function saveComposerSelection(composer) {
   var selection = window.getSelection();
 
   if (!selection.rangeCount) return;
 
   var range = selection.getRangeAt(0);
 
-  if (chatMessageInput.contains(range.commonAncestorContainer)) {
-    savedLinkRange = range.cloneRange();
+  if (composer.contains(range.commonAncestorContainer)) {
+    savedLinkRanges.set(composer, range.cloneRange());
   }
 }
 
@@ -509,16 +517,26 @@ function placeCursorAtEnd(element) {
 }
 
 function setupLinkTools() {
-  chatMessageInput.addEventListener("input", refreshComposerLinks);
-  chatMessageInput.addEventListener("click", openComposerLink);
-  chatMessageInput.addEventListener("keyup", saveComposerSelection);
-  chatMessageInput.addEventListener("mouseup", saveComposerSelection);
-
+  setupComposerLinkTools(chatMessageInput, linkBtnElm);
   cancelLinkButton.addEventListener("click", closeLinkPopup);
   insertLinkButton.addEventListener("click", insertLinkFromPopup);
   linkAddressInput.addEventListener("input", updateInsertLinkButton);
   linkPopup.addEventListener("close", function () {
-    chatMessageInput.focus();
+    activeLinkComposer.focus();
+  });
+}
+
+function setupComposerLinkTools(composer, linkButton) {
+  composer.addEventListener("input", refreshComposerLinks);
+  composer.addEventListener("click", openComposerLink);
+  composer.addEventListener("keyup", function () {
+    saveComposerSelection(composer);
+  });
+  composer.addEventListener("mouseup", function () {
+    saveComposerSelection(composer);
+  });
+  linkButton.addEventListener("click", function (e) {
+    openLinkPopup(e, composer);
   });
 }
 
@@ -528,11 +546,13 @@ function setupLinkTools() {
 
 var privateToInput = document.getElementById("private-to");
 var privateMsgInput = document.getElementById("private-message");
+var privateLinkBtn = document.getElementById("private-link-button");
 var privateSendBtn = document.getElementById("private-send-button");
 var privateResponses = document.getElementById("private-responses");
 
 if (
   !privateSendBtn ||
+  !privateLinkBtn ||
   !privateToInput ||
   !privateMsgInput ||
   !privateResponses
@@ -540,6 +560,7 @@ if (
   console.log("Error getting private chat elements");
 }
 
+setupComposerLinkTools(privateMsgInput, privateLinkBtn);
 privateSendBtn.addEventListener("click", sendPrivateMessage);
 
 privateMsgInput.addEventListener("keydown", function (e) {
@@ -557,7 +578,12 @@ function sendPrivateMessage() {
 
   console.log(`Debug>Private message to ${to}: ${text}`);
 
-  socket.emit("private-message", { to: to, text: text });
+  clearTimeout(linkifyTimers.get(privateMsgInput));
+  linkifyComposer(privateMsgInput, false, true);
+
+  var message = privateMsgInput.innerHTML.trim();
+
+  socket.emit("private-message", { to: to, text: message });
   socket.emit("private-stop-typing", { to: to });
 
   privateMsgInput.innerHTML = "";
@@ -571,7 +597,13 @@ socket.on("private-message", function (data) {
   var direction =
     data.from === loggedInUser ? "to " + data.to : "from " + data.from;
 
-  d.textContent = "[" + timeStamp + "] (" + direction + "): " + data.text;
+  d.appendChild(
+    document.createTextNode("[" + timeStamp + "] (" + direction + "): "),
+  );
+
+  var message = document.createElement("span");
+  message.innerHTML = linkifyHtml(data.text || "", true);
+  d.appendChild(message);
 
   privateResponses.appendChild(d);
   privateResponses.scrollTop = privateResponses.scrollHeight;
