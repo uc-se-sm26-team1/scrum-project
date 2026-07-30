@@ -38,8 +38,8 @@ _Teams are 3–4 students (per syllabus). Solo teams are not permitted._
 
 | Date       | Version | Description                                           | Author |
 | ---------- | ------- | ----------------------------------------------------- | ------ |
-| 05/28/2028 | 0.1     | Initial draft (Sprint 0) and README.md implementation | TODO   |
-| MM/DD/YYYY | 0.2     | Added use cases and architecture                      | TODO   |
+| 05/28/2028 | 0.1     | Initial draft (Sprint 0) and README.md implementation | everyone   |
+| 07/30/2026 | 0.2     | Added use cases and architecture                      | everyone   |
 
 ---
 
@@ -51,7 +51,9 @@ Describe the project in 2–4 paragraphs: the problem it addresses, the target u
 
 Our project is a real time messenging app that helps users communicate quickly in either public or private chats. It addresses the problem of needing a shared communication space for users to chat publicly/privately and share links. Users are able to see who is online, send/recieve public or private messages. Our target user base is other students/faculity members who need a messenging platform to collaborate.
 
-Our simple messenging app is a web based applcation that uses a Node.js server and Socket.IO for real time communication. Users can join with any username which the server tracke. The client provides a UI for public/private chats, system messages, users, and external links. Our web based solution fixes our main concern, which is device compatability since it can be accessed from any device with a web browser.
+Our simple messenging app is a web based applcation that uses a Node.js server, Socket.IO and MongoDB for real time communication. Users can register and join with any username which the server tracks. The client provides a UI for public/private chats, system messages, users, and external links. Our web based solution fixes our main concern, which is device compatability since it can be accessed from any device with a web browser.
+
+Our system keeps track of the chat history so messages aren't lost or gotten and lets you delete messages. We also make contacting users easy by showing you their info by clicking on them in the users list.
 
 ---
 
@@ -62,6 +64,10 @@ _Start in Sprint 0; keep updating._
 Sprint 1:
 
 In sprint 1, users are able to enter in their username and join the chat. We have a public/private chat, a users section, and system messages. Currently we have not implemented a login system so anyone can enter any username and join the chat. We have a minimal but functional UI for private/public chat and the insert button. We also switched from using textarea to a `<div>` with `contenteditable="true` to support clickable links but because of this we have security vulnerabilities since we do not check for malicous code. Overall our 0.1 version of the messenger app is in a good functional state for sprint 1.
+
+Sprint 2:
+
+Sprint 2 has a full UI made with a bootstrap template. It connects the app to MongoDB to save message hisotry and saves users. Anyone is able to register for the app to be able to use it. Users are also easily able to contact info for other users by clicking on them in the users list and they are also able to delete messages by clicking the X. Version .2 of the app makes it a lot cleaner and more useable for users and fixes major bugs like private messages and links for private messages not working.
 
 ## User Requirements
 
@@ -109,6 +115,20 @@ Status setting, Authentication, and No features section:
 
 ---
 
+Table view of Sprint 2:
+
+![Sprint 2: Table View(sorted by sprint 2) ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_2_table_view.png)
+
+Public chat section board:
+
+![Sprint 2: Public chat section ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_2_public_chat_section.png)
+
+Status setting, Authentication, and No features section:
+
+![Sprint 1: Status setting, Authentication, and No features section ](https://github.com/uc-se-sm26-team1/scrum-project/blob/main/images/sprint_2_statussetting_authentication_nofeatures.png)
+
+---
+
 ## Use Cases
 
 [![](https://img.plantuml.biz/plantuml/svg/LT3FJiCm3CVnUvx2wdq7zcT7j6bNk0ps02RzqKMaQMKxW8HuTzGgICdnAtyYnJwfiLWUeujuDxA990ntepu8l8KfEVOs2NMNAILuGqytXNJ4Ikl4BOxJ447TCrIH1WYTvxcZ7qUK5PuLr9qZnEWLFAvlRvU7Udg5H_W4NS4zhJ6R5hYjuGji2I4rjlnFTZMv2DX0WqnvfX6gFA2uVVEZR7Sa2vwNFOiurE8ff8_b9FWsIE98NtZJOD22Z-wtd6UpULnNgclRrAwfVLE7fexkXDJdCVu1)](https://editor.plantuml.com/uml/LT3FJiCm3CVnUvx2wdq7zcT7j6bNk0ps02RzqKMaQMKxW8HuTzGgICdnAtyYnJwfiLWUeujuDxA990ntepu8l8KfEVOs2NMNAILuGqytXNJ4Ikl4BOxJ447TCrIH1WYTvxcZ7qUK5PuLr9qZnEWLFAvlRvU7Udg5H_W4NS4zhJ6R5hYjuGji2I4rjlnFTZMv2DX0WqnvfX6gFA2uVVEZR7Sa2vwNFOiurE8ff8_b9FWsIE98NtZJOD22Z-wtd6UpULnNgclRrAwfVLE7fexkXDJdCVu1)
@@ -116,11 +136,15 @@ Status setting, Authentication, and No features section:
 | UC ID | Use Case                   | Primary Actor  | Brief Description                                                                                                                                                                         |
 | ----- | -------------------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | UC-01 | Alert Team                 | Connected User | Connected User uses the '@(tagline/username)' to alert team members; Connected User clicks 'Send' and all team members are alerted.                                                       |
-| UC-02 | Receive Read Receipts      | Connected User | The receiving user reads group message. The user that sent the message sees through the chat UI that the receiving user has read the message.                                             |
-| UC-03 | Set user status            | Connected User | System allows the user to select a custom user status to display availability                                                                                                             |
-| UC-04 | Create Group Message       | Connected User | Actor selects “Create Group Chat,” enters group details (such as group name and participants), and submits the request; the system validates the input, creates a new group conversation. |
-| UC-05 | Authentication             | Connected User | The user would like to log into the messaging app. The user is prompted to enter his details. The system verifies the user's credential and decides to let the user proceed or not.       |
-| UC-06 | Links to external websites | Connected User | Actor pastes link in chat and it is able to be clicked on and opens in web browser                                                                                                        |
+| UC-02 | Receive Read Receipts      | Connected User | The receiving user reads a group message. The user who sent the message sees through the chat UI that the receiving user has read the message.                                            |
+| UC-03 | Set User Status            | Connected User | The system allows the user to select a custom status to display their availability.                                                                                                       |
+| UC-04 | Create Group Message       | Connected User | Actor selects “Create Group Chat,” enters group details such as the group name and participants, and submits the request; the system validates the input and creates a new group chat.     |
+| UC-05 | Authentication             | Connected User | The user logs into the messaging application by entering their credentials. The system verifies the credentials and either authorizes or rejects the login attempt.                       |
+| UC-06 | Links to External Websites | Connected User | Actor pastes a link into the chat. The link is displayed as clickable and opens the external website in a web browser.                                                                     |
+| UC-07 | Chat History               | Connected User | The user views previously sent and received chat messages so that earlier conversations remain available after reconnecting or reopening the application.                                 |
+| UC-08 | Logout                     | Connected User | The user selects the logout option. The system terminates the user's authenticated session, updates the connected-user list, and returns the user to the login page.                      |
+| UC-09 | Account Management         | Connected User | The user views and manages their account information. The user can update their name and password, while their username remains visible but cannot be edited.                             |
+| UC-10 | Viewing Accounts           | Connected User | The user selects another user from the user list to view that user's name, username, and email address in a read-only format.                                                              |                                                                                                  |
 
 ---
 
@@ -144,7 +168,30 @@ Use case 06:
 
 ![Use-Case-06 External links sequence diagram](images/sprint_1_usecase06_sequence_diagram.png)
 
-User types or pastes URL and `client.js` converts the url into a `<a href="...">` element and the normal sending/reciving message protocol is followed
+User types or pastes a URL, and `client.js` converts the URL into an `<a href="...">` element. The normal message-sending and receiving protocol is then followed.
+
+Use case 07:
+
+![Use-Case-07 Chat history sequence diagram](images/sprint_2_usecase07_sequence_diagram.png)
+
+Chat history automatically gets saved to mongodb and is retrieved and loaded automatically when you login into the website
+Use case 08:
+
+![Use-Case-08 Logout sequence diagram](images/sprint_2_usecase08_sequence_diagram.png)
+
+When clicking the logout button the server de-authorizes the user and logs them out
+
+Use case 09:
+
+![Use-Case-09 Account management sequence diagram](images/sprint_2_usecase09_sequence_diagram.png)
+
+User van click on Account Management to update their password, name, and email
+
+Use case 10:
+
+![Use-Case-10 Viewing accounts sequence diagram](images/sprint_2_usecase10_sequence_diagram.png)
+
+User can click on any user in users list to see the other users contact info
 
 ---
 
@@ -236,7 +283,7 @@ Specify your development approach, languages, frameworks, and runtime. Default s
 | Layer            | Technology                                            |
 | ---------------- | ----------------------------------------------------- |
 | Runtime          | Node.js (Azure Cloud Shell for development)           |
-| Server framework | TODO _(e.g., Express)_                                |
+| Server framework | Socket.io _(e.g., Express)_                           |
 | Database         | MongoDB Atlas                                         |
 | Client           | HTML / CSS / JavaScript _(framework optional)_        |
 | Version control  | git + GitHub (branches + pull requests + code review) |
@@ -273,7 +320,7 @@ Describe the GitHub Actions workflow(s) under `.github/workflows/`. _(Sprint 1 o
 
 ## Deployment
 
-Describe how to deploy and the URL of the live application. Include a note on environment variables (set in Azure App Services Configuration, never in source). _(Sprint 1 onward.)_
+We have a .env.example file copy that file and name it .env and edit the URL to to your mongoDB URL then you can do `npm start` while in src/ui to deploy locally go to the appropriate URL (found at the top of this README) to run it on azure. Commiting changes automatically redeploys with the changes via github actions, you can manually redeploy by clicking redoly in github actions. 
 
 ---
 
@@ -427,13 +474,14 @@ Implement quality of life features, refine the user interface, and create a secu
 10. Add functionality to delete messages from chatroom
 11. UI Updates and Cleanup
 12. Add MONGO_URI environment in Azure
+13. Use-case-07 through 10 
 
 #### Contributions
 
 | Member   | Hours | Contribution Summary |
 | -------- | ----- | -------------------- |
 | Member 1 | X     | TODO                 |
-| Member 2 | X     | TODO                 |
+| Pawan Poudyel | 6     | Implmented logging in and registering a user, seeing other users's info, fixed private chat URLs not working, creates PBIs and diagrams, and updated readme                 |
 | Member 3 | X     | TODO                 |
 | Member 4 | X     | TODO                 |
 | Member 5 | X     | TODO                 |
