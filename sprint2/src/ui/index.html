@@ -176,84 +176,91 @@
       </p> -->
     </div>
     <div id="chatUI" style="display: none">
-      <div class="chat-layout">
-        <!-- Public Chat Panel -->
+  <div class="app-shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Messenger</h2>
+
+      <div class="account-actions">
         <button id="ChangeAccountInfo">Account Management</button>
         <button id="logout-button">Logout</button>
-        <section class="chat-panel public-chat-panel">
-          <h2>Public Chat</h2>
-         
-          <p class="chat-description">
-            Messages sent here are visible to all connected users.
-          </p>
-
-          <label for="chat-message"><b>Public Message:</b></label>
-          <div
-            id="chat-message"
-            class="message-input"
-            contenteditable="true"
-          ></div>
-
-          <div class="tool-bar">
-            <button id="link-button">link</button>
-            <button id="send-button" class="button round">Send Public</button>
-          </div>
-
-          <div id="public-typing-status" class="typing-status"></div>
-
-          <h3>Public Chat Responses</h3>
-          <div id="responses" class="message-display public-messages"></div>
-        </section>
       </div>
-      <br />
-      <b>System Status</b><br />
-      <div
-        id="status"
-        style="width: 625px; height: 75px; overflow-y: scroll"
-      ></div>
 
-      <div class="chat-box-user-list">
-        <b>Users</b>
-        <!-- <b>Chat Responses</b> -->
+      <section class="sidebar-card">
+        <h3>Users</h3>
         <div id="user-list"></div>
-        <!-- <div id="responses"></div> -->
-      </div>
+      </section>
 
-      <!-- F1.5: Private (direct) messaging -->
+      <section class="sidebar-card">
+        <h3>System Status</h3>
+        <div id="status"></div>
+      </section>
+    </aside>
+
+    <!-- Main Chat Area -->
+    <main class="chat-main">
+
+      <!-- Public Chat Panel -->
+      <section class="chat-panel public-chat-panel">
+        <div class="chat-header">
+          <h2>Public Chat</h2>
+          <p>Messages sent here are visible to all connected users.</p>
+        </div>
+
+        <label for="chat-message">Public Message</label>
+        <div
+          id="chat-message"
+          class="message-input"
+          contenteditable="true"
+        ></div>
+
+        <div class="chat-actions">
+          <button id="link-button">Link</button>
+          <button id="send-button" class="button round">Send Public</button>
+        </div>
+
+        <div id="public-typing-status" class="typing-status"></div>
+
+        <h3>Public Chat Responses</h3>
+        <div id="responses" class="message-display public-messages"></div>
+      </section>
+
       <!-- Private Chat Panel -->
-      <div class="chat-layout">
-        <section class="chat-panel private-chat-panel">
+      <section class="chat-panel private-chat-panel">
+        <div class="chat-header">
           <h2>Private Chat</h2>
-          <p class="chat-description">
-            Messages sent here are only delivered to the selected user.
-          </p>
-          <label for="private-to"><b>Send To:</b></label>
-          <input
-            type="text"
-            id="private-to"
-            placeholder="Recipient username"
-            class="recipient-input"
-          />
-          <label for="private-message"><b>Private Message:</b></label>
-          <div
-            id="private-message"
-            class="message-input"
-            contenteditable="true"
-          ></div>
-          <button id="private-link-button">link</button>
-          <button id="private-send-button" class="button round">
-            Send Private
-          </button>
+          <p>Messages sent here are only delivered to the selected user.</p>
+        </div>
 
-          <div id="private-typing-status" class="typing-status"></div>
+        <label for="private-to">Send To</label>
+        <input
+          type="text"
+          id="private-to"
+          placeholder="Recipient username"
+          class="recipient-input"
+        />
 
-          <h3>Private Chat Responses</h3>
-          <div
-            id="private-responses"
-            class="message-display private-messages"
-          ></div>
-        </section>
-      </div>
+        <label for="private-message">Private Message</label>
+        <div
+          id="private-message"
+          class="message-input"
+          contenteditable="true"
+        ></div>
+
+        <div class="chat-actions">
+          <button id="private-link-button">Link</button>
+          <button id="private-send-button" class="button round">Send Private</button>
+        </div>
+
+        <div id="private-typing-status" class="typing-status"></div>
+
+        <h3>Private Chat Responses</h3>
+        <div id="private-responses" class="message-display private-messages"></div>
+      </section>
+
+    </main>
+  </div>
 
       <dialog id="link-popup">
         <b>Insert link</b><br />
