@@ -480,7 +480,7 @@ Implement quality of life features, refine the user interface, and create a secu
 
 | Member   | Hours | Contribution Summary |
 | -------- | ----- | -------------------- |
-| Member 1 | X     | TODO                 |
+| Corey Brunner | 6     | Set up MongoDB, Azure staging environment, SPA for account management, created pbis and updated use case diagram. Lastly, added bootstrap login/registration                 |
 | Pawan Poudyel | 6     | Implmented logging in and registering a user, seeing other users's info, fixed private chat URLs not working, creates PBIs and diagrams, and updated readme                 |
 | Member 3 | X     | TODO                 |
 | Member 4 | X     | TODO                 |
