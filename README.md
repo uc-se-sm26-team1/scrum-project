@@ -484,7 +484,7 @@ Implement quality of life features, refine the user interface, and create a secu
 | Pawan Poudyel | 6     | Implmented logging in and registering a user, seeing other users's info, fixed private chat URLs not working, creates PBIs and diagrams, and updated readme                 |
 | Member 3 | X     | TODO                 |
 | Member 4 | X     | TODO                 |
-| Member 5 | X     | TODO                 |
+| Garrett Becker | 6     | Secured the MongoDB connection with environment variables, built out account management (change password, email, and full name), added user logout functionality, created PBIs, and updated the README.                 |
 
 #### Sprint Retrospective
 
