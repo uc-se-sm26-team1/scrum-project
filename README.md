@@ -29,7 +29,7 @@ _Teams are 3–4 students (per syllabus). Solo teams are not permitted._
 | Item                                                        | URL                                                                                                                              |
 | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | Team homepage / landing page                                | [https://github.com/uc-se-sm26-team1/uc-se-sm26-team1.github.io](https://github.com/uc-se-sm26-team1/uc-se-sm26-team1.github.io) |
-| Live prototype (Azure App Services)                         | https://TODO.azurewebsites.net                                                                                                   |
+| Live prototype (Azure App Services)                         | https://team1-messengerapp-c4h5h4haaqgbhaef.canadacentral-01.azurewebsites.net/                                                  |
 | GitHub Projects board (private)                             | https://github.com/orgs/uc-se-sm26-team1/projects/2/views/1                                                                      |
 | Source code repository (private)                            | https://github.com/uc-se-sm26-team1/scrum-project                                                                                |
 | MongoDB Atlas cluster (configuration only — no credentials) | _e.g., cluster name, region_                                                                                                     |
@@ -167,8 +167,17 @@ Describe your **MongoDB Atlas** schema: collections, fields, indexes, and relati
 {
   "_id": "ObjectId",
   "username": "string (unique, indexed)",
-  "passwordHash": "string (bcrypt)",
-  "createdAt": "ISODate"
+  "password": "string (bcrypt)",
+  "email": "examplee@mail.com",
+  "fullName": "Bob Smith"
+}
+// Example collection: MessageHistory
+{
+  "_id": "ObjectId",
+  "sender": "username",
+  "message": "example message",
+  "timestamp": "123456",
+  "deleted": "true",
 }
 ```
 
@@ -398,17 +407,26 @@ Working through the sprints is a continuous-improvement process. The retrospecti
 
 ### Sprint 2
 
-**Duration:** YYYY-MM-DD to YYYY-MM-DD
+**Duration:** 2026-07-15 - 2026-07-30
 
 #### Sprint Goal
 
-TODO — one sentence.
+Implement quality of life features, refine the user interface, and create a secure messaging environment requiring users to register and login.
 
 #### Completed PBIs / Tasks
 
-1. TODO
-2. TODO
-3. TODO
+1. Security implementation for logged in users
+2. Make login ui restrict users from typing unless logged in
+3. UseCase-04 Join chat
+4. UseCase-06 Register account
+5. Account Management
+6. MongoDB setup
+7. Account login security
+8. Finding Users
+9. Chat history
+10. Add functionality to delete messages from chatroom
+11. UI Updates and Cleanup
+12. Add MONGO_URI environment in Azure
 
 #### Contributions
 
@@ -433,45 +451,7 @@ Working through the sprints is a continuous-improvement process. The retrospecti
 - **What could have been better** — be specific (e.g., "we underestimated authentication" not "things were hard").
 - **How we will improve next sprint** — concrete, owned actions.
 
-### Sprint 3
 
-**Duration:** YYYY-MM-DD to YYYY-MM-DD
-
-#### Sprint Goal
-
-TODO — one sentence.
-
-#### Completed PBIs / Tasks
-
-1. TODO
-2. TODO
-3. TODO
-
-#### Contributions
-
-| Member   | Hours | Contribution Summary |
-| -------- | ----- | -------------------- |
-| Member 1 | X     | TODO                 |
-| Member 2 | X     | TODO                 |
-| Member 3 | X     | TODO                 |
-| Member 4 | X     | TODO                 |
-| Member 5 | X     | TODO                 |
-
-#### Sprint Retrospective
-
-| Good | Could have been better | How to improve |
-| ---- | ---------------------- | -------------- |
-|      |                        |                |
-|      |                        |                |
-
-Working through the sprints is a continuous-improvement process. The retrospective happens at the end of a sprint, before planning the next one. Cover three things briefly:
-
-- **What went well** — celebrate and reinforce.
-- **What could have been better** — be specific (e.g., "we underestimated authentication" not "things were hard").
-- **How we will improve next sprint** — concrete, owned actions.
-  Keep it under an hour. The output is bullet points in the table above and any new PBIs created on the board.
-
----
 
 # User Guide / Demo
 
