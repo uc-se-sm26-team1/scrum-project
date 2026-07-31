@@ -32,7 +32,7 @@ _Teams are 3–4 students (per syllabus). Solo teams are not permitted._
 | Live prototype (Azure App Services)                         | https://team1-messengerapp-c4h5h4haaqgbhaef.canadacentral-01.azurewebsites.net/                                                  |
 | GitHub Projects board (private)                             | https://github.com/orgs/uc-se-sm26-team1/projects/2/views/1                                                                      |
 | Source code repository (private)                            | https://github.com/uc-se-sm26-team1/scrum-project                                                                                |
-| MongoDB Atlas cluster (configuration only — no credentials) | _e.g., cluster name, region_                                                                                                     |
+| MongoDB Atlas cluster (configuration only — no credentials) | Team10Messenger cluster, MongoDB Atlas free tier                                                                                 |
 
 ## Revision History
 
@@ -75,9 +75,15 @@ List the high-level functional and non-functional requirements. These will be re
 
 - **FR-1:** As a user I would like the ability to set a user status to display my availability to the other users of the messenger application.
 - **FR-2:** As a registered user, I want to create a new group chat by selecting multiple users and assigning a group name, so that I can coordinate and communicate with my team in a shared messaging space without needing separate individual messages.
+- **FR-3:** As a user, I want to register for an account with a username, password, email, and full name, so that I can create a secure profile to use the messaging app.
+- **FR-4:** As a user, I want to log in with my username and password so that only authorized users can access the messenger's features.
+- **FR-5:** As a logged-in user, I want to update my password, email, and full name from an account management page, so that I can keep my account information current.
+- **FR-6:** As a logged-in user, I want to log out of the application so that my session ends and my account cannot be accessed by others on the same device.
+- **FR-7:** As a logged-in user, I want to view chat history so that I can see previously sent messages after reconnecting.
 - **NFR-1 (Performance):** The system shall detect hyperlinks within 1 second and load them under normal conditions.
 - **NFR-2 (Usability):** There must be a clear confirmation prompt from the application before a user alerts a team of more than 25 members to prevent accidental pinging.
 - **NFR-3 (Security — see §Security):** The system shall verify users through multi-factor authentication from email or text messages.
+- **NFR-4 (Security):** User passwords must never be stored or transmitted in plaintext; passwords must be hashed using bcrypt before being saved to the database.
 
 ## User Stories & Product Backlog
 
@@ -272,7 +278,11 @@ Identify assets, trust boundaries, and threats. STRIDE or attack-tree format is 
 
 Summarize findings from your Sprint 2 security review and any remediation taken. _(Sprint 2 onward.)_
 
----
+During Sprint 2, a review of the codebase found that the MongoDB Atlas connection string, including the database username and password, was hardcoded in plaintext in ConnectMongo.js and messengerdb.js. Since these files are committed to a shared GitHub repository, this exposed live database credentials to anyone with repo access and to the commit history.
+
+**Remediation:** The connection string was moved out of source code into a local .env file, loaded via the dotenv package and referenced through process.env.MONGO_URI. The .gitignore already excluded .env files, so credentials are no longer committed. The corresponding environment variable was also added to the Azure App Service configuration so the deployed app can connect without exposing credentials in the repository.
+
+**Remaining risk:** The original hardcoded credentials are still visible in earlier commit history. Rotating the MongoDB Atlas password would fully close this exposure.
 
 # Implementation
 
@@ -298,8 +308,8 @@ For each sprint, add a subsection that summarizes new implementation work. Inclu
 
 ```bash
 # Clone
-git clone git@github.com:TODO/TODO.git
-cd TODO
+git clone git@github.com:uc-se-sm26-team1/scrum-project.git
+cd scrum-project/sprint2/src
 
 # Install dependencies
 npm install
