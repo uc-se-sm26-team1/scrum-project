@@ -620,6 +620,135 @@ socket.on("private-message-error", function (errMsg) {
 });
 
 // =============================================================================
+// Group Messaging
+// =============================================================================
+
+var groupNameInput = document.getElementById("group-name");
+var groupMessageInput = document.getElementById("group-message");
+var joinGroupBtn = document.getElementById("join-group-button");
+var leaveGroupBtn = document.getElementById("leave-group-button");
+var groupSendBtn = document.getElementById("group-send-button");
+var groupResponses = document.getElementById("group-responses");
+var groupStatus = document.getElementById("group-status");
+
+var currentGroup = "";
+
+if (
+  !groupNameInput ||
+  !groupMessageInput ||
+  !joinGroupBtn ||
+  !leaveGroupBtn ||
+  !groupSendBtn ||
+  !groupResponses ||
+  !groupStatus
+) {
+  console.log("Error getting group chat elements");
+}
+
+joinGroupBtn.addEventListener("click", joinGroup);
+leaveGroupBtn.addEventListener("click", leaveGroup);
+groupSendBtn.addEventListener("click", sendGroupMessage);
+
+groupMessageInput.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    sendGroupMessage();
+  }
+});
+
+function joinGroup() {
+  var groupName = groupNameInput.value.trim();
+
+  if (!groupName) {
+    groupStatus.innerText = "Enter a group name first.";
+    return;
+  }
+
+  socket.emit("join-group", { groupName: groupName });
+}
+
+function leaveGroup() {
+  if (!currentGroup) {
+    groupStatus.innerText = "You are not currently in a group.";
+    return;
+  }
+
+  socket.emit("leave-group");
+}
+
+function sendGroupMessage() {
+  var groupName = groupNameInput.value.trim();
+  var text = groupMessageInput.innerText.trim();
+
+  if (!groupName) {
+    groupStatus.innerText = "Join or enter a group name first.";
+    return;
+  }
+
+  if (!text) return;
+
+  socket.emit("group-message", {
+    groupName: groupName,
+    text: text,
+  });
+
+  groupMessageInput.innerHTML = "";
+  groupMessageInput.focus();
+}
+
+socket.on("group-joined", function (data) {
+  currentGroup = data.groupName;
+  groupNameInput.value = data.groupName;
+  groupStatus.innerText =
+    "Joined group: " + data.groupName + " | Members: " + data.users.join(", ");
+});
+
+socket.on("group-left", function (groupName) {
+  groupStatus.innerText = "Left group: " + groupName;
+  currentGroup = "";
+  groupResponses.innerHTML = "";
+});
+
+socket.on("group-status", function (message) {
+  var d = document.createElement("div");
+  var timeStamp = new Date().toLocaleTimeString();
+
+  d.textContent = "[" + timeStamp + "] " + message;
+
+  groupResponses.appendChild(d);
+  groupResponses.scrollTop = groupResponses.scrollHeight;
+});
+
+socket.on("group-user-list", function (data) {
+  if (data.groupName !== currentGroup) return;
+
+  groupStatus.innerText =
+    "Group: " + data.groupName + " | Members: " + data.users.join(", ");
+});
+
+socket.on("group-message", function (data) {
+  var d = document.createElement("div");
+  var timeStamp = new Date(data.timestamp).toLocaleTimeString();
+
+  d.textContent =
+    "[" +
+    timeStamp +
+    "] [" +
+    data.groupName +
+    "] " +
+    data.sender +
+    " says: " +
+    data.text;
+
+  groupResponses.appendChild(d);
+  groupResponses.scrollTop = groupResponses.scrollHeight;
+});
+
+socket.on("group-error", function (message) {
+  groupStatus.innerText = "Error: " + message;
+});
+
+// =============================================================================
 // (F1.8): Typing Status Indicator - Public and Private Chat
 // =============================================================================
 
@@ -762,4 +891,10 @@ socket.on("logout-success", function () {
   document.getElementById("status").innerHTML = "";
   usernameInput.value = "";
   passwordInput.value = "";
+
+  currentGroup = "";
+  if (groupNameInput) groupNameInput.value = "";
+  if (groupMessageInput) groupMessageInput.innerHTML = "";
+  if (groupResponses) groupResponses.innerHTML = "";
+  if (groupStatus) groupStatus.innerText = "";
 });
