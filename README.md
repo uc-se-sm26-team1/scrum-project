@@ -75,9 +75,15 @@ List the high-level functional and non-functional requirements. These will be re
 
 - **FR-1:** As a user I would like the ability to set a user status to display my availability to the other users of the messenger application.
 - **FR-2:** As a registered user, I want to create a new group chat by selecting multiple users and assigning a group name, so that I can coordinate and communicate with my team in a shared messaging space without needing separate individual messages.
+- **FR-3:** As a user, I want to register for an account with a username, password, email, and full name, so that I can create a secure profile to use the messaging app.
+- **FR-4:** As a user, I want to log in with my username and password so that only authorized users can access the messenger's features.
+- **FR-5:** As a logged-in user, I want to update my password, email, and full name from an account management page, so that I can keep my account information current.
+- **FR-6:** As a logged-in user, I want to log out of the application so that my session ends and my account cannot be accessed by others on the same device.
+- **FR-7:** As a logged-in user, I want to view chat history so that I can see previously sent messages after reconnecting.
 - **NFR-1 (Performance):** The system shall detect hyperlinks within 1 second and load them under normal conditions.
 - **NFR-2 (Usability):** There must be a clear confirmation prompt from the application before a user alerts a team of more than 25 members to prevent accidental pinging.
 - **NFR-3 (Security — see §Security):** The system shall verify users through multi-factor authentication from email or text messages.
+- **NFR-4 (Security):** User passwords must never be stored or transmitted in plaintext; passwords must be hashed using bcrypt before being saved to the database.
 
 ## User Stories & Product Backlog
 
