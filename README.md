@@ -32,7 +32,7 @@ _Teams are 3–4 students (per syllabus). Solo teams are not permitted._
 | Live prototype (Azure App Services)                         | https://team1-messengerapp-c4h5h4haaqgbhaef.canadacentral-01.azurewebsites.net/                                                  |
 | GitHub Projects board (private)                             | https://github.com/orgs/uc-se-sm26-team1/projects/2/views/1                                                                      |
 | Source code repository (private)                            | https://github.com/uc-se-sm26-team1/scrum-project                                                                                |
-| MongoDB Atlas cluster (configuration only — no credentials) | _e.g., cluster name, region_                                                                                                     |
+| MongoDB Atlas cluster (configuration only — no credentials) | Team10Messenger cluster, MongoDB Atlas free tier                                                                                 |
 
 ## Revision History
 
@@ -302,8 +302,8 @@ For each sprint, add a subsection that summarizes new implementation work. Inclu
 
 ```bash
 # Clone
-git clone git@github.com:TODO/TODO.git
-cd TODO
+git clone git@github.com:uc-se-sm26-team1/scrum-project.git
+cd scrum-project/sprint2/src
 
 # Install dependencies
 npm install
