@@ -272,7 +272,11 @@ Identify assets, trust boundaries, and threats. STRIDE or attack-tree format is 
 
 Summarize findings from your Sprint 2 security review and any remediation taken. _(Sprint 2 onward.)_
 
----
+During Sprint 2, a review of the codebase found that the MongoDB Atlas connection string, including the database username and password, was hardcoded in plaintext in ConnectMongo.js and messengerdb.js. Since these files are committed to a shared GitHub repository, this exposed live database credentials to anyone with repo access and to the commit history.
+
+**Remediation:** The connection string was moved out of source code into a local .env file, loaded via the dotenv package and referenced through process.env.MONGO_URI. The .gitignore already excluded .env files, so credentials are no longer committed. The corresponding environment variable was also added to the Azure App Service configuration so the deployed app can connect without exposing credentials in the repository.
+
+**Remaining risk:** The original hardcoded credentials are still visible in earlier commit history. Rotating the MongoDB Atlas password would fully close this exposure.
 
 # Implementation
 
