@@ -143,7 +143,7 @@ Status setting, Authentication, and No features section:
 | ----- | -------------------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | UC-01 | Alert Team                 | Connected User | Connected User uses the '@(tagline/username)' to alert team members; Connected User clicks 'Send' and all team members are alerted.                                                       |
 | UC-02 | Receive Read Receipts      | Connected User | The receiving user reads a group message. The user who sent the message sees through the chat UI that the receiving user has read the message.                                            |
-| UC-03 | Set User Status            | Connected User | The system allows the user to select a custom status to display their availability.                                                                                                       |
+| ~~UC-03~~ | ~~Set User Status~~            | ~~Connected User~~ | ~~The system allows the user to select a custom status to display their availability.~~                                                                                                       |
 | UC-04 | Create Group Message       | Connected User | Actor selects “Create Group Chat,” enters group details such as the group name and participants, and submits the request; the system validates the input and creates a new group chat.     |
 | UC-05 | Authentication             | Connected User | The user logs into the messaging application by entering their credentials. The system verifies the credentials and either authorizes or rejects the login attempt.                       |
 | UC-06 | Links to External Websites | Connected User | Actor pastes a link into the chat. The link is displayed as clickable and opens the external website in a web browser.                                                                     |
@@ -509,7 +509,7 @@ Working through the sprints is a continuous-improvement process. The retrospecti
 - **What could have been better** — The most difficult part was distribution of work and figuring out scheduling. The sprint had a lot of different features to implement and that made it harder to focus on what needed to get done.
 - **How we will improve next sprint** — Be more organized with the scheduling, communication and distribution of work. Figure out what the order the features need to be added in first.
 
-
+## AI Uses
 
 # User Guide / Demo
 
