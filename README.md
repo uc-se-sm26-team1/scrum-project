@@ -493,7 +493,7 @@ Implement quality of life features, refine the user interface, and create a secu
 | Corey Brunner | 6     | Set up MongoDB, Azure staging environment, SPA for account management, created pbis and updated use case diagram. Lastly, added bootstrap login/registration                 |
 | Pawan Poudyel | 6     | Implmented logging in and registering a user, seeing other users's info, fixed private chat URLs not working, creates PBIs and diagrams, and updated readme                 |
 | Abdulah Dia | 6     | Implemented Use-Case-04, UI Improvements, fixed typing indicator bug, and private messaging bug.                  |
-| Member 4 | X     | TODO                 |
+| Zackary Bailey | 6     | Implemented the feature of our choice which was to delete user messages from the chat after they were sent, added pbis, some UI additions.                 |
 | Garrett Becker | 6     | Secured the MongoDB connection with environment variables, built out account management (change password, email, and full name), added user logout functionality, created PBIs, and updated the README.                 |
 
 #### Sprint Retrospective
