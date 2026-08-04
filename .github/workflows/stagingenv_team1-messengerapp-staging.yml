@@ -28,13 +28,12 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present
-        working-directory: ./sprint2/src
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: ./sprint2/src
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -52,9 +51,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_0DD92B4871794614A3B99C30F3670E67 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_182D442297224661A2A5373354048100 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_CE1C25CE14274CA380A8D727573F39F0 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_0A50B72A9FC24E1D980D906C02E95C91 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2BBEAB3C4D224040B347CFBED82CC6BC }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_617099C8854C480AB6E2B1820591CB1E }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
@@ -63,3 +62,4 @@ jobs:
           app-name: 'Team1-MessengerApp-Staging'
           slot-name: 'Production'
           package: .
+          
