@@ -796,7 +796,7 @@ The team used GitHub Issues as PBIs and GitHub Projects as the shared backlog. S
 
 Paste or type a full `http://` or `https://` address; it becomes clickable automatically. For custom display text, select **Link**, enter the text and address, then select **Insert**. Links open in a new browser tab.
 
-![External-link interaction design](images/Markup%20UI%20Drawings/Use-Case-06-UI-Design.png)
+![External-link interaction design](images/add-an-external-link.png)
 
 ### 5. Send a Private Message
 
@@ -812,11 +812,13 @@ Paste or type a full `http://` or `https://` address; it becomes clickable autom
 3. Enter text and select **Send Group**. Only current members of that Socket.IO room receive it.
 4. Select **Leave Group** when finished. A user can be in one active group at a time, and group history is not persisted.
 
-![Group-chat interaction design](images/Markup%20UI%20Drawings/Use-Case-04-UI-Design.png)
+![Group-chat interaction design](images/group-chat-interaction.png)
 
 ### 7. View an Online User's Profile
 
 Select a username in the **Users** list. The profile dialog shows the user's username, full name, and email. Close the dialog with the `×` button. Only currently online users can be queried.
+
+![](images/view-user-profile.png)
 
 ### 8. Edit Your Profile or Password
 
@@ -825,6 +827,8 @@ Select a username in the **Users** list. The profile dialog shows the user's use
 3. Enter one or more new values: password, email, or full name.
 4. Select **Save Changes**. A password change must still contain letters and numbers and is stored as a new bcrypt hash.
 5. Select **Go Back** to return to chat.
+
+![](images/account-management.png)
 
 ### 9. Delete Your Own Public Message
 
