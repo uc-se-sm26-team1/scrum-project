@@ -474,7 +474,7 @@ Implement quality of life features, refine the user interface, and create a secu
 
 1. Security implementation for logged in users
 2. Make login ui restrict users from typing unless logged in
-3. UseCase-04 Join chat
+3. UseCase-04 Create Group Message
 4. UseCase-06 Register account
 5. Account Management
 6. MongoDB setup
@@ -490,9 +490,9 @@ Implement quality of life features, refine the user interface, and create a secu
 
 | Member   | Hours | Contribution Summary |
 | -------- | ----- | -------------------- |
-| Member 1 | X     | TODO                 |
+| Corey Brunner | 6     | Set up MongoDB, Azure staging environment, SPA for account management, created pbis and updated use case diagram. Lastly, added bootstrap login/registration                 |
 | Pawan Poudyel | 6     | Implmented logging in and registering a user, seeing other users's info, fixed private chat URLs not working, creates PBIs and diagrams, and updated readme                 |
-| Member 3 | X     | TODO                 |
+| Abdulah Dia | 6     | Implemented Use-Case-04, UI Improvements, fixed typing indicator bug, and private messaging bug.                  |
 | Member 4 | X     | TODO                 |
 | Garrett Becker | 6     | Secured the MongoDB connection with environment variables, built out account management (change password, email, and full name), added user logout functionality, created PBIs, and updated the README.                 |
 
@@ -500,14 +500,14 @@ Implement quality of life features, refine the user interface, and create a secu
 
 | Good | Could have been better | How to improve |
 | ---- | ---------------------- | -------------- |
-|      |                        |                |
-|      |                        |                |
+|   Feature Implementation   |          Work distribution              |       Figure out what specific features need to be done in what order.         |
+|   CICD Development   |          Scheduling              |      Emphasis communication within the team to establish more routine meetings.          |
 
 Working through the sprints is a continuous-improvement process. The retrospective happens at the end of a sprint, before planning the next one. Cover three things briefly:
 
-- **What went well** — celebrate and reinforce.
-- **What could have been better** — be specific (e.g., "we underestimated authentication" not "things were hard").
-- **How we will improve next sprint** — concrete, owned actions.
+- **What went well** — The actual implementation of the various features was relatively smooth, and also we felt that we utilized the CICD method with azure by using the staging environment to test outgoing changes.
+- **What could have been better** — The most difficult part was distribution of work and figuring out scheduling. The sprint had a lot of different features to implement and that made it harder to focus on what needed to get done.
+- **How we will improve next sprint** — Be more organized with the scheduling, communication and distribution of work. Figure out what the order the features need to be added in first.
 
 
 

@@ -258,7 +258,40 @@
         <h3>Private Chat Responses</h3>
         <div id="private-responses" class="message-display private-messages"></div>
       </section>
+    <!-- Group Chat Panel -->
+    <section class="chat-panel group-chat-panel">
+    <h2>Group Chat</h2>
+    <p class="chat-description">
+      Join a group and send messages only to users in that group.
+    </p>
 
+    <label for="group-name"><b>Group Name:</b></label>
+    <input
+      type="text"
+      id="group-name"
+      placeholder="Example: team1"
+      class="recipient-input"
+    />
+
+    <div class="chat-actions">
+      <button id="join-group-button" class="button round">Join Group</button>
+      <button id="leave-group-button">Leave Group</button>
+    </div>
+
+    <div id="group-status" class="typing-status"></div>
+
+    <label for="group-message"><b>Group Message:</b></label>
+    <div
+      id="group-message"
+      class="message-input"
+      contenteditable="true"
+    ></div>
+
+    <button id="group-send-button" class="button round">Send Group</button>
+
+    <h3>Group Chat Responses</h3>
+    <div id="group-responses" class="message-display group-messages"></div>
+    </section>
     </main>
   </div>
 

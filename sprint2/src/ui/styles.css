@@ -340,3 +340,18 @@ label {
   font-weight: 500;
   line-height: 1.5;
 }
+
+
+.group-chat-panel {
+  border-top: 5px solid #94449a;
+  background: white;
+}
+
+#group-status {
+  color: #94449a;
+  font-weight: 600;
+}
+
+.group-messages {
+  background: #f8f8f8;
+}
