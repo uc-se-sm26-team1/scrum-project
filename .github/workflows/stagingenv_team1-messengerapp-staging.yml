@@ -35,7 +35,7 @@ jobs:
         with:
           name: node-app
           path: ./sprint2/src
-
+          
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -52,9 +52,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_08A74875FAE047F4AA27D706849F7F37 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_8CD985DFE20E4F0FA4386BD4BC91030E }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4F7632FD149C4B84B753D3C6A2D911AE }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_0A50B72A9FC24E1D980D906C02E95C91 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2BBEAB3C4D224040B347CFBED82CC6BC }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_617099C8854C480AB6E2B1820591CB1E }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
