@@ -116,27 +116,27 @@ The authoritative backlog is the private [GitHub Projects board](https://github.
 
 ### Sprint 0 Board
 
-![Sprint 0 table view](docs/sprint_0_table_view.png)
+![Sprint 0 table view](images/sprint_0_table_view.png)
 
-![Sprint 0 public-chat and use-case board](docs/sprint_0_public_chat_section.png)
+![Sprint 0 public-chat and use-case board](images/sprint_0_public_chat_section.png)
 
-![Sprint 0 status, authentication, and system-analysis board](docs/sprint_0_statussetting_authentication_nofeatures.png)
+![Sprint 0 status, authentication, and system-analysis board](images/sprint_0_statussetting_authentication_nofeatures.png)
 
 ### Sprint 1 Board
 
-![Sprint 1 table view](docs/sprint_1_table_view.png)
+![Sprint 1 table view](images/sprint_1_table_view.png)
 
-![Sprint 1 public-chat and use-case board](docs/sprint_1_public_chat_section.png)
+![Sprint 1 public-chat and use-case board](images/sprint_1_public_chat_section.png)
 
-![Sprint 1 status, authentication, and system-analysis board](docs/sprint_1_statussetting_authentication_nofeatures.png)
+![Sprint 1 status, authentication, and system-analysis board](images/sprint_1_statussetting_authentication_nofeatures.png)
 
 ### Sprint 2 Board
 
-![Sprint 2 table view](docs/sprint_2_table_view.png)
+![Sprint 2 table view](images/sprint_2_table_view.png)
 
-![Sprint 2 public-chat and use-case board](docs/sprint_2_public_chat_section.png)
+![Sprint 2 public-chat and use-case board](images/sprint_2_public_chat_section.png)
 
-![Sprint 2 status, authentication, and system-analysis board](docs/sprint_2_statussetting_authentication_nofeatures.png)
+![Sprint 2 status, authentication, and system-analysis board](images/sprint_2_statussetting_authentication_nofeatures.png)
 
 ### Delivery Roadmap
 
@@ -255,13 +255,13 @@ flowchart TB
 
 The Sprint 0 diagrams below document the planned flows for UC-01 through UC-04. The realization table marks the first three as future backlog so the design remains consistent with v0.2.
 
-![UC-01 Alert Team sequence diagram](docs/sprint_1_usecase01_sequence_diagram.png)
+![UC-01 Alert Team sequence diagram](images/sprint_1_usecase01_sequence_diagram.png)
 
-![UC-02 Receive Read Receipts sequence diagram](docs/sprint_1_usecase02_sequence_diagram.png)
+![UC-02 Receive Read Receipts sequence diagram](images/sprint_1_usecase02_sequence_diagram.png)
 
-![UC-03 Set User Status sequence diagram](docs/sprint_1_usecase03_sequence_diagram.png)
+![UC-03 Set User Status sequence diagram](images/sprint_1_usecase03_sequence_diagram.png)
 
-![UC-04 Group Message sequence diagram](docs/sprint_1_usecase04_sequence_diagram.png)
+![UC-04 Group Message sequence diagram](images/sprint_1_usecase04_sequence_diagram.png)
 
 UC-05 authentication is realized by the following final flow:
 
@@ -317,15 +317,15 @@ sequenceDiagram
     end
 ```
 
-![F1.9 External Links sequence diagram](docs/sprint_1_usecase06_sequence_diagram.png)
+![F1.9 External Links sequence diagram](images/sprint_1_usecase06_sequence_diagram.png)
 
-![UC-07 Chat History sequence diagram](docs/sprint_2_usecase07_sequence_diagram.png)
+![UC-07 Chat History sequence diagram](images/sprint_2_usecase07_sequence_diagram.png)
 
-![UC-08 Logout sequence diagram](docs/sprint_2_usecase08_sequence_diagram.png)
+![UC-08 Logout sequence diagram](images/sprint_2_usecase08_sequence_diagram.png)
 
-![UC-09 Account Management sequence diagram](docs/sprint_2_usecase09_sequence_diagram.png)
+![UC-09 Account Management sequence diagram](images/sprint_2_usecase09_sequence_diagram.png)
 
-![UC-10 Viewing Accounts sequence diagram](docs/sprint_2_usecase10_sequence_diagram.png)
+![UC-10 Viewing Accounts sequence diagram](images/sprint_2_usecase10_sequence_diagram.png)
 
 ## User Interface
 
@@ -333,11 +333,11 @@ The v0.2 client is a single-page application with three unauthenticated/authenti
 
 The following Sprint 0 mockups established the interaction concepts later implemented in the application:
 
-![UC-04 Group Chat UI design](docs/Markup%20UI%20Drawings/Use-Case-04-UI-Design.png)
+![UC-04 Group Chat UI design](images/Markup%20UI%20Drawings/Use-Case-04-UI-Design.png)
 
 The final v0.2 group implementation uses a shared group name instead of the mockup's invitation list. Every intended member enters the same group name and selects **Join Group**.
 
-![F1.9 External Link UI design](docs/Markup%20UI%20Drawings/Use-Case-06-UI-Design.png)
+![F1.9 External Link UI design](images/Markup%20UI%20Drawings/Use-Case-06-UI-Design.png)
 
 The final link interface supports both the popup shown in the mockup and automatic HTTP(S) URL conversion in public and private composers.
 
@@ -759,7 +759,7 @@ The team used GitHub Issues as PBIs and GitHub Projects as the shared backlog. S
 
 Paste or type a full `http://` or `https://` address; it becomes clickable automatically. For custom display text, select **Link**, enter the text and address, then select **Insert**. Links open in a new browser tab.
 
-![External-link interaction design](docs/Markup%20UI%20Drawings/Use-Case-06-UI-Design.png)
+![External-link interaction design](images/Markup%20UI%20Drawings/Use-Case-06-UI-Design.png)
 
 ### 5. Send a Private Message
 
@@ -775,7 +775,7 @@ Paste or type a full `http://` or `https://` address; it becomes clickable autom
 3. Enter text and select **Send Group**. Only current members of that Socket.IO room receive it.
 4. Select **Leave Group** when finished. A user can be in one active group at a time, and group history is not persisted.
 
-![Group-chat interaction design](docs/Markup%20UI%20Drawings/Use-Case-04-UI-Design.png)
+![Group-chat interaction design](images/Markup%20UI%20Drawings/Use-Case-04-UI-Design.png)
 
 ### 7. View an Online User's Profile
 
