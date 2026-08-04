@@ -779,11 +779,15 @@ The team used GitHub Issues as PBIs and GitHub Projects as the shared backlog. S
 4. Enter a valid email address and full name.
 5. Select **Register Account**. A duplicate or invalid entry displays an inline error; a successful registration returns to login.
 
+![](images/register-account.png)
+
 ### 2. Log In
 
 1. Enter the registered username and password on the login page.
 2. Select **Login**.
 3. Valid credentials open the chat UI and load recent public history. Invalid credentials leave the login page visible and show a generic error.
+
+![](images/login.png)
 
 ### 3. Send and Read Public Messages
 
@@ -791,6 +795,8 @@ The team used GitHub Issues as PBIs and GitHub Projects as the shared backlog. S
 2. Select **Send Public** or press Enter.
 3. The message appears for every authenticated connected user and is stored in public history.
 4. After a later login, the latest 100 public messages load automatically.
+
+![](images/send-read-public-messages.png)
 
 ### 4. Add an External Link
 
@@ -804,6 +810,8 @@ Paste or type a full `http://` or `https://` address; it becomes clickable autom
 2. Enter the message in **Private Message**.
 3. Select **Send Private** or press Enter.
 4. Only the sender and online recipient receive the message. Private history is not retained after the connection ends.
+
+![](images/send-private-message.png)
 
 ### 6. Join and Use a Group
 
@@ -833,6 +841,9 @@ Select a username in the **Users** list. The profile dialog shows the user's use
 ### 9. Delete Your Own Public Message
 
 Select the `x` next to one of your public messages. The database retains the record for conversation continuity but replaces its content with **This message was deleted**. Other users cannot delete that message.
+
+![](images/delete-public-message-1.png)
+![](images/delete-public-message-2.png)
 
 ### 10. Log Out
 
