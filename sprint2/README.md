@@ -615,6 +615,43 @@ The team used OpenAI Codex on August 4, 2026 for a documentation-focused audit. 
 | Security impact | The audit identified the difference between CSP defense in depth and actual message sanitization, recorded the historical credential exposure, and exposed missing rate limits/tests rather than masking them. |
 | Productivity impact | Repository-wide source, workflow, asset, and commit review was condensed into a structured final report; the team remains responsible for validating every claim and live flow before submission. |
 
+Exact prompt used:
+`"I need help updating my readme [README.md](sprint2/README.md)
+
+Here Is the entire sprint 2 submission requirments: (sprint 2 submission requirements were pasted)
+
+Here are the comments left on the sprint 1 submission: Comments on that:
+
+No revision history (should have at least a little bit here)
+
+Live Prototype link is still TODO
+
+Only 2 FR listed under user requirements (though you implemented all 9)
+
+Implementation section not updated
+
+Mason Hall , Jul 13 at 2:35pm
+I'm also not seeing any code related to CSP headers, XSS attack mitigation.
+
+Mason Hall , Jul 13 at 2:39pm
+
+(-2) Missing roadmap screenshot
+
+(-1) TODO live app link, revision history mostly blank
+
+(-1.5) Only 2 FR listed under user requirements
+
+(-3) Implementation section not updated
+
+(-1) Security implementation incomplete
+
+(-3) No user guide
+
+
+Some of these may have been updated but please further refine them to meet out template and requirments. You may read other files in this project to help you fill out the readme"`
+
+[Commit Link](https://github.com/uc-se-sm26-team1/scrum-project/commit/b811f77dbe1d4c6b50f1f2ae4fb3166be95792f9)
+
 This GenAI assistance did not replace team authorship, testing, or code review. Team members must review the report and retain responsibility for the submitted work.
 
 ---
