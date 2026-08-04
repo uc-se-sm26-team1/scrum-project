@@ -137,7 +137,7 @@ Status setting, Authentication, and No features section:
 
 ## Use Cases
 
-[![](https://img.plantuml.biz/plantuml/svg/LT3FJiCm3CVnUvx2wdq7zcT7j6bNk0ps02RzqKMaQMKxW8HuTzGgICdnAtyYnJwfiLWUeujuDxA990ntepu8l8KfEVOs2NMNAILuGqytXNJ4Ikl4BOxJ447TCrIH1WYTvxcZ7qUK5PuLr9qZnEWLFAvlRvU7Udg5H_W4NS4zhJ6R5hYjuGji2I4rjlnFTZMv2DX0WqnvfX6gFA2uVVEZR7Sa2vwNFOiurE8ff8_b9FWsIE98NtZJOD22Z-wtd6UpULnNgclRrAwfVLE7fexkXDJdCVu1)](https://editor.plantuml.com/uml/LT3FJiCm3CVnUvx2wdq7zcT7j6bNk0ps02RzqKMaQMKxW8HuTzGgICdnAtyYnJwfiLWUeujuDxA990ntepu8l8KfEVOs2NMNAILuGqytXNJ4Ikl4BOxJ447TCrIH1WYTvxcZ7qUK5PuLr9qZnEWLFAvlRvU7Udg5H_W4NS4zhJ6R5hYjuGji2I4rjlnFTZMv2DX0WqnvfX6gFA2uVVEZR7Sa2vwNFOiurE8ff8_b9FWsIE98NtZJOD22Z-wtd6UpULnNgclRrAwfVLE7fexkXDJdCVu1)
+![](https://www.plantuml.com/plantuml/png/bPAzxXCn4CHxFyNg-XH4-OWeKA9GaYQG1rXymyLmjpvvrmI4U7SIoqYnbEPVk1ZjRpIx8-_LE5cUHZVYcv55Ic6u6lKXmLk8ujXRJDGTemYyeQUB8dN4IcNY7XpBC8Aw4rGX0n8TvhcZFuueApmhg3kCI4PVm5FnNexldgTdU8IVe3Eufo9cqmekdy5Z0XjeI37FD46L1rHkrSHbkq8iU7uSKOdrC_4fo0-oIFXbIC8ZtV1LWq4hl6dWECHiTR9jWhoFMOnEB3nWWlodTixzhUKj5X_AmH8DjTyeDDuNU4-b5x8h6sL5ekyn2Fh6k6pKgb7hHcqQjNNtHnLxbVqHQYd-fizG3L4A_fPT7r-c9XRNxfMhDbCSmXE8fQUPLMynzMuFwVCq_WC0)
 
 | UC ID | Use Case                   | Primary Actor  | Brief Description                                                                                                                                                                         |
 | ----- | -------------------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
