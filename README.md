@@ -779,11 +779,15 @@ The team used GitHub Issues as PBIs and GitHub Projects as the shared backlog. S
 4. Enter a valid email address and full name.
 5. Select **Register Account**. A duplicate or invalid entry displays an inline error; a successful registration returns to login.
 
+![](images/register-account.png)
+
 ### 2. Log In
 
 1. Enter the registered username and password on the login page.
 2. Select **Login**.
 3. Valid credentials open the chat UI and load recent public history. Invalid credentials leave the login page visible and show a generic error.
+
+![](images/login.png)
 
 ### 3. Send and Read Public Messages
 
@@ -792,11 +796,13 @@ The team used GitHub Issues as PBIs and GitHub Projects as the shared backlog. S
 3. The message appears for every authenticated connected user and is stored in public history.
 4. After a later login, the latest 100 public messages load automatically.
 
+![](images/send-read-public-messages.png)
+
 ### 4. Add an External Link
 
 Paste or type a full `http://` or `https://` address; it becomes clickable automatically. For custom display text, select **Link**, enter the text and address, then select **Insert**. Links open in a new browser tab.
 
-![External-link interaction design](images/Markup%20UI%20Drawings/Use-Case-06-UI-Design.png)
+![External-link interaction design](images/add-an-external-link.png)
 
 ### 5. Send a Private Message
 
@@ -805,6 +811,8 @@ Paste or type a full `http://` or `https://` address; it becomes clickable autom
 3. Select **Send Private** or press Enter.
 4. Only the sender and online recipient receive the message. Private history is not retained after the connection ends.
 
+![](images/send-private-message.png)
+
 ### 6. Join and Use a Group
 
 1. Agree on a group name with the other participants.
@@ -812,11 +820,13 @@ Paste or type a full `http://` or `https://` address; it becomes clickable autom
 3. Enter text and select **Send Group**. Only current members of that Socket.IO room receive it.
 4. Select **Leave Group** when finished. A user can be in one active group at a time, and group history is not persisted.
 
-![Group-chat interaction design](images/Markup%20UI%20Drawings/Use-Case-04-UI-Design.png)
+![Group-chat interaction design](images/group-chat-interaction.png)
 
 ### 7. View an Online User's Profile
 
 Select a username in the **Users** list. The profile dialog shows the user's username, full name, and email. Close the dialog with the `×` button. Only currently online users can be queried.
+
+![](images/view-user-profile.png)
 
 ### 8. Edit Your Profile or Password
 
@@ -826,9 +836,14 @@ Select a username in the **Users** list. The profile dialog shows the user's use
 4. Select **Save Changes**. A password change must still contain letters and numbers and is stored as a new bcrypt hash.
 5. Select **Go Back** to return to chat.
 
+![](images/account-management.png)
+
 ### 9. Delete Your Own Public Message
 
 Select the `x` next to one of your public messages. The database retains the record for conversation continuity but replaces its content with **This message was deleted**. Other users cannot delete that message.
+
+![](images/delete-public-message-1.png)
+![](images/delete-public-message-2.png)
 
 ### 10. Log Out
 
