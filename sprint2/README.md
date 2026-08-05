@@ -29,7 +29,7 @@
 | Live Messenger v0.2 prototype | [Azure App Service](https://team1-messengerapp-c4h5h4haaqgbhaef.canadacentral-01.azurewebsites.net/) |
 | GitHub Projects board | [Team 1 Scrum project](https://github.com/orgs/uc-se-sm26-team1/projects/2/views/1) |
 | Private source repository | [uc-se-sm26-team1/scrum-project](https://github.com/uc-se-sm26-team1/scrum-project) |
-| MongoDB Atlas | `Team10Messenger` cluster, Atlas free tier; credentials are supplied only through `MONGO_URI` |
+| MongoDB Atlas | `Team1Messenger` cluster, Atlas free tier; credentials are supplied only through `MONGO_URI` |
 
 The team homepage and live Azure URL returned HTTP 200 during the documentation audit on August 4, 2026. The Azure response also included the application's Content Security Policy header.
 
